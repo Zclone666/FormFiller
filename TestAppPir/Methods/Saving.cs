@@ -16,7 +16,7 @@ namespace TestAppPir.Methods
             {
                 if (trash != null)
                 {
-                    if (fileName == null) fileName = $@"C:\Users\cyril\source\repos\TestAppPir\TestAppPir\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\{trash.SolderId}";
+                    if (fileName == null) fileName = Path.Combine(FileSystem.Current.AppDataDirectory, trash.SolderId);
                     trash.filename = fileName;
                     using (FileStream fs = new FileStream(fileName, FileMode.Create))
                     {
