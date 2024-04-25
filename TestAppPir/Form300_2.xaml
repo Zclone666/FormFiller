@@ -28,8 +28,8 @@
             <Label Text="Обстоятельства ранения"/>
             <Editor HeightRequest="100" Placeholder="Опишите обстоятельства ранения"  x:Name="WoundClause"/>
 
-            <Label Text="Дата ранения"  x:Name="WoundDate"/>
-            <DatePicker/>
+            <Label Text="Дата ранения"/>
+            <DatePicker  x:Name="WoundDate"/>
 
             <Label Text="Оказана помощь"/>
             <Picker>
