@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TestAppPir.Form200_1"
+             Title="Form200_1">
+    <ScrollView>
+        <StackLayout Padding="20">
+            <Label Text="Форма 200 ПОЗИВНОЙ" FontAttributes="Bold" HorizontalOptions="Center"/>
+
+            <Label Text="Номер жетона:"/>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                <Entry Placeholder="XX-XX609" HorizontalOptions="FillAndExpand" x:Name="SolderId"/>
+                <Switch HorizontalOptions="End"/>
+            </StackLayout>
+
+            <Label Text="Позывной"/>
+            <Entry Placeholder="Введите позывной" x:Name="Nickname"/>
+
+            <Label Text="Фамилия Имя Отчество:"/>
+            <Entry Placeholder="Введите полное имя" x:Name="FullName"/>
+
+            <Label Text="Характер ранения"/>
+            <Entry Placeholder="Опишите характер ранения"  x:Name="WoundType"/>
+
+            <Label Text="Обстоятельства ранения"/>
+            <Editor HeightRequest="100" Placeholder="Опишите обстоятельства ранения" x:Name="WoundClause"/>
+
+            <Label Text="Дата ранения" x:Name="WoundDate"/>
+            <DatePicker/>
+
+            <Label Text="Дата смерти" x:Name="TimeOfDate"/>
+            <DatePicker/>
+
+            <Label Text="Куда направлен"/>
+            <Entry Placeholder="Укажите место направления" x:Name="Destination"/>
+
+            <Button Text="Сохранить" HorizontalOptions="Center"  x:Name="Save" Clicked="Save_Clicked"/>
+
+            <Label Text="*При наличии одинакового позывного у нескольких солдат"
+                   FontSize="Small"
+                   HorizontalOptions="Center"/>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
+    

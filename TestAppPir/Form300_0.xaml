@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TestAppPir.Form300_0"
+             x:ClassModifier="public"
+             x:FieldModifier="public"
+             Title="Form300_0">
+    <ScrollView>
+        <StackLayout Padding="20">
+            <Label Text="Форма 300 номер жетона" FontAttributes="Bold" HorizontalOptions="Center"/>
+
+            <Label Text="Номер жетона:"/>
+            <Entry Placeholder="XX-XX609" x:Name="SolderId"/>
+
+            <Label Text="Фамилия Имя Отчество:"/>
+            <Entry Placeholder="Введите полное имя" x:Name="FullName"/>
+
+            <Label Text="Характер ранения"/>
+            <Entry Placeholder="Опишите характер ранения" x:Name="WoundType"/>
+
+            <Label Text="Обстоятельства ранения"/>
+            <Editor HeightRequest="100" Placeholder="Опишите обстоятельства ранения" x:Name="WoundClause"/>
+
+            <Label Text="Дата ранения"/>
+            <DatePicker x:Name="WoundDate"/>
+
+            <Label Text="Оказана помощь"/>
+            <Stepper Minimum="0" Maximum="10" Increment="1" />
+            <Picker>
+                <Picker.Items>
+                    <x:String>Пункт 1</x:String>
+                    <x:String>Пункт 2</x:String>
+                </Picker.Items>
+            </Picker>
+
+            <Label Text="Куда направлен"/>
+            <Entry Placeholder="Укажите место направления" x:Name="Destination"/>
+
+            <Button Text="Сохранить" HorizontalOptions="Center" x:Name="Save" Clicked="Save_Clicked"/>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
