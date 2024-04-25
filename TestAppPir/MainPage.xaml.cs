@@ -38,7 +38,7 @@ namespace TestAppPir
             MainParams.AspectRatioWidth = Math.Round((MainApp.MainView.Width / MainApp.MainView.Height) / 2, 1);
             MainParams.AspectRatioHeight = Math.Round(MainApp.MainView.Height / MainApp.MainView.Width, 1);
             MainParams.NmbOfSquares = (uint)Math.Round((MainApp.MainView.Height * MainApp.MainView.Width) / (200 * 300));
-          //  CreateGrid();
+            MainApp.MainP.CreateGrid();
         }
 
         public void CreateGrid(int NumbOfBtns=6, List<string> BtnTxt=null)
