@@ -2,7 +2,7 @@ namespace TestAppPir;
 
 public partial class Form300_0 : ContentPage
 {
-	Models.Fuckers trash = new Models.Fuckers();
+	Models.Casuelty dweeb = new Models.Casuelty();
 
     public Form300_0()
 	{
@@ -12,7 +12,7 @@ public partial class Form300_0 : ContentPage
 
     private void Save_Clicked(object sender, EventArgs e)
     {
-		trash = new Models.Fuckers()
+		dweeb = new Models.Casuelty()
 		{
 			Destination = this.Destination.Text,
 			SolderId = this.SolderId.Text,
@@ -21,11 +21,11 @@ public partial class Form300_0 : ContentPage
 			WoundType = this.WoundType.Text,
 			WoundDate=this.WoundDate.Date.ToUniversalTime().Ticks
 		};
-        if (Methods.Saving.SaveToFile(trash)) this.Share.IsEnabled = true;
+        if (Methods.Saving.SaveToFile(dweeb)) this.Share.IsEnabled = true;
     }
 
     private void Share_Clicked(object sender, EventArgs e)
     {
-		Methods.Sharing.ShareFiles(trash.filename);
+		Methods.Sharing.ShareFiles(dweeb.filename);
     }
 }

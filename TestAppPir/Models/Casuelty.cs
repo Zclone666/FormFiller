@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TestAppPir.Models
 {
-    public class Fuckers
+    public class Casuelty
     {
         public string SolderId { get; set; }
         public string FullName {  get; set; }  
