@@ -19,7 +19,7 @@ public partial class Form200_0 : ContentPage
             WoundDate = this.WoundDate.Date.ToUniversalTime().Ticks,
             TimeOfDeath = this.TimeOfDeath.Date.ToUniversalTime().Ticks            
         };
-        Methods.Saving.SaveToFile(trash);
+        if(Methods.Saving.SaveToFile(trash))this.Share.IsEnabled=true;
     }
 
     private void Share_Clicked(object sender, EventArgs e)

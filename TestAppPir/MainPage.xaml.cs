@@ -38,10 +38,10 @@ namespace TestAppPir
             MainParams.AspectRatioWidth = Math.Round((MainApp.MainView.Width / MainApp.MainView.Height) / 2, 1);
             MainParams.AspectRatioHeight = Math.Round(MainApp.MainView.Height / MainApp.MainView.Width, 1);
             MainParams.NmbOfSquares = (uint)Math.Round((MainApp.MainView.Height * MainApp.MainView.Width) / (200 * 300));
-            CreateGrid();
+          //  CreateGrid();
         }
 
-        public static void CreateGrid()
+        public void CreateGrid(int NumbOfBtns=6, List<string> BtnTxt=null)
         {
             BtnGrid.Clear();
             Grid TmpGr = new Grid();
@@ -52,80 +52,83 @@ namespace TestAppPir
             }
             BtnGrid.ColumnDefinitions = TmpGr.ColumnDefinitions;
             BtnGrid.RowDefinitions = TmpGr.RowDefinitions;
-            Button Form200_0 = new Button();
-            Button Form300_0 = new Button();
-            Form200_0.Text = "Open Form 200_0";
-            Form300_0.Text = "Open Form 300_0";
-            Form200_0.Pressed += Form200_0_clicked;
-            Form300_0.Pressed += Form300_0_clicked;
-            Button Form200_1 = new Button();
-            Button Form300_1 = new Button();
-            Form200_1.Text = "Open Form 200_1";
-            Form300_1.Text = "Open Form 300_1";
-            Form200_1.Pressed += Form200_1_clicked;
-            Form300_1.Pressed += Form300_1_clicked;
-            Button Form200_2 = new Button();
-            Button Form300_2 = new Button();
-            Form200_2.Text = "Open Form 200_2";
-            Form300_2.Text = "Open Form 300_2";
-            Form200_2.Pressed += Form200_2_clicked;
-            Form300_2.Pressed += Form300_2_clicked;
-            //Form200.HeightRequest = 250;
-            //Form200.WidthRequest = 350;
-            //Form300.HeightRequest = 250;
-            //Form300.WidthRequest = 350;
-            BtnGrid.Add(Form200_0, BtnGrid.ColumnDefinitions.Count / 2, 0);
-            BtnGrid.Add(Form300_0, BtnGrid.ColumnDefinitions.Count / 2, 1);
-            BtnGrid.Add(Form200_1, BtnGrid.ColumnDefinitions.Count / 2, 2);
-            BtnGrid.Add(Form300_1, BtnGrid.ColumnDefinitions.Count / 2, 3);
-            BtnGrid.Add(Form200_2, BtnGrid.ColumnDefinitions.Count / 2, 4);
-            BtnGrid.Add(Form300_2, BtnGrid.ColumnDefinitions.Count / 2, 5);
+            List<Button> Buttons = new List<Button>();
+            if (BtnTxt == null && NumbOfBtns==6)
+            {
+                BtnTxt = new List<string>();
+                for(int i = 0;i<NumbOfBtns;i++)
+                {
+                    BtnTxt.Add($"Open Form {((i < NumbOfBtns / 2) ? 200 : 300)}_{i & 3}");
+                }
+            }
+            for(int i = 0; i < NumbOfBtns; i++)
+            {
+                var t = this.GetType().GetMethods();
+                System.Reflection.MethodInfo method = this.GetType().GetMethod($"Form{((i < NumbOfBtns / 2) ? 200 : 300)}_{i & 3}_clicked");
+           
+                Buttons.Add(new Button()
+                {
+                    Text = BtnTxt[i],
+                    WidthRequest = 300
+                });
+                object sender = Buttons[i];
+                EventArgs e = new EventArgs();
+                Buttons[i].Clicked += delegate { method.Invoke(this, new object[2] { sender, e }); };
+                BtnGrid.Add(Buttons[i], BtnGrid.ColumnDefinitions.Count / 2, i);
+            }
         }
 
         public static void UIInit(int PageN=0)
         {
             if (PageN == 0) 
             {
-                CreateGrid();
+                MainApp.MainP.CreateGrid();
             }
             MainApp.VertStLay.Add(BtnGrid);
         }
 
-        private static void Form200_0_clicked(object sender, EventArgs e)
+        public void Form200_0_clicked(object sender, EventArgs e)
         {
             ((Button)sender).IsVisible = false;
 
             App.Current.MainPage = new NavigationPage(new TestAppPir.Form200_0());
         }
 
-        private static void Form300_0_clicked(object sender, EventArgs e)
+        public void Generic_clicked(object sender, EventArgs e)
+        {
+            ((Button)sender).IsVisible = false;
+
+            App.Current.MainPage = new NavigationPage(new TestAppPir.Form200_0());
+        }
+
+        public void Form300_0_clicked(object sender, EventArgs e)
         {
             ((Button)sender).IsVisible = false;
             
             App.Current.MainPage = new NavigationPage(new TestAppPir.Form300_0());
         }
 
-        private static void Form200_1_clicked(object sender, EventArgs e)
+        public  void Form200_1_clicked(object sender, EventArgs e)
         {
             ((Button)sender).IsVisible = false;
 
             App.Current.MainPage = new NavigationPage(new TestAppPir.Form200_1());
         }
 
-        private static void Form300_1_clicked(object sender, EventArgs e)
+        public void Form300_1_clicked(object sender, EventArgs e)
         {
             ((Button)sender).IsVisible = false;
 
             App.Current.MainPage = new NavigationPage(new TestAppPir.Form300_1());
         }
-        private static void Form200_2_clicked(object sender, EventArgs e)
+        public void Form200_2_clicked(object sender, EventArgs e)
         {
             ((Button)sender).IsVisible = false;
 
             App.Current.MainPage = new NavigationPage(new TestAppPir.Form200_2());
         }
 
-        private static void Form300_2_clicked(object sender, EventArgs e)
+        public void Form300_2_clicked(object sender, EventArgs e)
         {
             ((Button)sender).IsVisible = false;
 

@@ -6,6 +6,7 @@ public partial class Form300_2 : ContentPage
     public Form300_2()
 	{
 		InitializeComponent();
+        this.Share.IsEnabled = false;
 	}
     private void Save_Clicked(object sender, EventArgs e)
     {
@@ -20,7 +21,7 @@ public partial class Form300_2 : ContentPage
             WoundType = this.WoundType.Text,
             WoundDate = this.WoundDate.Date.ToUniversalTime().Ticks
         };
-        Methods.Saving.SaveToFile(trash);
+        if (Methods.Saving.SaveToFile(trash)) this.Share.IsEnabled = true;
     }
 
     private void Share_Clicked(object sender, EventArgs e)

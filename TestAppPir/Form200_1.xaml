@@ -35,6 +35,7 @@
             <Entry Placeholder="Укажите место направления" x:Name="Destination"/>
 
             <Button Text="Сохранить" HorizontalOptions="Center"  x:Name="Save" Clicked="Save_Clicked"/>
+            <Button Text="Share" HorizontalOptions="Center" x:Name="Share" Clicked="Share_Clicked"/>
 
             <Label Text="*При наличии одинакового позывного у нескольких солдат"
                    FontSize="Small"
