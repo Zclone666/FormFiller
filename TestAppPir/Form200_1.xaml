@@ -36,6 +36,7 @@
 
             <Button Text="Сохранить" HorizontalOptions="Center"  x:Name="Save" Clicked="Save_Clicked"/>
             <Button Text="Share" HorizontalOptions="Center" x:Name="Share" Clicked="Share_Clicked"/>
+            <Button Text="Back" HorizontalOptions="Center"  x:Name="Back" Clicked="Back_Clicked"/>
 
             <Label Text="*При наличии одинакового позывного у нескольких солдат"
                    FontSize="Small"

@@ -1,3 +1,5 @@
+using static TestAppPir.MainPage;
+
 namespace TestAppPir;
 
 public partial class Form200_0 : ContentPage
@@ -25,5 +27,10 @@ public partial class Form200_0 : ContentPage
     private void Share_Clicked(object sender, EventArgs e)
     {
         Methods.Sharing.ShareFiles(dweeb.filename);
+    }
+
+    private void Back_Clicked(object sender, EventArgs e)
+    {
+        App.Current.CloseWindow(this.Window);
     }
 }

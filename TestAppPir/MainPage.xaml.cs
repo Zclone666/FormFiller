@@ -104,49 +104,51 @@ namespace TestAppPir
         public void Form200_0_clicked(object sender, EventArgs e)
         {
             ((Button)sender).IsVisible = false;
-
-            App.Current.MainPage = new NavigationPage(new TestAppPir.Form200_0());
+            App.Current.OpenWindow(new Window(new TestAppPir.Form200_0()));
+        //    App.Current.MainPage = new NavigationPage(new TestAppPir.Form200_0());
         }
 
         public void Generic_clicked(object sender, EventArgs e)
         {
             ((Button)sender).IsVisible = false;
-
-            App.Current.MainPage = new NavigationPage(new TestAppPir.Form200_0());
+            App.Current.OpenWindow(new Window(new TestAppPir.Form200_0()));
+            //App.Current.MainPage = new NavigationPage(new TestAppPir.Form200_0());
         }
 
         public void Form300_0_clicked(object sender, EventArgs e)
         {
             ((Button)sender).IsVisible = false;
-            
-            App.Current.MainPage = new NavigationPage(new TestAppPir.Form300_0());
+            App.Current.OpenWindow(new Window(new TestAppPir.Form300_0()));
+            //App.Current.MainPage = new NavigationPage(new TestAppPir.Form300_0());
         }
 
         public  void Form200_1_clicked(object sender, EventArgs e)
         {
             ((Button)sender).IsVisible = false;
-
-            App.Current.MainPage = new NavigationPage(new TestAppPir.Form200_1());
+            App.Current.OpenWindow(new Window(new TestAppPir.Form200_1()));
+            //App.Current.MainPage = new NavigationPage(new TestAppPir.Form200_1());
         }
 
         public void Form300_1_clicked(object sender, EventArgs e)
         {
             ((Button)sender).IsVisible = false;
-
-            App.Current.MainPage = new NavigationPage(new TestAppPir.Form300_1());
+            App.Current.OpenWindow(new Window(new TestAppPir.Form300_1()));
+          //  App.Current.MainPage = new NavigationPage(new TestAppPir.Form300_1());
         }
         public void Form200_2_clicked(object sender, EventArgs e)
         {
             ((Button)sender).IsVisible = false;
-
-            App.Current.MainPage = new NavigationPage(new TestAppPir.Form200_2());
+            App.Current.OpenWindow(new Window(new TestAppPir.Form200_2()));
+          //  App.Current.MainPage = new NavigationPage(new TestAppPir.Form200_2());
         }
 
-        public void Form300_2_clicked(object sender, EventArgs e)
+        public void Form300_3_clicked(object sender, EventArgs e)
         {
             ((Button)sender).IsVisible = false;
+            
+            App.Current.OpenWindow(new Window(new TestAppPir.Form300_2()));
 
-            App.Current.MainPage = new NavigationPage(new TestAppPir.Form300_2());
+          //  App.Current.MainPage = new NavigationPage(new TestAppPir.Form300_2());
         }
     }
 
