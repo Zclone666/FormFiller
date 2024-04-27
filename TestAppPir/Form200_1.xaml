@@ -8,10 +8,7 @@
             <Label Text="Форма 200 ПОЗИВНОЙ" FontAttributes="Bold" HorizontalOptions="Center"/>
 
             <Label Text="Номер жетона:"/>
-            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                <Entry Placeholder="XX-XX609" HorizontalOptions="FillAndExpand" x:Name="SolderId"/>
-                <Switch HorizontalOptions="End"/>
-            </StackLayout>
+            <Entry Placeholder="XX-XX609" HorizontalOptions="FillAndExpand" x:Name="SolderId"/>
 
             <Label Text="Позывной"/>
             <Entry Placeholder="Введите позывной" x:Name="Nickname"/>

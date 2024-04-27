@@ -17,6 +17,7 @@ public partial class Form200_2 : ContentPage
         {
             Destination = this.Destination.Text,
             SolderId = this.SolderId.Text,
+            NickName = this.NickName.Text,
             Name = this.Name.Text,
             Surname = this.Surname.Text,
             LastName = this.LastName.Text,

@@ -32,6 +32,7 @@ public partial class Form300_2 : ContentPage
         {
             Destination = this.Destination.Text,
             SolderId = this.SolderId.Text,
+            NickName=this.Nickname.Text,
             Name = this.Name.Text,
             Surname = this.Surname.Text,
             LastName = this.LastName.Text,

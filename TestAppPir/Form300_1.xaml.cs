@@ -32,6 +32,7 @@ public partial class Form300_1 : ContentPage
         {
             Destination = this.Destination.Text,
             SolderId = this.SolderId.Text,
+            NickName=this.Nickname.Text,
             FullName = this.FullName.Text,
             WoundClause = this.WoundClause.Text,
             WoundType = this.WoundType.Text,
