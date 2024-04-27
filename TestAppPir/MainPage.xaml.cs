@@ -1,11 +1,14 @@
-﻿using TestAppPir.Consts;
+﻿using System.Net.NetworkInformation;
+using TestAppPir.Consts;
 
 namespace TestAppPir
 {
     public partial class MainPage : ContentPage
     {
-        static Thread BckgrnThread;
+        public static Thread BckgrnThread;
+        public static Thread UIThread;
         static Grid BtnGrid = new Grid();
+
         public static class MainApp
         {
             public static MainPage MainP;
@@ -22,6 +25,7 @@ namespace TestAppPir
             MainApp.VertStLay=this.VerticalStackL;
             MainApp.VertStLay.Loaded += MainCicle;
             MainApp.VertStLay.SizeChanged += VertStLay_SizeChanged;
+            UIThread = Thread.CurrentThread;
             
         }
 
@@ -31,7 +35,17 @@ namespace TestAppPir
             MainParams.AspectRatioHeight = Math.Round(MainApp.MainView.Height / MainApp.MainView.Width, 1);
             MainParams.NmbOfSquares = (uint)Math.Round((MainApp.MainView.Height * MainApp.MainView.Width) / (200 * 300));        
             UIInit();
+            CheckInit();
         }
+
+        public static void CheckInit()
+        {
+            BckgrnThread = new Thread(() => Methods.Pinger.ProxyBckg());
+            BckgrnThread.Name = "Pinger";
+            BckgrnThread.Priority= ThreadPriority.BelowNormal;
+            BckgrnThread.Start();
+        }
+
 
         private static void VertStLay_SizeChanged(object sender, EventArgs e)
         {
