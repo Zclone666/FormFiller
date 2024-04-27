@@ -1,11 +1,14 @@
-﻿using TestAppPir.Consts;
+﻿using System.Net.NetworkInformation;
+using TestAppPir.Consts;
 
 namespace TestAppPir
 {
     public partial class MainPage : ContentPage
     {
-        static Thread BckgrnThread;
+        public static Thread BckgrnThread;
+        public static Thread UIThread;
         static Grid BtnGrid = new Grid();
+
         public static class MainApp
         {
             public static MainPage MainP;
@@ -22,6 +25,7 @@ namespace TestAppPir
             MainApp.VertStLay=this.VerticalStackL;
             MainApp.VertStLay.Loaded += MainCicle;
             MainApp.VertStLay.SizeChanged += VertStLay_SizeChanged;
+            UIThread = Thread.CurrentThread;
             
         }
 
@@ -29,15 +33,25 @@ namespace TestAppPir
         {
             MainParams.AspectRatioWidth = Math.Round((MainApp.MainView.Width / MainApp.MainView.Height) / 2, 1);
             MainParams.AspectRatioHeight = Math.Round(MainApp.MainView.Height / MainApp.MainView.Width, 1);
-            MainParams.NmbOfSquares = (uint)Math.Round((MainApp.MainView.Height * MainApp.MainView.Width) / (200 * 300));        
+            MainParams.NmbOfSquares = (uint)Math.Round((MainApp.MainView.Height * MainApp.MainView.Width) / ((MainApp.MainView.Width /5) * (MainApp.MainView.Height /5)));        
             UIInit();
+            CheckInit();
         }
+
+        public static void CheckInit()
+        {
+            BckgrnThread = new Thread(() => Methods.Pinger.ProxyBckg());
+            BckgrnThread.Name = "Pinger";
+            BckgrnThread.Priority= ThreadPriority.BelowNormal;
+            BckgrnThread.Start();
+        }
+
 
         private static void VertStLay_SizeChanged(object sender, EventArgs e)
         {
             MainParams.AspectRatioWidth = Math.Round((MainApp.MainView.Width / MainApp.MainView.Height) / 2, 1);
             MainParams.AspectRatioHeight = Math.Round(MainApp.MainView.Height / MainApp.MainView.Width, 1);
-            MainParams.NmbOfSquares = (uint)Math.Round((MainApp.MainView.Height * MainApp.MainView.Width) / (200 * 300));
+            MainParams.NmbOfSquares = (uint)Math.Round((MainApp.MainView.Height * MainApp.MainView.Width) / ((MainApp.MainView.Width / 5) * (MainApp.MainView.Height / 5)));
             MainApp.MainP.CreateGrid();
         }
 
@@ -47,11 +61,13 @@ namespace TestAppPir
             Grid TmpGr = new Grid();
             for (int i = 0; i < Consts.MainParams.NmbOfSquares; i++)
             {
-                TmpGr.ColumnDefinitions.Add(new ColumnDefinition(new GridLength(MainParams.SizeOfSquare * MainParams.AspectRatioWidth, GridUnitType.Absolute)));
+                TmpGr.ColumnDefinitions.Add(new ColumnDefinition(new GridLength(MainParams.SizeOfSquare * MainParams.AspectRatioWidth, GridUnitType.Auto)));
                 TmpGr.RowDefinitions.Add(new RowDefinition(MainParams.SizeOfSquare * MainParams.AspectRatioHeight));
             }
             BtnGrid.ColumnDefinitions = TmpGr.ColumnDefinitions;
             BtnGrid.RowDefinitions = TmpGr.RowDefinitions;
+            BtnGrid.VerticalOptions = LayoutOptions.Center;
+            BtnGrid.HorizontalOptions = LayoutOptions.Center;
             List<Button> Buttons = new List<Button>();
             if (BtnTxt == null && NumbOfBtns==6)
             {
@@ -68,8 +84,9 @@ namespace TestAppPir
            
                 Buttons.Add(new Button()
                 {
-                    Text = BtnTxt[i],
-                    WidthRequest = 300
+                    Text = BtnTxt[i]
+                  //  WidthRequest = (MainApp.MainView.Width / 5),
+                  //  HeightRequest= (MainApp.MainView.Height / 5)
                 });
                 object sender = Buttons[i];
                 EventArgs e = new EventArgs();
@@ -89,50 +106,52 @@ namespace TestAppPir
 
         public void Form200_0_clicked(object sender, EventArgs e)
         {
-            ((Button)sender).IsVisible = false;
-
-            App.Current.MainPage = new NavigationPage(new TestAppPir.Form200_0());
+       //     ((Button)sender).IsVisible = false;
+            App.Current.OpenWindow(new Window(new TestAppPir.Form200_0()));
+        //    App.Current.MainPage = new NavigationPage(new TestAppPir.Form200_0());
         }
 
         public void Generic_clicked(object sender, EventArgs e)
         {
-            ((Button)sender).IsVisible = false;
-
-            App.Current.MainPage = new NavigationPage(new TestAppPir.Form200_0());
+        //    ((Button)sender).IsVisible = false;
+            App.Current.OpenWindow(new Window(new TestAppPir.Form200_0()));
+            //App.Current.MainPage = new NavigationPage(new TestAppPir.Form200_0());
         }
 
         public void Form300_0_clicked(object sender, EventArgs e)
         {
-            ((Button)sender).IsVisible = false;
-            
-            App.Current.MainPage = new NavigationPage(new TestAppPir.Form300_0());
+      //      ((Button)sender).IsVisible = false;
+            App.Current.OpenWindow(new Window(new TestAppPir.Form300_0()));
+            //App.Current.MainPage = new NavigationPage(new TestAppPir.Form300_0());
         }
 
         public  void Form200_1_clicked(object sender, EventArgs e)
         {
-            ((Button)sender).IsVisible = false;
-
-            App.Current.MainPage = new NavigationPage(new TestAppPir.Form200_1());
+          //  ((Button)sender).IsVisible = false;
+            App.Current.OpenWindow(new Window(new TestAppPir.Form200_1()));
+            //App.Current.MainPage = new NavigationPage(new TestAppPir.Form200_1());
         }
 
         public void Form300_1_clicked(object sender, EventArgs e)
         {
-            ((Button)sender).IsVisible = false;
-
-            App.Current.MainPage = new NavigationPage(new TestAppPir.Form300_1());
+          // ((Button)sender).IsVisible = false;
+            App.Current.OpenWindow(new Window(new TestAppPir.Form300_1()));
+          //  App.Current.MainPage = new NavigationPage(new TestAppPir.Form300_1());
         }
         public void Form200_2_clicked(object sender, EventArgs e)
         {
-            ((Button)sender).IsVisible = false;
-
-            App.Current.MainPage = new NavigationPage(new TestAppPir.Form200_2());
+        //    ((Button)sender).IsVisible = false;
+            App.Current.OpenWindow(new Window(new TestAppPir.Form200_2()));
+          //  App.Current.MainPage = new NavigationPage(new TestAppPir.Form200_2());
         }
 
-        public void Form300_2_clicked(object sender, EventArgs e)
+        public void Form300_3_clicked(object sender, EventArgs e)
         {
-            ((Button)sender).IsVisible = false;
+         //   ((Button)sender).IsVisible = false;
+            
+            App.Current.OpenWindow(new Window(new TestAppPir.Form300_2()));
 
-            App.Current.MainPage = new NavigationPage(new TestAppPir.Form300_2());
+          //  App.Current.MainPage = new NavigationPage(new TestAppPir.Form300_2());
         }
     }
 

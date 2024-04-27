@@ -8,10 +8,7 @@
             <Label Text="Форма 200 ПОЗИВНОЙ" FontAttributes="Bold" HorizontalOptions="Center"/>
 
             <Label Text="Номер жетона:"/>
-            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                <Entry Placeholder="XX-XX609" HorizontalOptions="FillAndExpand" x:Name="SolderId"/>
-                <Switch HorizontalOptions="End"/>
-            </StackLayout>
+            <Entry Placeholder="XX-XX609" HorizontalOptions="FillAndExpand" x:Name="SolderId"/>
 
             <Label Text="Позывной"/>
             <Entry Placeholder="Введите позывной" x:Name="Nickname"/>
@@ -36,6 +33,7 @@
 
             <Button Text="Сохранить" HorizontalOptions="Center"  x:Name="Save" Clicked="Save_Clicked"/>
             <Button Text="Share" HorizontalOptions="Center" x:Name="Share" Clicked="Share_Clicked"/>
+            <Button Text="Back" HorizontalOptions="Center"  x:Name="Back" Clicked="Back_Clicked"/>
 
             <Label Text="*При наличии одинакового позывного у нескольких солдат"
                    FontSize="Small"

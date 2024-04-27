@@ -13,6 +13,7 @@ namespace TestAppPir.Consts
         public const uint SizeOfSquare = 100;
         public static double AspectRatioHeight = 1;
         public static double AspectRatioWidth = 1;
+        public static bool ConnStatus = false;
 
     }
 }

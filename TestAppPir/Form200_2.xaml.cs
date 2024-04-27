@@ -1,3 +1,5 @@
+using static TestAppPir.MainPage;
+
 namespace TestAppPir;
 
 public partial class Form200_2 : ContentPage
@@ -15,6 +17,7 @@ public partial class Form200_2 : ContentPage
         {
             Destination = this.Destination.Text,
             SolderId = this.SolderId.Text,
+            NickName = this.NickName.Text,
             Name = this.Name.Text,
             Surname = this.Surname.Text,
             LastName = this.LastName.Text,
@@ -29,5 +32,10 @@ public partial class Form200_2 : ContentPage
     private void Share_Clicked(object sender, EventArgs e)
     {
         Methods.Sharing.ShareFiles(dweeb.filename);
+    }
+
+    private void Back_Clicked(object sender, EventArgs e)
+    {
+        App.Current.CloseWindow(this.Window);
     }
 }

@@ -9,6 +9,7 @@ namespace TestAppPir.Models
     public class Casuelty
     {
         public string SolderId { get; set; }
+        public string NickName { get; set; }
         public string FullName {  get; set; }  
         public string Name { get; set; } 
         public string Surname { get; set; }
@@ -18,7 +19,7 @@ namespace TestAppPir.Models
         public string WoundClause {  get; set; }
         public long WoundDate {  get; set; }
         public long TimeOfDeath { get; set; }
-        public List<string> HelpProvided { get; set; }
+        public List<string> HelpProvided { get; set; } = new List<string>();
         public string filename { get; set; }
     }
 }
