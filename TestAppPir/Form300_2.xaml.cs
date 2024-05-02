@@ -49,7 +49,7 @@ public partial class Form300_2 : ContentPage
 
     private void Share_Clicked(object sender, EventArgs e)
     {
-        Methods.Sharing.ShareFiles(dweeb.filename);
+        Methods.Sharing.ShareFiles(dweeb.FileName);
     }
 
     private void Back_Clicked(object sender, EventArgs e)

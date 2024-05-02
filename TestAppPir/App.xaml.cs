@@ -5,7 +5,7 @@
         public App()
         {
             InitializeComponent();
-
+            Methods.DBase.Initialize("666");
             MainPage = new AppShell();
         }
     }
