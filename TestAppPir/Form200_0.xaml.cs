@@ -9,6 +9,14 @@ public partial class Form200_0 : ContentPage
 	{
 		InitializeComponent();
 	}
+
+    public Form200_0(Models.Casuelty dweeb)
+    {
+        InitializeComponent();
+        this.dweeb = dweeb;
+        this.SolderId.Text=dweeb.SolderId;
+    }
+
     private void Save_Clicked(object sender, EventArgs e)
     {
         dweeb = new Models.Casuelty()

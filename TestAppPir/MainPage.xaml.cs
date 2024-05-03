@@ -1,5 +1,6 @@
 ﻿using System.Net.NetworkInformation;
 using TestAppPir.Consts;
+using TestAppPir.Models;
 
 namespace TestAppPir
 {
@@ -26,14 +27,26 @@ namespace TestAppPir
             MainApp.VertStLay.Loaded += MainCicle;
             MainApp.VertStLay.SizeChanged += VertStLay_SizeChanged;
             UIThread = Thread.CurrentThread;
-            
+        }
+
+        internal void Fudged()
+        {
+            try {
+                Random rnd= new Random(20);
+                for (int i = 0;i < 10; i++)
+                {
+                    Casuelty Tmp = new Casuelty() { SolderId=rnd.Next().ToString(), NickName=rnd.Next().ToString()};
+                    Consts.MainParams.Fudged.Add(Tmp);
+                }
+            } catch { }
         }
 
         public static void MainCicle(object sender, EventArgs e)
         {
             MainParams.AspectRatioWidth = Math.Round((MainApp.MainView.Width / MainApp.MainView.Height) / 2, 1);
             MainParams.AspectRatioHeight = Math.Round(MainApp.MainView.Height / MainApp.MainView.Width, 1);
-            MainParams.NmbOfSquares = (uint)Math.Round((MainApp.MainView.Height * MainApp.MainView.Width) / ((MainApp.MainView.Width /5) * (MainApp.MainView.Height /5)));        
+            MainParams.NmbOfSquares = (uint)Math.Round((MainApp.MainView.Height * MainApp.MainView.Width) / ((MainApp.MainView.Width /5) * (MainApp.MainView.Height /5)));
+            MainApp.MainP.Fudged();
             UIInit();
             CheckInit();
         }
@@ -52,47 +65,68 @@ namespace TestAppPir
             MainParams.AspectRatioWidth = Math.Round((MainApp.MainView.Width / MainApp.MainView.Height) / 2, 1);
             MainParams.AspectRatioHeight = Math.Round(MainApp.MainView.Height / MainApp.MainView.Width, 1);
             MainParams.NmbOfSquares = (uint)Math.Round((MainApp.MainView.Height * MainApp.MainView.Width) / ((MainApp.MainView.Width / 5) * (MainApp.MainView.Height / 5)));
-            MainApp.MainP.CreateGrid();
+            MainApp.MainP.CreateGrid(1, new List<string>() { "IntermediateScreen"});
         }
 
         public void CreateGrid(int NumbOfBtns=6, List<string> BtnTxt=null)
         {
-            BtnGrid.Clear();
-            Grid TmpGr = new Grid();
-            for (int i = 0; i < Consts.MainParams.NmbOfSquares; i++)
+            try
             {
-                TmpGr.ColumnDefinitions.Add(new ColumnDefinition(new GridLength(MainParams.SizeOfSquare * MainParams.AspectRatioWidth, GridUnitType.Auto)));
-                TmpGr.RowDefinitions.Add(new RowDefinition(MainParams.SizeOfSquare * MainParams.AspectRatioHeight));
-            }
-            BtnGrid.ColumnDefinitions = TmpGr.ColumnDefinitions;
-            BtnGrid.RowDefinitions = TmpGr.RowDefinitions;
-            BtnGrid.VerticalOptions = LayoutOptions.Center;
-            BtnGrid.HorizontalOptions = LayoutOptions.Center;
-            List<Button> Buttons = new List<Button>();
-            if (BtnTxt == null && NumbOfBtns==6)
-            {
-                BtnTxt = new List<string>();
-                for(int i = 0;i<NumbOfBtns;i++)
+                BtnGrid.Clear();
+                Grid TmpGr = new Grid();
+                for (int i = 0; i < Consts.MainParams.NmbOfSquares; i++)
                 {
-                    BtnTxt.Add($"Open Form {((i < NumbOfBtns / 2) ? 200 : 300)}_{i & 3}");
+                    TmpGr.ColumnDefinitions.Add(new ColumnDefinition(new GridLength(MainParams.SizeOfSquare * MainParams.AspectRatioWidth, GridUnitType.Auto)));
+                    TmpGr.RowDefinitions.Add(new RowDefinition(MainParams.SizeOfSquare * MainParams.AspectRatioHeight));
                 }
-            }
-            for(int i = 0; i < NumbOfBtns; i++)
-            {
-                var t = this.GetType().GetMethods();
-                System.Reflection.MethodInfo method = this.GetType().GetMethod($"Form{((i < NumbOfBtns / 2) ? 200 : 300)}_{i & 3}_clicked");
-           
-                Buttons.Add(new Button()
+                BtnGrid.ColumnDefinitions = TmpGr.ColumnDefinitions;
+                BtnGrid.RowDefinitions = TmpGr.RowDefinitions;
+                BtnGrid.VerticalOptions = LayoutOptions.Center;
+                BtnGrid.HorizontalOptions = LayoutOptions.Center;
+                List<Button> Buttons = new List<Button>();
+                if (BtnTxt == null && NumbOfBtns == 6)
                 {
-                    Text = BtnTxt[i]
-                  //  WidthRequest = (MainApp.MainView.Width / 5),
-                  //  HeightRequest= (MainApp.MainView.Height / 5)
-                });
-                object sender = Buttons[i];
-                EventArgs e = new EventArgs();
-                Buttons[i].Clicked += delegate { method.Invoke(this, new object[2] { sender, e }); };
-                BtnGrid.Add(Buttons[i], BtnGrid.ColumnDefinitions.Count / 2, i);
-            }
+                    BtnTxt = new List<string>();
+                    for (int i = 0; i < NumbOfBtns; i++)
+                    {
+                        BtnTxt.Add($"Open Form {((i < NumbOfBtns / 2) ? 200 : 300)}_{i & 3}");
+                    }
+
+                    for (int i = 0; i < NumbOfBtns; i++)
+                    {
+                        var t = this.GetType().GetMethods();
+                        System.Reflection.MethodInfo method = this.GetType().GetMethod($"Form{((i < NumbOfBtns / 2) ? 200 : 300)}_{i & 3}_clicked");
+
+                        Buttons.Add(new Button()
+                        {
+                            Text = BtnTxt[i]
+                            //  WidthRequest = (MainApp.MainView.Width / 5),
+                            //  HeightRequest= (MainApp.MainView.Height / 5)
+                        });
+                        object sender = Buttons[i];
+                        EventArgs e = new EventArgs();
+                        Buttons[i].Clicked += delegate { method.Invoke(this, new object[2] { sender, e }); };
+                        BtnGrid.Add(Buttons[i], BtnGrid.ColumnDefinitions.Count / 2, i);
+                    }
+                }
+                else if(NumbOfBtns==BtnTxt.Count) 
+                {
+                    for (int i = 0; i < NumbOfBtns; i++)
+                    {
+                        var t = this.GetType().GetMethods();
+                        System.Reflection.MethodInfo method = this.GetType().GetMethod($"{BtnTxt[i]}_clicked");
+
+                        Buttons.Add(new Button()
+                        {
+                            Text = BtnTxt[i]
+                        });
+                        object sender = Buttons[i];
+                        EventArgs e = new EventArgs();
+                        Buttons[i].Clicked += delegate { method.Invoke(this, new object[2] { sender, e }); };
+                        BtnGrid.Add(Buttons[i], BtnGrid.ColumnDefinitions.Count / 2, i);
+                    }
+                }
+            }catch { }
         }
 
         public static void UIInit(int PageN=0)
@@ -102,6 +136,13 @@ namespace TestAppPir
                 MainApp.MainP.CreateGrid();
             }
             MainApp.VertStLay.Add(BtnGrid);
+        }
+
+        public void IntermediateScreen_clicked(object sender, EventArgs e)
+        {
+            //     ((Button)sender).IsVisible = false;
+            App.Current.OpenWindow(new Window(new TestAppPir.IntermediateScreen()));
+            //    App.Current.MainPage = new NavigationPage(new TestAppPir.Form200_0());
         }
 
         public void Form200_0_clicked(object sender, EventArgs e)
