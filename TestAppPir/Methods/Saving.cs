@@ -17,7 +17,7 @@ namespace TestAppPir.Methods
                 if (dweeb != null)
                 {
                     if (fileName == null) fileName = Path.Combine(FileSystem.Current.AppDataDirectory, dweeb.SolderId);
-                    dweeb.filename = fileName;
+                    dweeb.FileName = fileName;
                     using (FileStream fs = new FileStream(fileName, FileMode.Create))
                     {
                         string fl = System.Text.Json.JsonSerializer.Serialize(dweeb);
