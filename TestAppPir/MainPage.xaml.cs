@@ -65,10 +65,10 @@ namespace TestAppPir
             MainParams.AspectRatioWidth = Math.Round((MainApp.MainView.Width / MainApp.MainView.Height) / 2, 1);
             MainParams.AspectRatioHeight = Math.Round(MainApp.MainView.Height / MainApp.MainView.Width, 1);
             MainParams.NmbOfSquares = (uint)Math.Round((MainApp.MainView.Height * MainApp.MainView.Width) / ((MainApp.MainView.Width / 5) * (MainApp.MainView.Height / 5)));
-            MainApp.MainP.CreateGrid(1, new List<string>() { "IntermediateScreen"});
+            MainApp.MainP.CreateGrid(2, new List<string>() { "IntermediateScreen_200", "IntermediateScreen_300" });
         }
 
-        public void CreateGrid(int NumbOfBtns=6, List<string> BtnTxt=null)
+        public void CreateGrid(int NumbOfBtns=6, List<string> BtnTxt=null, List<string> MthdsName=null)
         {
             try
             {
@@ -142,6 +142,20 @@ namespace TestAppPir
         {
             //     ((Button)sender).IsVisible = false;
             App.Current.OpenWindow(new Window(new TestAppPir.IntermediateScreen()));
+            //    App.Current.MainPage = new NavigationPage(new TestAppPir.Form200_0());
+        }
+
+        public void IntermediateScreen_200_clicked(object sender, EventArgs e)
+        {
+            //     ((Button)sender).IsVisible = false;
+            App.Current.OpenWindow(new Window(new TestAppPir.IntermediateScreen_200()));
+            //    App.Current.MainPage = new NavigationPage(new TestAppPir.Form200_0());
+        }
+
+        public void IntermediateScreen_300_clicked(object sender, EventArgs e)
+        {
+            //     ((Button)sender).IsVisible = false;
+            App.Current.OpenWindow(new Window(new TestAppPir.IntermediateScreen_300()));
             //    App.Current.MainPage = new NavigationPage(new TestAppPir.Form200_0());
         }
 

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TestAppPir.IntermediateScreen_300"
+             Title="IntermediateScreen_300">
+    <VerticalStackLayout x:Name="VerticalStackL">
+        <SearchBar Placeholder="" x:Name="Search_ID" IsVisible="True" IsTextPredictionEnabled="True" IsEnabled="True" TextChanged="Search_ID_TextChanged">
+        </SearchBar>
+        <ListView x:Name="searchResults" ItemTapped="searchResults_ItemTapped"/>
+    </VerticalStackLayout>
+</ContentPage>

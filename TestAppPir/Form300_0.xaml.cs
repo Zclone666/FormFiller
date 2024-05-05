@@ -19,6 +19,24 @@ public partial class Form300_0 : ContentPage
         this.HelpProvided.Add(AddM);
 	}
 
+    public Form300_0(Models.Casuelty dweeb)
+    {
+        InitializeComponent();
+        this.dweeb = dweeb;
+        this.Destination.Text = dweeb.Destination;
+        this.SolderId.Text = dweeb.SolderId;
+        this.FullName.Text = dweeb.FullName;
+        this.WoundClause.Text = dweeb.WoundClause;
+        this.WoundType.Text = dweeb.WoundType;
+        this.WoundDate.Date.AddTicks(dweeb.WoundDate);
+        this.Share.IsEnabled = false;
+        editors.Add(new Editor());
+        this.HelpProvided.Add(editors[0]);
+        Button AddM = new Button() { Text = "+" };
+        AddM.Clicked += AddMore;
+        this.HelpProvided.Add(AddM);
+    }
+
     private void AddMore(object sender, EventArgs e)
     {
         editors.Add(new Editor());

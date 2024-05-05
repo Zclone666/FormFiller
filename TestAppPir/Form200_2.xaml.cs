@@ -11,6 +11,23 @@ public partial class Form200_2 : ContentPage
         this.Share.IsEnabled = false;
 	}
 
+    public Form200_2(Models.Casuelty dweeb)
+    {
+        InitializeComponent();
+        this.dweeb = dweeb;
+        this.Destination.Text = dweeb.Destination;
+        this.SolderId.Text = dweeb.SolderId;
+        this.NickName.Text = dweeb.NickName;
+        this.Name.Text = dweeb.Name;
+        this.Surname.Text = dweeb.Surname;
+        this.LastName.Text = dweeb.LastName;
+        this.WoundClause.Text = dweeb.WoundClause;
+        this.WoundType.Text = dweeb.WoundType;
+        this.WoundDate.Date.AddTicks(dweeb.WoundDate);
+        this.TimeOfDeath.Date.AddTicks(dweeb.TimeOfDeath);
+        this.Share.IsEnabled = false;
+    }
+
     private void Save_Clicked(object sender, EventArgs e)
     {
         dweeb = new Models.Casuelty()
