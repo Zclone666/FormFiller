@@ -31,9 +31,9 @@ namespace TestAppPir.Models
         [ProtoMember(10)]
         public string WoundClause {  get; set; } = string.Empty;
         [ProtoMember(11)]
-        public long WoundDate {  get; set; }
+        public int WoundDate {  get; set; }
         [ProtoMember(12)]
-        public long TimeOfDeath { get; set; }
+        public int TimeOfDeath { get; set; }
         [ProtoMember(13)]
         public List<string> HelpProvided { get; set; } = new List<string>();
         [ProtoMember(14)]

@@ -167,8 +167,8 @@ namespace TestAppPir.Methods
                                     HelpProvided = HelpProvided,
                                     WoundType = (string)rdr["woundtype"],
                                     WoundClause = (string)rdr["woundclause"],
-                                    WoundDate = Convert.ToInt64(rdr["wounddate"]),
-                                    TimeOfDeath = Convert.ToInt64(rdr["deathtime"]),
+                                    WoundDate = Convert.ToInt32(rdr["wounddate"]),
+                                    TimeOfDeath = Convert.ToInt32(rdr["deathtime"]),
                                     FileName = (string)rdr["filename"]
                                 });
                             }

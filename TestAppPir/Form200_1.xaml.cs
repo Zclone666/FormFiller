@@ -20,8 +20,8 @@ public partial class Form200_1 : ContentPage
         this.FullName.Text = dweeb.FullName;
         this.WoundClause.Text = dweeb.WoundClause;
         this.WoundType.Text = dweeb.WoundType;
-        this.WoundDate.Date.AddTicks(dweeb.WoundDate);
-        this.TimeOfDeath.Date.AddTicks(dweeb.TimeOfDeath);
+        this.WoundDate.Date.ToUniversalTime().AddSeconds(dweeb.WoundDate);
+        this.TimeOfDeath.Date.ToUniversalTime().AddSeconds(dweeb.TimeOfDeath);
     }
 
     private void Save_Clicked(object sender, EventArgs e)
@@ -33,8 +33,8 @@ public partial class Form200_1 : ContentPage
             FullName = this.FullName.Text,
             WoundClause = this.WoundClause.Text,
             WoundType = this.WoundType.Text,
-            WoundDate = this.WoundDate.Date.ToUniversalTime().Ticks,
-            TimeOfDeath = this.TimeOfDeath.Date.ToUniversalTime().Ticks
+            WoundDate = this.WoundDate.Date.ToUniversalTime().Second,
+            TimeOfDeath = this.TimeOfDeath.Date.ToUniversalTime().Second
         };
         if (Methods.Saving.SaveToFile(dweeb)) this.Share.IsEnabled = true;
     }

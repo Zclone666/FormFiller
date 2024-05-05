@@ -25,6 +25,7 @@ namespace TestAppPir.Methods
                         fs.Write(flbyte, 0, flbyte.Length);
                         fs.Flush();
                     }
+                    DBase.AddFact(dweeb);
                     ret = true;
                 }
             }

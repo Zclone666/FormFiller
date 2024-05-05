@@ -26,7 +26,7 @@ public partial class Form300_1 : ContentPage
         this.FullName.Text = dweeb.FullName;
         this.WoundClause.Text = dweeb.WoundClause;
         this.WoundType.Text = dweeb.WoundType;
-        this.WoundDate.Date.AddTicks(dweeb.WoundDate);
+        this.WoundDate.Date.ToUniversalTime().ToUniversalTime().AddSeconds(dweeb.WoundDate);
         editors.Add(new Editor());
         this.HelpProvided.Add(editors[0]);
         Button AddM = new Button() { Text = "+" };
@@ -53,7 +53,7 @@ public partial class Form300_1 : ContentPage
             FullName = this.FullName.Text,
             WoundClause = this.WoundClause.Text,
             WoundType = this.WoundType.Text,
-            WoundDate = this.WoundDate.Date.ToUniversalTime().Ticks
+            WoundDate = this.WoundDate.Date.ToUniversalTime().Second
         };
         foreach (var editor in editors)
         {
