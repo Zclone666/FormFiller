@@ -32,7 +32,7 @@ public partial class IntermediateScreen : ContentPage
         this.VerticalStackL.Add(BtnGrid);
     }
 
-    public void CreateGrid(int NumbOfBtns = 6, List<string> BtnTxt = null)
+    public void CreateGrid(int NumbOfBtns = 6, List<string> BtnTxt = null, List<string> MthdsName = null)
     {
         try
         {
@@ -90,9 +90,27 @@ public partial class IntermediateScreen : ContentPage
                     BtnGrid.Add(Buttons[i], BtnGrid.ColumnDefinitions.Count / 2, i);
                 }
             }
+            else if (MthdsName != null && NumbOfBtns == BtnTxt.Count && BtnTxt.Count == MthdsName.Count && BtnTxt != null)
+            {
+                for (int i = 0; i < NumbOfBtns; i++)
+                {
+                    var t = this.GetType().GetMethods();
+                    System.Reflection.MethodInfo method = this.GetType().GetMethod($"{MthdsName[i]}_clicked");
+
+                    Buttons.Add(new Button()
+                    {
+                        Text = BtnTxt[i]
+                    });
+                    object sender = Buttons[i];
+                    EventArgs e = new EventArgs();
+                    Buttons[i].Clicked += delegate { method.Invoke(this, new object[2] { sender, e }); };
+                    BtnGrid.Add(Buttons[i], BtnGrid.ColumnDefinitions.Count / 2, i);
+                }
+            }
         }
         catch { }
     }
+
     public void IntermediateScreen_clicked(object sender, EventArgs e)
     {
         //     ((Button)sender).IsVisible = false;

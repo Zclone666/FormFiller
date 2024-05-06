@@ -7,7 +7,7 @@
         <VerticalStackLayout
             Spacing="25"
             Padding="30,0"
-            VerticalOptions="Center" x:Name="VerticalStackL">
+            VerticalOptions="Center" x:Name="VerticalStackL" BackgroundColor="">
         </VerticalStackLayout>
     </ScrollView>
 
