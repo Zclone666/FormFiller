@@ -4,9 +4,13 @@
              x:Class="TestAppPir.ExportScreen"
              Title="ExportScreen">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <VerticalStackLayout.Background>
+            <LinearGradientBrush EndPoint="1,0">
+                <GradientStop Color="#AEC09A"
+                          Offset="0.1" />
+                <GradientStop Color="#AEC670"
+                          Offset="1.0" />
+            </LinearGradientBrush>
+        </VerticalStackLayout.Background>
     </VerticalStackLayout>
 </ContentPage>

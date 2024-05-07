@@ -70,6 +70,8 @@ public partial class IntermediateScreen_200 : ContentPage
                     object sender = Buttons[i];
                     EventArgs e = new EventArgs();
                     Buttons[i].Clicked += delegate { method.Invoke(this, new object[2] { sender, e }); };
+                    Buttons[i].BackgroundColor = Color.FromHex("#344c11");
+                    Buttons[i].TextColor = Color.FromHex("#fffff0");
                     BtnGrid.Add(Buttons[i], BtnGrid.ColumnDefinitions.Count / 2, i);
                 }
             }
@@ -87,6 +89,8 @@ public partial class IntermediateScreen_200 : ContentPage
                     object sender = Buttons[i];
                     EventArgs e = new EventArgs();
                     Buttons[i].Clicked += delegate { method.Invoke(this, new object[2] { sender, e }); };
+                    Buttons[i].BackgroundColor = Color.FromHex("#344c11");
+                    Buttons[i].TextColor = Color.FromHex("#fffff0");
                     BtnGrid.Add(Buttons[i], BtnGrid.ColumnDefinitions.Count / 2, i);
                 }
             }
@@ -104,12 +108,15 @@ public partial class IntermediateScreen_200 : ContentPage
                     object sender = Buttons[i];
                     EventArgs e = new EventArgs();
                     Buttons[i].Clicked += delegate { method.Invoke(this, new object[2] { sender, e }); };
+                    Buttons[i].BackgroundColor = Color.FromHex("#344c11");
+                    Buttons[i].TextColor = Color.FromHex("#fffff0");
                     BtnGrid.Add(Buttons[i], BtnGrid.ColumnDefinitions.Count / 2, i);
                 }
             }
         }
         catch { }
     }
+
 
     public void IntermediateScreen_clicked(object sender, EventArgs e)
     {

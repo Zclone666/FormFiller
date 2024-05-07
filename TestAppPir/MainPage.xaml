@@ -7,7 +7,15 @@
         <VerticalStackLayout
             Spacing="25"
             Padding="30,0"
-            VerticalOptions="Center" x:Name="VerticalStackL" BackgroundColor="">
+            VerticalOptions="Center" x:Name="VerticalStackL">
+            <VerticalStackLayout.Background>
+                <LinearGradientBrush EndPoint="1,0">
+                    <GradientStop Color="#AEC09A"
+                          Offset="0.1" />
+                    <GradientStop Color="#AEC670"
+                          Offset="1.0" />
+                </LinearGradientBrush>
+            </VerticalStackLayout.Background>
         </VerticalStackLayout>
     </ScrollView>
 
