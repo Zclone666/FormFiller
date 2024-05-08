@@ -69,7 +69,7 @@ namespace TestAppPir.Methods
                     using (SqliteConnection connection = new SqliteConnection(connectionString))
                     {
                         connection.Open();
-                        using (SqliteCommand command = new SqliteCommand("CREATE TABLE  'personnel' ('uid ' INTEGER NOT NULL DEFAULT 1 UNIQUE,'id ' TEXT, 'tokennumber ' TEXT, 'callsign ' TEXT, 'surname ' TEXT, 'name ' TEXT, 'patronymic ' TEXT, PRIMARY KEY( 'uid ' AUTOINCREMENT));", connection))
+                        using (SqliteCommand command = new SqliteCommand("CREATE TABLE  'personnel' ('uid ' INTEGER NOT NULL DEFAULT 1 UNIQUE,'id ' TEXT  COLLATE NOCASE, 'tokennumber ' TEXT  COLLATE NOCASE, 'callsign ' TEXT  COLLATE NOCASE, 'surname ' TEXT  COLLATE NOCASE, 'name ' TEXT  COLLATE NOCASE, 'patronymic' TEXT  COLLATE NOCASE, PRIMARY KEY( 'uid ' AUTOINCREMENT));", connection))
                         { command.ExecuteNonQuery(); }
                         using (SqliteCommand command = new SqliteCommand("CREATE TABLE 'facts' ('id' INTEGER NOT NULL DEFAULT 1 UNIQUE,'solderid' TEXT,'nickname' TEXT,'fullname' TEXT,'name' TEXT,'surname' TEXT,'lastname' TEXT, 'destination' TEXT, 'woundtype' TEXT, 'woundclause' TEXT, 'wounddate' INTEGER, 'deathtime' INTEGER, 'helpprovided' TEXT, 'filename' TEXT, PRIMARY KEY('id'));", connection))
                         { command.ExecuteNonQuery(); }
@@ -310,10 +310,7 @@ namespace TestAppPir.Methods
                         connection.Close();
                     }
                 }
-                catch (Exception ex)
-                {
-                    ErrorMessage = ex.Message;
-                }
+                catch (Exception ex){ErrorMessage = ex.Message;}
             }
             return ErrorMessage;
         }
