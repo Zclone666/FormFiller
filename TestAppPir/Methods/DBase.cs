@@ -69,9 +69,9 @@ namespace TestAppPir.Methods
                     using (SqliteConnection connection = new SqliteConnection(connectionString))
                     {
                         connection.Open();
-                        using (SqliteCommand command = new SqliteCommand("CREATE TABLE `contacts`(`id` INTEGER NOT NULL UNIQUE,`solderid` TEXT,`nickname` TEXT,`fullname` TEXT,`name` TEXT,`surname` TEXT,`lastname` TEXT,`destination` TEXT,PRIMARY KEY(`id` AUTOINCREMENT));", connection))
-                        { command.ExecuteNonQuery(); }
-                        using (SqliteCommand command = new SqliteCommand("CREATE TABLE `facts`(`id` INTEGER NOT NULL DEFAULT 1 UNIQUE,`solderid` TEXT,`actions` TEXT,`woundtype` TEXT,`woundclause` TEXT,`wounddate` INTEGER,`deathtime` INTEGER,`filename` TEXT,`contractsid` INTEGER,PRIMARY KEY(`id`)); ", connection))
+                        //using (SqliteCommand command = new SqliteCommand("CREATE TABLE `Personnel`(`id` INTEGER NOT NULL UNIQUE,`solderid` TEXT,`nickname` TEXT,`fullname` TEXT,`name` TEXT,`surname` TEXT,`lastname` TEXT,`destination` TEXT,PRIMARY KEY(`id` AUTOINCREMENT));", connection))
+                        //{ command.ExecuteNonQuery(); }
+                        using (SqliteCommand command = new SqliteCommand("CREATE TABLE 'facts' ('id' INTEGER NOT NULL DEFAULT 1 UNIQUE,'solderid' TEXT,'nickname' TEXT,'fullname' TEXT,'name' TEXT,'surname' TEXT,'lastname' TEXT, 'destination' TEXT, 'woundtype' TEXT, 'woundclause' TEXT, 'wounddate' INTEGER, 'deathtime' INTEGER, 'helpprovided' TEXT, 'filename' TEXT, PRIMARY KEY('id'));", connection))
                         { command.ExecuteNonQuery(); }
                         connection.Close();
                     }
@@ -104,20 +104,25 @@ namespace TestAppPir.Methods
                     using (SqliteConnection connection = new SqliteConnection(connectionString))
                     {
                         connection.Open();
-                        using (SqliteCommand command = new SqliteCommand("INSERT INTO facts(solderid, actions, woundtype, woundclause, wounddate, deathtime, filename) VALUES ( @solderid, @actions, @woundtype, @woundclause, @wounddate, @deathtime, @filename);", connection))
+                        using (SqliteCommand command = new SqliteCommand("INSERT INTO facts(solderid, nickname, fullname, name, surname, lastname, destination, woundtype, woundclause, wounddate, deathtime, helpprovided, filename) VALUES (@solderid, @nickname, @fullname, @name, @surname, @lastname, @destination, @woundtype, @woundclause, @wounddate, @deathtime, @helpprovided, @filename);", connection))
                         {
                             command.Parameters.Add("@solderid", SqliteType.Text).Value = casuelty.SolderId;
-                            command.Parameters.Add("@actions", SqliteType.Text).Value = HelpProvided;
+                            command.Parameters.Add("@nickname", SqliteType.Text).Value = casuelty.NickName;
+                            command.Parameters.Add("@fullname", SqliteType.Text).Value = casuelty.FullName;
+                            command.Parameters.Add("@name", SqliteType.Text).Value = casuelty.Name;
+                            command.Parameters.Add("@surname", SqliteType.Text).Value = casuelty.Surname;
+                            command.Parameters.Add("@lastname", SqliteType.Text).Value = casuelty.LastName;
+                            command.Parameters.Add("@destination", SqliteType.Text).Value = casuelty.Destination;
                             command.Parameters.Add("@woundtype", SqliteType.Text).Value = casuelty.WoundType;
                             command.Parameters.Add("@woundclause", SqliteType.Text).Value = casuelty.WoundClause;
                             command.Parameters.Add("@wounddate", SqliteType.Integer).Value = casuelty.WoundDate;
                             command.Parameters.Add("@deathtime", SqliteType.Integer).Value = casuelty.TimeOfDeath;
+                            command.Parameters.Add("@helpprovided", SqliteType.Text).Value = HelpProvided;
                             command.Parameters.Add("@filename", SqliteType.Text).Value = casuelty.FileName;
                             command.ExecuteNonQuery();
                         }
                         connection.Close();
                     }
-
                 }
                 catch (Exception ex)
                 {
@@ -164,11 +169,17 @@ namespace TestAppPir.Methods
                                 {
                                     Id = Convert.ToInt32(rdr["id"]),
                                     SolderId = (string)rdr["solderid"],
-                                    HelpProvided = HelpProvided,
+                                    NickName = (string)rdr["nickname"],
+                                    FullName = (string)rdr["fullname"],
+                                    Name = (string)rdr["name"],
+                                    Surname = (string)rdr["surname"],
+                                    LastName = (string)rdr["lastname"],
+                                    Destination = (string)rdr["destination"],
                                     WoundType = (string)rdr["woundtype"],
                                     WoundClause = (string)rdr["woundclause"],
                                     WoundDate = Convert.ToInt32(rdr["wounddate"]),
                                     TimeOfDeath = Convert.ToInt32(rdr["deathtime"]),
+                                    HelpProvided = HelpProvided,
                                     FileName = (string)rdr["filename"]
                                 });
                             }
@@ -190,7 +201,27 @@ namespace TestAppPir.Methods
             };
         }
 
-
+        public static string DropFacts()
+        {
+            string ErrorMessage = null;
+            lock (locker)
+            {
+                try
+                {
+                    using (SqliteConnection connection = new SqliteConnection(connectionString))
+                    {
+                        connection.Open();
+                        using (SqliteCommand command = new SqliteCommand("Delete FROM 'facts' ;", connection)) {command.ExecuteNonQuery();}
+                        connection.Close();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ErrorMessage = ex.Message;
+                }
+            }
+            return ErrorMessage;
+        }
         #endregion
     }
 }
