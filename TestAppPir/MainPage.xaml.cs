@@ -164,79 +164,88 @@ namespace TestAppPir
         public void IntermediateScreen_clicked(object sender, EventArgs e)
         {
             //     ((Button)sender).IsVisible = false;
-            App.Current.OpenWindow(new Window(new TestAppPir.IntermediateScreen()));
+            Navigation.PushAsync(new TestAppPir.IntermediateScreen());
+            // App.Current.OpenWindow(new Window(new TestAppPir.IntermediateScreen()));
             //    App.Current.MainPage = new NavigationPage(new TestAppPir.Form200_0());
         }
 
         public void ExportScreen_clicked(object sender, EventArgs e)
         {
             //     ((Button)sender).IsVisible = false;
-            App.Current.OpenWindow(new Window(new TestAppPir.ExportScreen()));
+            Navigation.PushAsync(new TestAppPir.ExportScreen());
+            //  App.Current.OpenWindow(new Window(new TestAppPir.ExportScreen()));
             //    App.Current.MainPage = new NavigationPage(new TestAppPir.Form200_0());
         }
 
         public void IntermediateScreen_200_clicked(object sender, EventArgs e)
         {
             //     ((Button)sender).IsVisible = false;
-            App.Current.OpenWindow(new Window(new TestAppPir.IntermediateScreen_200()));
+            Navigation.PushAsync(new TestAppPir.IntermediateScreen_200());
             //    App.Current.MainPage = new NavigationPage(new TestAppPir.Form200_0());
         }
 
         public void IntermediateScreen_300_clicked(object sender, EventArgs e)
         {
             //     ((Button)sender).IsVisible = false;
-            App.Current.OpenWindow(new Window(new TestAppPir.IntermediateScreen_300()));
+            Navigation.PushAsync(new TestAppPir.IntermediateScreen_300());
             //    App.Current.MainPage = new NavigationPage(new TestAppPir.Form200_0());
         }
 
+
+
         public void Form200_0_clicked(object sender, EventArgs e)
         {
-       //     ((Button)sender).IsVisible = false;
-            App.Current.OpenWindow(new Window(new TestAppPir.Form200_0()));
-        //    App.Current.MainPage = new NavigationPage(new TestAppPir.Form200_0());
+            //     ((Button)sender).IsVisible = false;
+            Navigation.PushAsync(new TestAppPir.Form200_0());
+            //  App.Current.OpenWindow(new Window(new TestAppPir.Form200_0(dweeb)));
+            //    App.Current.MainPage = new NavigationPage(new TestAppPir.Form200_0());
         }
 
         public void Generic_clicked(object sender, EventArgs e)
         {
-        //    ((Button)sender).IsVisible = false;
-            App.Current.OpenWindow(new Window(new TestAppPir.Form200_0()));
+            //    ((Button)sender).IsVisible = false;
+            Navigation.PushAsync(new TestAppPir.Form200_0());
+            //        App.Current.OpenWindow(new Window(new TestAppPir.Form200_0(dweeb)));
             //App.Current.MainPage = new NavigationPage(new TestAppPir.Form200_0());
         }
 
         public void Form300_0_clicked(object sender, EventArgs e)
         {
-      //      ((Button)sender).IsVisible = false;
-            App.Current.OpenWindow(new Window(new TestAppPir.Form300_0()));
+            //      ((Button)sender).IsVisible = false;
+            Navigation.PushAsync(new TestAppPir.Form300_0());
+            //  App.Current.OpenWindow(new Window(new TestAppPir.Form300_0(dweeb)));
             //App.Current.MainPage = new NavigationPage(new TestAppPir.Form300_0());
         }
 
-        public  void Form200_1_clicked(object sender, EventArgs e)
+        public void Form200_1_clicked(object sender, EventArgs e)
         {
-          //  ((Button)sender).IsVisible = false;
-            App.Current.OpenWindow(new Window(new TestAppPir.Form200_1()));
+            //  ((Button)sender).IsVisible = false;
+            Navigation.PushAsync(new TestAppPir.Form200_1());
             //App.Current.MainPage = new NavigationPage(new TestAppPir.Form200_1());
         }
 
         public void Form300_1_clicked(object sender, EventArgs e)
         {
-          // ((Button)sender).IsVisible = false;
-            App.Current.OpenWindow(new Window(new TestAppPir.Form300_1()));
-          //  App.Current.MainPage = new NavigationPage(new TestAppPir.Form300_1());
+            // ((Button)sender).IsVisible = false;
+            Navigation.PushAsync(new TestAppPir.Form300_1());
+            //        App.Current.OpenWindow(new Window(new TestAppPir.Form300_1(dweeb)));
+            //  App.Current.MainPage = new NavigationPage(new TestAppPir.Form300_1());
         }
         public void Form200_2_clicked(object sender, EventArgs e)
         {
-        //    ((Button)sender).IsVisible = false;
-            App.Current.OpenWindow(new Window(new TestAppPir.Form200_2()));
-          //  App.Current.MainPage = new NavigationPage(new TestAppPir.Form200_2());
+            //    ((Button)sender).IsVisible = false;
+            Navigation.PushAsync(new TestAppPir.Form200_2());
+            //     App.Current.OpenWindow(new Window(new TestAppPir.Form200_2(dweeb)));
+            //  App.Current.MainPage = new NavigationPage(new TestAppPir.Form200_2());
         }
 
         public void Form300_3_clicked(object sender, EventArgs e)
         {
-         //   ((Button)sender).IsVisible = false;
-            
-            App.Current.OpenWindow(new Window(new TestAppPir.Form300_2()));
+            //   ((Button)sender).IsVisible = false;
+            Navigation.PushAsync(new TestAppPir.Form300_2());
+            //        App.Current.OpenWindow(new Window(new TestAppPir.Form300_2(dweeb)));
 
-          //  App.Current.MainPage = new NavigationPage(new TestAppPir.Form300_2());
+            //  App.Current.MainPage = new NavigationPage(new TestAppPir.Form300_2());
         }
     }
 

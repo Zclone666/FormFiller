@@ -47,6 +47,6 @@ public partial class Form200_0 : ContentPage
 
     private void Back_Clicked(object sender, EventArgs e)
     {
-        App.Current.CloseWindow(this.Window);
+         Navigation.PopAsync();
     }
 }
