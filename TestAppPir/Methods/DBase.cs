@@ -28,7 +28,7 @@ namespace TestAppPir.Methods
             var bytetmp = new BitArray(Encoding.UTF8.GetBytes(tmp.Substring(0, 16)));
             tmp = "3a84309b81032b4a";
 #if ANDROID
-            tmp =  Android.Provider.Settings.Secure.GetString(Android.App.Application.Context.ContentResolver, Android.Provider.Settings.Secure.AndroidId);
+            tmp = Android.Provider.Settings.Secure.GetString(Android.App.Application.Context.ContentResolver, Android.Provider.Settings.Secure.AndroidId);
 #endif
             bytetmp = bytetmp.Xor(new BitArray(Encoding.UTF8.GetBytes(tmp)));
             byte[] ret = new byte[(bytetmp.Length - 1) / 8 + 1];
@@ -69,8 +69,8 @@ namespace TestAppPir.Methods
                     using (SqliteConnection connection = new SqliteConnection(connectionString))
                     {
                         connection.Open();
-                        //using (SqliteCommand command = new SqliteCommand("CREATE TABLE `Personnel`(`id` INTEGER NOT NULL UNIQUE,`solderid` TEXT,`nickname` TEXT,`fullname` TEXT,`name` TEXT,`surname` TEXT,`lastname` TEXT,`destination` TEXT,PRIMARY KEY(`id` AUTOINCREMENT));", connection))
-                        //{ command.ExecuteNonQuery(); }
+                        using (SqliteCommand command = new SqliteCommand("CREATE TABLE  'personnel' ('uid ' INTEGER NOT NULL DEFAULT 1 UNIQUE,'id ' TEXT, 'tokennumber ' TEXT, 'callsign ' TEXT, 'surname ' TEXT, 'name ' TEXT, 'patronymic ' TEXT, PRIMARY KEY( 'uid ' AUTOINCREMENT));", connection))
+                        { command.ExecuteNonQuery(); }
                         using (SqliteCommand command = new SqliteCommand("CREATE TABLE 'facts' ('id' INTEGER NOT NULL DEFAULT 1 UNIQUE,'solderid' TEXT,'nickname' TEXT,'fullname' TEXT,'name' TEXT,'surname' TEXT,'lastname' TEXT, 'destination' TEXT, 'woundtype' TEXT, 'woundclause' TEXT, 'wounddate' INTEGER, 'deathtime' INTEGER, 'helpprovided' TEXT, 'filename' TEXT, PRIMARY KEY('id'));", connection))
                         { command.ExecuteNonQuery(); }
                         connection.Close();
@@ -87,7 +87,7 @@ namespace TestAppPir.Methods
 
         #endregion
 
-        #region Services
+        #region Methods Facts
 
         public static string AddFact(Casuelty casuelty)
         {
@@ -211,7 +211,7 @@ namespace TestAppPir.Methods
                     using (SqliteConnection connection = new SqliteConnection(connectionString))
                     {
                         connection.Open();
-                        using (SqliteCommand command = new SqliteCommand("Delete FROM 'facts' ;", connection)) {command.ExecuteNonQuery();}
+                        using (SqliteCommand command = new SqliteCommand("Delete FROM 'facts' ;", connection)) { command.ExecuteNonQuery(); }
                         connection.Close();
                     }
                 }
@@ -222,6 +222,103 @@ namespace TestAppPir.Methods
             }
             return ErrorMessage;
         }
+        #endregion
+
+        #region Methods Personnel
+        public static string InsertPersonnel(Models.Shared.ItemPersonnel Item)
+        {
+            string ErrorMessage = null;
+            lock (locker)
+            {
+                try
+                {
+                    using (SqliteConnection connection = new SqliteConnection(connectionString))
+                    {
+                        connection.Open();
+                        using (SqliteCommand command = new SqliteCommand("INSERT INTO facts(id, tokennumber, callsign, surname, name, patronymic VALUES (@id, @tokennumber, @callsign, @surname, @name, @patronymic);", connection))
+                        {
+                            command.Parameters.Add("@id", SqliteType.Text).Value = Item.Id;
+                            command.Parameters.Add("@tokennumber", SqliteType.Text).Value = Item.TokenNumber;
+                            command.Parameters.Add("@callsign", SqliteType.Text).Value = Item.CallSign;
+                            command.Parameters.Add("@surname", SqliteType.Text).Value = Item.Surname;
+                            command.Parameters.Add("@name", SqliteType.Text).Value = Item.Name;
+                            command.Parameters.Add("@patronymic", SqliteType.Text).Value = Item.Patronymic;
+                            command.ExecuteNonQuery();
+                        }
+                        connection.Close();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ErrorMessage = ex.Message;
+                }
+            }
+            return ErrorMessage;
+        }
+
+        public static string InsertPersonnel(List<Models.Shared.ItemPersonnel> Items)
+        {
+            string ErrorMessage = null;
+            lock (locker)
+            {
+                try
+                {
+
+
+                    using (SqliteConnection connection = new SqliteConnection(connectionString))
+                    {
+                        connection.Open();
+                        using (var transaction = connection.BeginTransaction())
+                        {
+                            using (var command = connection.CreateCommand())
+                            {
+                                command.CommandText = "INSERT INTO contact(id, tokennumber, surname, name, patronymic) VALUES(@id, @tokennumber, @surname, @name, @patronymic);";
+
+                                var idParameter = command.CreateParameter();
+                                idParameter.ParameterName = "@id";
+                                command.Parameters.Add(idParameter);
+
+                                var tokennumberParameter = command.CreateParameter();
+                                tokennumberParameter.ParameterName = "@tokennumber";
+                                command.Parameters.Add(tokennumberParameter);
+
+                                var surnameParameter = command.CreateParameter();
+                                surnameParameter.ParameterName = "@surname";
+                                command.Parameters.Add(surnameParameter);
+
+                                var nameParameter = command.CreateParameter();
+                                nameParameter.ParameterName = "@name";
+                                command.Parameters.Add(nameParameter);
+
+                                var patronymicParameter = command.CreateParameter();
+                                patronymicParameter.ParameterName = "@patronymic";
+                                command.Parameters.Add(patronymicParameter);
+
+                                foreach (var item in Items)
+                                {
+                                    idParameter.Value = item.Id.ToString() ?? string.Empty;
+                                    tokennumberParameter.Value = item.TokenNumber ?? string.Empty;
+                                    surnameParameter.Value = item.Surname ?? string.Empty;
+                                    nameParameter.Value = item.Name ?? string.Empty;
+                                    patronymicParameter.Value = item.Patronymic ?? string.Empty;
+                                    command.ExecuteNonQuery();
+                                }
+
+                                transaction.Commit();
+                            }
+                        }
+                        connection.Close();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ErrorMessage = ex.Message;
+                }
+            }
+            return ErrorMessage;
+        }
+
+
         #endregion
     }
 }
