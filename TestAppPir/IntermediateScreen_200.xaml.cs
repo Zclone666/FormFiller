@@ -48,7 +48,7 @@ public partial class IntermediateScreen_200 : ContentPage
             BtnGrid.VerticalOptions = LayoutOptions.Center;
             BtnGrid.HorizontalOptions = LayoutOptions.Center;
             List<Button> Buttons = new List<Button>();
-            if (BtnTxt == null && NumbOfBtns == 6)
+            if (MthdsName == null && BtnTxt == null && NumbOfBtns == 6)
             {
                 BtnTxt = new List<string>();
                 for (int i = 0; i < NumbOfBtns; i++)
@@ -75,7 +75,7 @@ public partial class IntermediateScreen_200 : ContentPage
                     BtnGrid.Add(Buttons[i], BtnGrid.ColumnDefinitions.Count / 2, i);
                 }
             }
-            else if (NumbOfBtns == BtnTxt.Count)
+            else if (MthdsName == null && NumbOfBtns == BtnTxt.Count)
             {
                 for (int i = 0; i < NumbOfBtns; i++)
                 {

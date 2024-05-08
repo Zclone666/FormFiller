@@ -10,7 +10,7 @@ namespace TestAppPir.Methods
 {
     internal static class Pinger
     {
-        internal static void ProxyBckg()
+        internal static async void ProxyBckg()
         {
             bool Status = false;
             Ping pingProxy = new Ping();
@@ -24,7 +24,7 @@ namespace TestAppPir.Methods
                         Status = true;
                         Consts.MainParams.ConnStatus = Status;
                         Thread.Sleep(10000);
-
+                        Consts.MainParams.BackendDBIn = Backend.RequestDownload().Result;
                     }
                     else
                     {

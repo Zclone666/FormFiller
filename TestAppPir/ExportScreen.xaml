@@ -12,5 +12,11 @@
                           Offset="1.0" />
             </LinearGradientBrush>
         </VerticalStackLayout.Background>
+        <CollectionView x:Name="DBRecords">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Span="1" Orientation="Vertical" />
+            </CollectionView.ItemsLayout>
+
+        </CollectionView>
     </VerticalStackLayout>
 </ContentPage>

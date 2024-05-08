@@ -65,7 +65,7 @@ namespace TestAppPir
             MainParams.AspectRatioWidth = Math.Round((MainApp.MainView.Width / MainApp.MainView.Height) / 2, 1);
             MainParams.AspectRatioHeight = Math.Round(MainApp.MainView.Height / MainApp.MainView.Width, 1);
             MainParams.NmbOfSquares = (uint)Math.Round((MainApp.MainView.Height * MainApp.MainView.Width) / ((MainApp.MainView.Width / 5) * (MainApp.MainView.Height / 5)));
-            MainApp.MainP.CreateGrid(2, new List<string>() { "IntermediateScreen_200", "IntermediateScreen_300" });
+            MainApp.MainP.CreateGrid(3, new List<string>() { "Форма 200", "Форма 300", "Поделиться" }, new List<string>() { "IntermediateScreen_200", "IntermediateScreen_300", "ExportScreen" });
         }
 
         public void CreateGrid(int NumbOfBtns=6, List<string> BtnTxt=null, List<string> MthdsName=null)
@@ -84,7 +84,7 @@ namespace TestAppPir
                 BtnGrid.VerticalOptions = LayoutOptions.Center;
                 BtnGrid.HorizontalOptions = LayoutOptions.Center;
                 List<Button> Buttons = new List<Button>();
-                if (BtnTxt == null && NumbOfBtns == 6)
+                if (MthdsName == null && BtnTxt == null && NumbOfBtns == 6)
                 {
                     BtnTxt = new List<string>();
                     for (int i = 0; i < NumbOfBtns; i++)
@@ -111,7 +111,7 @@ namespace TestAppPir
                         BtnGrid.Add(Buttons[i], BtnGrid.ColumnDefinitions.Count / 2, i);
                     }
                 }
-                else if (NumbOfBtns == BtnTxt.Count)
+                else if (MthdsName == null && NumbOfBtns == BtnTxt.Count)
                 {
                     for (int i = 0; i < NumbOfBtns; i++)
                     {
@@ -165,6 +165,13 @@ namespace TestAppPir
         {
             //     ((Button)sender).IsVisible = false;
             App.Current.OpenWindow(new Window(new TestAppPir.IntermediateScreen()));
+            //    App.Current.MainPage = new NavigationPage(new TestAppPir.Form200_0());
+        }
+
+        public void ExportScreen_clicked(object sender, EventArgs e)
+        {
+            //     ((Button)sender).IsVisible = false;
+            App.Current.OpenWindow(new Window(new TestAppPir.ExportScreen()));
             //    App.Current.MainPage = new NavigationPage(new TestAppPir.Form200_0());
         }
 

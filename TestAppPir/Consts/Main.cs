@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TestAppPir.Models;
+using TestAppPir.Models.Shared;
 
 namespace TestAppPir.Consts
 {
@@ -16,5 +17,6 @@ namespace TestAppPir.Consts
         public static double AspectRatioWidth = 1;
         public static bool ConnStatus = false;
         public static List<Casuelty> Fudged=new List<Casuelty>();
+        public static List<ItemPersonnel> BackendDBIn = new List<ItemPersonnel>();
     }
 }

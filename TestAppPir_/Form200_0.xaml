@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TestAppPir.Form200_0"
+             Title="Form200_0">
+    <ScrollView>
+        <StackLayout Padding="20">
+            <StackLayout.Background>
+                <LinearGradientBrush EndPoint="1,0">
+                    <GradientStop Color="#AEC09A"
+                          Offset="0.1" />
+                    <GradientStop Color="#AEC670"
+                          Offset="1.0" />
+                </LinearGradientBrush>
+            </StackLayout.Background>
+            <Label Text="Форма 200 номер жетона" FontAttributes="Bold" HorizontalOptions="Center" TextColor="#344c11" BackgroundColor="#ffffff"/>
+
+            <Label Text="Номер жетона:" TextColor="#344c11" BackgroundColor="#ffffff"/>
+            <Entry Placeholder="XX-XX609" HorizontalOptions="FillAndExpand" x:Name="SolderId" TextColor="#344c11" BackgroundColor="#ffffff"/>
+
+            <Label Text="Фамилия Имя Отчество:" TextColor="#344c11" BackgroundColor="#ffffff"/>
+            <Entry Placeholder="Введите полное имя" x:Name="FullName" TextColor="#344c11" BackgroundColor="#ffffff"/>
+
+            <Label Text="Характер ранения" TextColor="#344c11" BackgroundColor="#ffffff"/>
+            <Entry Placeholder="Опишите характер ранения"  x:Name="WoundType" TextColor="#344c11" BackgroundColor="#ffffff"/>
+
+            <Label Text="Обстоятельства ранения" TextColor="#344c11" BackgroundColor="#ffffff"/>
+            <Editor HeightRequest="100" Placeholder="Опишите обстоятельства ранения"  x:Name="WoundClause" TextColor="#344c11" BackgroundColor="#ffffff"/>
+
+            <Label Text="Дата ранения" TextColor="#344c11" BackgroundColor="#ffffff"/>
+            <DatePicker  x:Name="WoundDate" TextColor="#344c11" BackgroundColor="#ffffff"/>
+
+            <Label Text="Дата смерти" TextColor="#344c11" BackgroundColor="#ffffff"/>
+            <DatePicker x:Name="TimeOfDeath" TextColor="#344c11" BackgroundColor="#ffffff"/>
+
+            <Label Text="Куда направлен" TextColor="#344c11" BackgroundColor="#ffffff"/>
+            <Entry Placeholder="Укажите место направления" x:Name="Destination" TextColor="#344c11" BackgroundColor="#ffffff"/>
+
+            <Button Text="Сохранить" HorizontalOptions="Center" x:Name="Save" Clicked="Save_Clicked" TextColor="#fffff0" BackgroundColor="#344c11"/>
+            <Button Text="Share" HorizontalOptions="Center" x:Name="Share" Clicked="Share_Clicked" IsEnabled="False" TextColor="#fffff0" BackgroundColor="#344c11"/>
+            <Button Text="Back" HorizontalOptions="Center"  x:Name="Back" Clicked="Back_Clicked" TextColor="#fffff0" BackgroundColor="#344c11"/>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
+    
