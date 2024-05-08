@@ -106,19 +106,19 @@ namespace TestAppPir.Methods
                         connection.Open();
                         using (SqliteCommand command = new SqliteCommand("INSERT INTO facts(solderid, nickname, fullname, name, surname, lastname, destination, woundtype, woundclause, wounddate, deathtime, helpprovided, filename) VALUES (@solderid, @nickname, @fullname, @name, @surname, @lastname, @destination, @woundtype, @woundclause, @wounddate, @deathtime, @helpprovided, @filename);", connection))
                         {
-                            command.Parameters.Add("@solderid", SqliteType.Text).Value = casuelty.SolderId;
-                            command.Parameters.Add("@nickname", SqliteType.Text).Value = casuelty.NickName;
-                            command.Parameters.Add("@fullname", SqliteType.Text).Value = casuelty.FullName;
-                            command.Parameters.Add("@name", SqliteType.Text).Value = casuelty.Name;
-                            command.Parameters.Add("@surname", SqliteType.Text).Value = casuelty.Surname;
-                            command.Parameters.Add("@lastname", SqliteType.Text).Value = casuelty.LastName;
-                            command.Parameters.Add("@destination", SqliteType.Text).Value = casuelty.Destination;
-                            command.Parameters.Add("@woundtype", SqliteType.Text).Value = casuelty.WoundType;
-                            command.Parameters.Add("@woundclause", SqliteType.Text).Value = casuelty.WoundClause;
+                            command.Parameters.Add("@solderid", SqliteType.Text).Value = casuelty.SolderId ?? string.Empty;
+                            command.Parameters.Add("@nickname", SqliteType.Text).Value = casuelty.NickName ?? string.Empty;
+                            command.Parameters.Add("@fullname", SqliteType.Text).Value = casuelty.FullName ?? string.Empty;
+                            command.Parameters.Add("@name", SqliteType.Text).Value = casuelty.Name ?? string.Empty;
+                            command.Parameters.Add("@surname", SqliteType.Text).Value = casuelty.Surname ?? string.Empty;
+                            command.Parameters.Add("@lastname", SqliteType.Text).Value = casuelty.LastName ?? string.Empty;
+                            command.Parameters.Add("@destination", SqliteType.Text).Value = casuelty.Destination ?? string.Empty;
+                            command.Parameters.Add("@woundtype", SqliteType.Text).Value = casuelty.WoundType ?? string.Empty;
+                            command.Parameters.Add("@woundclause", SqliteType.Text).Value = casuelty.WoundClause ?? string.Empty;
                             command.Parameters.Add("@wounddate", SqliteType.Integer).Value = casuelty.WoundDate;
                             command.Parameters.Add("@deathtime", SqliteType.Integer).Value = casuelty.TimeOfDeath;
-                            command.Parameters.Add("@helpprovided", SqliteType.Text).Value = HelpProvided;
-                            command.Parameters.Add("@filename", SqliteType.Text).Value = casuelty.FileName;
+                            command.Parameters.Add("@helpprovided", SqliteType.Text).Value = HelpProvided ?? string.Empty;
+                            command.Parameters.Add("@filename", SqliteType.Text).Value = casuelty.FileName ?? string.Empty;
                             command.ExecuteNonQuery();
                         }
                         connection.Close();
@@ -237,12 +237,12 @@ namespace TestAppPir.Methods
                         connection.Open();
                         using (SqliteCommand command = new SqliteCommand("INSERT INTO facts(id, tokennumber, callsign, surname, name, patronymic VALUES (@id, @tokennumber, @callsign, @surname, @name, @patronymic);", connection))
                         {
-                            command.Parameters.Add("@id", SqliteType.Text).Value = Item.Id;
-                            command.Parameters.Add("@tokennumber", SqliteType.Text).Value = Item.TokenNumber;
-                            command.Parameters.Add("@callsign", SqliteType.Text).Value = Item.CallSign;
-                            command.Parameters.Add("@surname", SqliteType.Text).Value = Item.Surname;
-                            command.Parameters.Add("@name", SqliteType.Text).Value = Item.Name;
-                            command.Parameters.Add("@patronymic", SqliteType.Text).Value = Item.Patronymic;
+                            command.Parameters.Add("@id", SqliteType.Text).Value = Item.Id.ToString() ?? string.Empty;
+                            command.Parameters.Add("@tokennumber", SqliteType.Text).Value = Item.TokenNumber ?? string.Empty;
+                            command.Parameters.Add("@callsign", SqliteType.Text).Value = Item.CallSign ?? string.Empty;
+                            command.Parameters.Add("@surname", SqliteType.Text).Value = Item.Surname ?? string.Empty;
+                            command.Parameters.Add("@name", SqliteType.Text).Value = Item.Name ?? string.Empty;
+                            command.Parameters.Add("@patronymic", SqliteType.Text).Value = Item.Patronymic ?? string.Empty;
                             command.ExecuteNonQuery();
                         }
                         connection.Close();
