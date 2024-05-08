@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TestAppPir.Trauma"
+             Title="Trauma">
+    <ScrollView>
+        <StackLayout Padding="30" Spacing="10">
+            <Label Text="Disease" FontSize="Large" HorizontalOptions="Center" FontAttributes="Bold"/>
+
+            <!-- Token number -->
+            <Entry Placeholder="Token number"/>
+
+            <!-- Call sign -->
+            <Entry Placeholder="Call sign"/>
+
+            <!-- Surname -->
+            <Entry Placeholder="Surname" x:Name=""/>
+
+            <!-- Name -->
+            <Entry Placeholder="Name"/>
+
+            <!-- Another Surname (possibly an error in form design?) -->
+            <Entry Placeholder="Surname"/>
+
+            <!-- Complaints -->
+            <Editor Placeholder="Complaints" AutoSize="TextChanges"/>
+
+            <!-- Anamnesis -->
+            <Editor Placeholder="Anamnesis" AutoSize="TextChanges"/>
+
+            <!-- Objectively -->
+            <Editor Placeholder="Objectively" AutoSize="TextChanges"/>
+
+            <!-- Pharmacotherapy -->
+            <Editor Placeholder="Pharmacotherapy" AutoSize="TextChanges"/>
+
+            <!-- Preliminary Diagnosis -->
+            <Editor Placeholder="Preliminary diagnosis" AutoSize="TextChanges"/>
+
+            <!-- Recommendations -->
+            <Editor Placeholder="Recommendations" AutoSize="TextChanges"/>
+
+            <!-- Date of the Application -->
+            <DatePicker/>
+
+            <!-- Type of Direction -->
+            <Picker Title="Type of Direction">
+                <!-- Add items here -->
+                <Picker.Items>
+                    <x:String>Option 1</x:String>
+                    <x:String>Option 2</x:String>
+                </Picker.Items>
+            </Picker>
+
+            <!-- Specialist -->
+            <Picker Title="Specialist">
+                <!-- Add items here -->
+                <Picker.Items>
+                    <x:String>Specialist 1</x:String>
+                    <x:String>Specialist 2</x:String>
+                </Picker.Items>
+            </Picker>
+
+            <!-- Institution where it is located -->
+            <Picker Title="Institution where it is located">
+                <!-- Add items here -->
+                <Picker.Items>
+                    <x:String>Institution 1</x:String>
+                    <x:String>Institution 2</x:String>
+                </Picker.Items>
+            </Picker>
+
+            <!-- Buttons for navigation -->
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                <Button Text="BACK" BackgroundColor="Green" TextColor="White"/>
+                <Button Text="FURTHER" BackgroundColor="Green" TextColor="White" 
+                        HorizontalOptions="EndAndExpand" Margin="20,0,0,0"/>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

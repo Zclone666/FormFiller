@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TestAppPir.Injury"
+             Title="Injury">
+    <ScrollView>
+        <StackLayout Padding="30" Spacing="10">
+            <Label Text="Injury" FontSize="Large" HorizontalOptions="Center" FontAttributes="Bold"/>
+
+            <!-- Token number -->
+            <Label Text="Номер жетона:" TextColor="#344c11" BackgroundColor="#ffffff"/>
+            <Entry Placeholder="XX-XX609" x:Name="SolderId" TextColor="#344c11" BackgroundColor="#ffffff"/>
+
+            <Label Text="Позывной" TextColor="#344c11" BackgroundColor="#ffffff"/>
+            <Entry Placeholder="Введите позывной" x:Name="NickName" TextColor="#344c11" BackgroundColor="#ffffff"/>
+
+            <Label Text="Фамилия" TextColor="#344c11" BackgroundColor="#ffffff"/>
+            <Entry Placeholder="Введите фамилию" x:Name="Surname" TextColor="#344c11" BackgroundColor="#ffffff"/>
+
+            <Label Text="Имя" TextColor="#344c11" BackgroundColor="#ffffff"/>
+            <Entry Placeholder="Введите имя" x:Name="Name" TextColor="#344c11" BackgroundColor="#ffffff"/>
+
+            <Label Text="Отчество" TextColor="#344c11" BackgroundColor="#ffffff"/>
+            <Entry Placeholder="Введите отчество" x:Name="LastName" TextColor="#344c11" BackgroundColor="#ffffff"/>
+
+            <!-- Complaints -->
+            <Editor Placeholder="Complaints" AutoSize="TextChanges" x:Name="Complaints"/>
+
+            <!-- Anamnesis -->
+            <Editor Placeholder="Anamnesis" AutoSize="TextChanges" x:Name="Anamnesis"/>
+
+            <!-- Objectively -->
+            <Editor Placeholder="Objectively" AutoSize="TextChanges" x:Name="Objectively"/>
+
+            <!-- Pharmacotherapy -->
+            <Editor Placeholder="Pharmacotherapy" AutoSize="TextChanges" x:Name="Pharmacotherapy"/>
+
+            <!-- Preliminary Diagnosis -->
+            <Editor Placeholder="Preliminary diagnosis" AutoSize="TextChanges" x:Name="Preliminary_diagnosis"/>
+
+            <!-- Recommendations -->
+            <Editor Placeholder="Recommendations" AutoSize="TextChanges" x:Name="Recommendations"/>
+
+            <!-- Date of the Application -->
+            <DatePicker/>
+
+            <!-- Type of Direction -->
+            <Picker Title="Type of Service" x:Name="ServiceType">
+                <!-- Add items here -->
+                <Picker.Items>
+                    <x:String>Option 1</x:String>
+                    <x:String>Option 2</x:String>
+                </Picker.Items>
+            </Picker>
+
+            <!-- Specialist -->
+            <Picker Title="Specialist" x:Name="Specialist">
+                <!-- Add items here -->
+                <Picker.Items>
+                    <x:String>Specialist 1</x:String>
+                    <x:String>Specialist 2</x:String>
+                </Picker.Items>
+            </Picker>
+
+            <!-- Institution where it is located -->
+            <Picker Title="Situated at" x:Name="SituatedAt">
+                <!-- Add items here -->
+                <Picker.Items>
+                    <x:String>Institution 1</x:String>
+                    <x:String>Institution 2</x:String>
+                </Picker.Items>
+            </Picker>
+
+            <!-- Buttons for navigation -->
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                <Button Text="BACK" BackgroundColor="Green" TextColor="White"/>
+                <Button Text="NEXT" BackgroundColor="Green" TextColor="White" 
+                        HorizontalOptions="EndAndExpand" Margin="20,0,0,0"/>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

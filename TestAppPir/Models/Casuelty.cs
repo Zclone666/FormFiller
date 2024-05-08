@@ -38,5 +38,29 @@ namespace TestAppPir.Models
         public List<string> HelpProvided { get; set; } = new List<string>();
         [ProtoMember(14)]
         public string FileName { get; set; } = string.Empty;
+        [ProtoMember(15)]
+        public ushort FormId {  get; set; }
+        [ProtoMember(16)]
+        public string Complaints { get; set; } = string.Empty;
+        [ProtoMember(17)]
+        public string Anamnesis {  get; set; } = string.Empty;
+        [ProtoMember(18)]
+        public string Objectively { get; set;} = string.Empty;
+        [ProtoMember(19)]
+        public string Pharmacotherapy { get; set; } = string.Empty;
+        [ProtoMember(20)]
+        public string Preliminary_diagnosis {  get; set; } = string.Empty;
+        [ProtoMember(21)]
+        public string Recommendations { get; set; } = string.Empty;
+        [ProtoMember(22)]
+        public string ServiceType { get; set; } = string.Empty;
+        [ProtoMember(23)]
+        public string Specialist { get; set; } = string.Empty;
+        [ProtoMember(24)]
+        public string SituatedAt { get; set; } = string.Empty;
+        [ProtoMember(25)]
+        public int RecordDate { get; set; }
+        [ProtoMember(26)]
+        public int DateOfService { get; set; }
     }
 }
