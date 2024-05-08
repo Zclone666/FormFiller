@@ -7,38 +7,41 @@
         <StackLayout Padding="30" Spacing="10">
             <Label Text="Disease" FontSize="Large" HorizontalOptions="Center" FontAttributes="Bold"/>
 
+
+
             <!-- Token number -->
-            <Entry Placeholder="Token number"/>
+            <Label Text="Номер жетона:" TextColor="#344c11" BackgroundColor="#ffffff"/>
+            <Entry Placeholder="XX-XX609" x:Name="SolderId" TextColor="#344c11" BackgroundColor="#ffffff"/>
 
-            <!-- Call sign -->
-            <Entry Placeholder="Call sign"/>
+            <Label Text="Позывной" TextColor="#344c11" BackgroundColor="#ffffff"/>
+            <Entry Placeholder="Введите позывной" x:Name="NickName" TextColor="#344c11" BackgroundColor="#ffffff"/>
 
-            <!-- Surname -->
-            <Entry Placeholder="Surname" x:Name=""/>
+            <Label Text="Фамилия" TextColor="#344c11" BackgroundColor="#ffffff"/>
+            <Entry Placeholder="Введите фамилию" x:Name="Surname" TextColor="#344c11" BackgroundColor="#ffffff"/>
 
-            <!-- Name -->
-            <Entry Placeholder="Name"/>
+            <Label Text="Имя" TextColor="#344c11" BackgroundColor="#ffffff"/>
+            <Entry Placeholder="Введите имя" x:Name="Name" TextColor="#344c11" BackgroundColor="#ffffff"/>
 
-            <!-- Another Surname (possibly an error in form design?) -->
-            <Entry Placeholder="Surname"/>
+            <Label Text="Отчество" TextColor="#344c11" BackgroundColor="#ffffff"/>
+            <Entry Placeholder="Введите отчество" x:Name="LastName" TextColor="#344c11" BackgroundColor="#ffffff"/>
 
             <!-- Complaints -->
-            <Editor Placeholder="Complaints" AutoSize="TextChanges"/>
+            <Editor Placeholder="Complaints" AutoSize="TextChanges" x:Name="Complaints" TextColor="#344c11" BackgroundColor="#ffffff"/>
 
             <!-- Anamnesis -->
-            <Editor Placeholder="Anamnesis" AutoSize="TextChanges"/>
+            <Editor Placeholder="Anamnesis" AutoSize="TextChanges" x:Name="Anamnesis" TextColor="#344c11" BackgroundColor="#ffffff"/>
 
             <!-- Objectively -->
-            <Editor Placeholder="Objectively" AutoSize="TextChanges"/>
+            <Editor Placeholder="Objectively" AutoSize="TextChanges" x:Name="Objectively" TextColor="#344c11" BackgroundColor="#ffffff"/>
 
             <!-- Pharmacotherapy -->
-            <Editor Placeholder="Pharmacotherapy" AutoSize="TextChanges"/>
+            <Editor Placeholder="Pharmacotherapy" AutoSize="TextChanges" x:Name="Pharmacotherapy" TextColor="#344c11" BackgroundColor="#ffffff"/>
 
             <!-- Preliminary Diagnosis -->
-            <Editor Placeholder="Preliminary diagnosis" AutoSize="TextChanges"/>
+            <Editor Placeholder="Preliminary diagnosis" AutoSize="TextChanges" x:Name="Preliminary_diagnosis" TextColor="#344c11" BackgroundColor="#ffffff"/>
 
             <!-- Recommendations -->
-            <Editor Placeholder="Recommendations" AutoSize="TextChanges"/>
+            <Editor Placeholder="Recommendations" AutoSize="TextChanges" x:Name="Recommendations" TextColor="#344c11" BackgroundColor="#ffffff"/>
 
             <!-- Date of the Application -->
             <DatePicker/>

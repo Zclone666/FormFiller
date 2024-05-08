@@ -24,22 +24,22 @@
             <Entry Placeholder="Введите отчество" x:Name="LastName" TextColor="#344c11" BackgroundColor="#ffffff"/>
 
             <!-- Complaints -->
-            <Editor Placeholder="Complaints" AutoSize="TextChanges" x:Name="Complaints"/>
+            <Editor Placeholder="Complaints" AutoSize="TextChanges" x:Name="Complaints" TextColor="#344c11" BackgroundColor="#ffffff"/>
 
             <!-- Anamnesis -->
-            <Editor Placeholder="Anamnesis" AutoSize="TextChanges" x:Name="Anamnesis"/>
+            <Editor Placeholder="Anamnesis" AutoSize="TextChanges" x:Name="Anamnesis" TextColor="#344c11" BackgroundColor="#ffffff"/>
 
             <!-- Objectively -->
-            <Editor Placeholder="Objectively" AutoSize="TextChanges" x:Name="Objectively"/>
+            <Editor Placeholder="Objectively" AutoSize="TextChanges" x:Name="Objectively" TextColor="#344c11" BackgroundColor="#ffffff"/>
 
             <!-- Pharmacotherapy -->
-            <Editor Placeholder="Pharmacotherapy" AutoSize="TextChanges" x:Name="Pharmacotherapy"/>
+            <Editor Placeholder="Pharmacotherapy" AutoSize="TextChanges" x:Name="Pharmacotherapy" TextColor="#344c11" BackgroundColor="#ffffff"/>
 
             <!-- Preliminary Diagnosis -->
-            <Editor Placeholder="Preliminary diagnosis" AutoSize="TextChanges" x:Name="Preliminary_diagnosis"/>
+            <Editor Placeholder="Preliminary diagnosis" AutoSize="TextChanges" x:Name="Preliminary_diagnosis" TextColor="#344c11" BackgroundColor="#ffffff"/>
 
             <!-- Recommendations -->
-            <Editor Placeholder="Recommendations" AutoSize="TextChanges" x:Name="Recommendations"/>
+            <Editor Placeholder="Recommendations" AutoSize="TextChanges" x:Name="Recommendations" TextColor="#344c11" BackgroundColor="#ffffff"/>
 
             <!-- Date of the Application -->
             <DatePicker/>
