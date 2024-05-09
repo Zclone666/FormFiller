@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TestAppPir.Interfaces;
 using TestAppPir.Models.Response;
 using TestAppPir.Models.Shared;
 
@@ -32,5 +33,7 @@ namespace TestAppPir.Methods
             }
             return ret;
         }
+
+      //  public async static Task<Alert> Register()
     }
 }

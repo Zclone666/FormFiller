@@ -181,6 +181,11 @@ public partial class IntermediateScreen_Trauma : ContentPage
         //  App.Current.MainPage = new NavigationPage(new TestAppPir.Form300_2());
     }
 
+    private void Back_Clicked(object sender, EventArgs e)
+    {
+        Navigation.PopAsync();
+    }
+
     private void Next_Clicked(object sender, EventArgs e)
     {
         try

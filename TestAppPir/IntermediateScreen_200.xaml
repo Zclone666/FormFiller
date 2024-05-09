@@ -16,6 +16,7 @@
         </SearchBar>
         <SearchBar Placeholder="Позывной" x:Name="Search_nick" IsVisible="False" IsTextPredictionEnabled="True" IsEnabled="True"  TextColor="#344c11" BackgroundColor="#ffffff">
         </SearchBar>
+        <Button Text="Назад" BackgroundColor="Green" TextColor="White" Clicked="Back_Clicked" x:Name="Back"/>
         <Button Text="Далее" x:Name="Next" Clicked="Next_Clicked"></Button>
         <!-- <ListView x:Name="searchResults" ItemTapped="searchResults_ItemTapped"/> -->
         
