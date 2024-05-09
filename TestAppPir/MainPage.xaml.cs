@@ -160,11 +160,15 @@ namespace TestAppPir
 
         public static void UIInit(int PageN=0)
         {
-            if (PageN == 0) 
+            try
             {
-                MainApp.MainP.CreateGrid();
+                if (PageN == 0)
+                {
+                    MainApp.MainP.CreateGrid();
+                }
+                MainApp.VertStLay.Add(BtnGrid);
             }
-            MainApp.VertStLay.Add(BtnGrid);
+            catch { }
         }
 
         public void IntermediateScreen_clicked(object sender, EventArgs e)

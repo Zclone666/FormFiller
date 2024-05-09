@@ -60,6 +60,7 @@ public partial class Form300_0 : ContentPage
 			WoundType = this.WoundType.Text,
 			WoundDate=this.WoundDate.Date.ToUniversalTime().Second,
             RecordDate = DateTimeOffset.UtcNow.ToUniversalTime().Second,
+            FormId = 300
         };
 		foreach (var editor in editors)
 		{

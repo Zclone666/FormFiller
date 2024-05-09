@@ -37,6 +37,7 @@ public partial class Form200_0 : ContentPage
             WoundDate = this.WoundDate.Date.ToUniversalTime().Second,
             TimeOfDeath = this.TimeOfDeath.Date.ToUniversalTime().Second,
             RecordDate = DateTimeOffset.UtcNow.ToUniversalTime().Second,
+            FormId=200
         };
         if(Methods.Saving.SaveToFile(dweeb))this.Share.IsEnabled=true;
     }
