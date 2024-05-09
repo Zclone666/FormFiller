@@ -173,11 +173,21 @@ namespace TestAppPir.Methods
         }
 
         /// <summary>
-        /// Добавить событие в журнал
+        /// Добавить события в журнал
+        /// </summary>
+        /// <param name="casuelty">Список событий, алгоритм операции (не обязательно)</param>
+        /// <returns>Текст ошибки (null если её нет)</returns>
+        public static string InsertFact(List<Casuelty> Casuelty, bool Isolate = false)
+        {
+            if (Isolate) { return (InsertFactIsolate(Casuelty)); } else { return InsertFactMerging(Casuelty); }
+        }
+
+        /// <summary>
+        /// Добавить события в журнал (без транзакции списком команд)
         /// </summary>
         /// <param name="casuelty">Список событий</param>
         /// <returns>Текст ошибки (null если её нет)</returns>
-        public static string InsertFact(List<Casuelty> Casuelty)
+        private static string InsertFactIsolate(List<Casuelty> Casuelty)
         {
             string ErrorMessage = null;
 
@@ -223,6 +233,210 @@ namespace TestAppPir.Methods
                                 command.Parameters.Add("@recorddate", SqliteType.Integer).Value = casuelty.RecordDate;
                                 command.Parameters.Add("@dateofservice", SqliteType.Integer).Value = casuelty.DateOfService;
                                 command.ExecuteNonQuery();
+                            }
+                        }
+                        connection.Close();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ErrorMessage = ex.Message;
+                }
+            }
+            return ErrorMessage;
+        }
+
+
+        /// <summary>
+        /// Добавить события в журнал (одной транзакцией через список параметров)
+        /// </summary>
+        /// <param name="casuelty">Список событий</param>
+        /// <returns>Текст ошибки (null если её нет)</returns>
+        private static string InsertFactMerging(List<Casuelty> Casuelty)
+        {
+            if (Casuelty is null || Casuelty.Count == 0) { return null; }
+            if (Casuelty.Count == 1) { return InsertFact(Casuelty[0]); }
+            string ErrorMessage = null;
+            lock (locker)
+            {
+                try
+                {
+                    using (SqliteConnection connection = new SqliteConnection(connectionString))
+                    {
+                        connection.Open();
+                        using (var transaction = connection.BeginTransaction())
+                        {
+                            using (var command = connection.CreateCommand())
+                            {
+                                command.CommandText = insertfactstring;
+
+                                #region создание параметров
+                                var solderidParameter = command.CreateParameter();
+                                solderidParameter.ParameterName = "@solderid";
+                                solderidParameter.DbType = System.Data.DbType.String;
+                                command.Parameters.Add(solderidParameter);
+
+                                var nicknameParameter = command.CreateParameter();
+                                nicknameParameter.ParameterName = "@nickname";
+                                nicknameParameter.DbType = System.Data.DbType.String;
+                                command.Parameters.Add(nicknameParameter);
+
+                                var fullnameParameter = command.CreateParameter();
+                                fullnameParameter.ParameterName = "@fullname";
+                                fullnameParameter.DbType = System.Data.DbType.String;
+                                command.Parameters.Add(fullnameParameter);
+
+                                var nameParameter = command.CreateParameter();
+                                nameParameter.DbType = System.Data.DbType.String;
+                                nameParameter.ParameterName = "@name";
+                                command.Parameters.Add(nameParameter);
+
+                                var surnameParameter = command.CreateParameter();
+                                surnameParameter.ParameterName = "@surname";
+                                surnameParameter.DbType = System.Data.DbType.String;
+                                command.Parameters.Add(surnameParameter);
+
+                                var lastnameParameter = command.CreateParameter();
+                                lastnameParameter.ParameterName = "@lastname";
+                                lastnameParameter.DbType = System.Data.DbType.String;
+                                command.Parameters.Add(lastnameParameter);
+
+                                var destinationParameter = command.CreateParameter();
+                                destinationParameter.ParameterName = "@destination";
+                                destinationParameter.DbType = System.Data.DbType.String;
+                                command.Parameters.Add(destinationParameter);
+
+                                var woundtypeParameter = command.CreateParameter();
+                                woundtypeParameter.ParameterName = "@woundtype";
+                                woundtypeParameter.DbType = System.Data.DbType.String;
+                                command.Parameters.Add(woundtypeParameter);
+
+                                var woundclauseParameter = command.CreateParameter();
+                                woundclauseParameter.ParameterName = "@woundclause";
+                                woundclauseParameter.DbType = System.Data.DbType.String;
+                                command.Parameters.Add(woundclauseParameter);
+
+                                var wounddateParameter = command.CreateParameter();
+                                wounddateParameter.ParameterName = "@wounddate";
+                                wounddateParameter.DbType = System.Data.DbType.Int32;
+                                command.Parameters.Add(wounddateParameter);
+
+                                var deathtimeParameter = command.CreateParameter();
+                                deathtimeParameter.ParameterName = "@deathtime";
+                                deathtimeParameter.DbType = System.Data.DbType.Int32;
+                                command.Parameters.Add(deathtimeParameter);
+
+                                var helpprovidedParameter = command.CreateParameter();
+                                helpprovidedParameter.ParameterName = "@helpprovided";
+                                helpprovidedParameter.DbType = System.Data.DbType.String;
+                                command.Parameters.Add(helpprovidedParameter);
+
+                                var filenameParameter = command.CreateParameter();
+                                filenameParameter.ParameterName = "@filename";
+                                filenameParameter.DbType = System.Data.DbType.String;
+                                command.Parameters.Add(filenameParameter);
+
+                                var formidParameter = command.CreateParameter();
+                                formidParameter.ParameterName = "@formid";
+                                formidParameter.DbType = System.Data.DbType.UInt16;
+                                command.Parameters.Add(formidParameter);
+
+                                var complaintsParameter = command.CreateParameter();
+                                complaintsParameter.ParameterName = "@complaints";
+                                complaintsParameter.DbType = System.Data.DbType.String;
+                                command.Parameters.Add(complaintsParameter);
+
+                                var anamnesisParameter = command.CreateParameter();
+                                anamnesisParameter.ParameterName = "@anamnesis";
+                                anamnesisParameter.DbType = System.Data.DbType.String;
+                                command.Parameters.Add(anamnesisParameter);
+
+                                var objectivelyParameter = command.CreateParameter();
+                                objectivelyParameter.ParameterName = "@objectively";
+                                objectivelyParameter.DbType = System.Data.DbType.String;
+                                command.Parameters.Add(objectivelyParameter);
+
+                                var pharmacotherapyParameter = command.CreateParameter();
+                                pharmacotherapyParameter.ParameterName = "@pharmacotherapy";
+                                pharmacotherapyParameter.DbType = System.Data.DbType.String;
+                                command.Parameters.Add(pharmacotherapyParameter);
+
+                                var preliminarydiagnosisParameter = command.CreateParameter();
+                                preliminarydiagnosisParameter.ParameterName = "@preliminarydiagnosis";
+                                preliminarydiagnosisParameter.DbType = System.Data.DbType.String;
+                                command.Parameters.Add(preliminarydiagnosisParameter);
+
+                                var recommendationsParameter = command.CreateParameter();
+                                recommendationsParameter.ParameterName = "@recommendations";
+                                recommendationsParameter.DbType = System.Data.DbType.String;
+                                command.Parameters.Add(recommendationsParameter);
+
+                                var servicetypeParameter = command.CreateParameter();
+                                servicetypeParameter.ParameterName = "@servicetype";
+                                servicetypeParameter.DbType = System.Data.DbType.String;
+                                command.Parameters.Add(servicetypeParameter);
+
+
+                                var specialistParameter = command.CreateParameter();
+                                specialistParameter.ParameterName = "@specialist";
+                                specialistParameter.DbType = System.Data.DbType.String;
+                                command.Parameters.Add(specialistParameter);
+
+
+                                var situatedatParameter = command.CreateParameter();
+                                situatedatParameter.ParameterName = "@situatedat";
+                                situatedatParameter.DbType = System.Data.DbType.String;
+                                command.Parameters.Add(situatedatParameter);
+
+
+                                var recorddateParameter = command.CreateParameter();
+                                recorddateParameter.ParameterName = "@recorddate";
+                                recorddateParameter.DbType = System.Data.DbType.Int32;
+                                command.Parameters.Add(recorddateParameter);
+
+
+                                var dateofserviceParameter = command.CreateParameter();
+                                dateofserviceParameter.ParameterName = "@dateofservice";
+                                dateofserviceParameter.DbType = System.Data.DbType.Int32;
+                                command.Parameters.Add(dateofserviceParameter);
+                                #endregion
+
+                                foreach (var casuelty in Casuelty)
+                                {
+                                    string HelpProvided = string.Empty;
+                                    if (casuelty.HelpProvided != null && casuelty.HelpProvided.Count > 0)
+                                    {
+                                        HelpProvided = string.Join(delimitter, casuelty.HelpProvided);
+                                    }
+
+                                    solderidParameter.Value = casuelty.SolderId ?? string.Empty;
+                                    nicknameParameter.Value = casuelty.NickName ?? string.Empty;
+                                    fullnameParameter.Value = casuelty.FullName ?? string.Empty;
+                                    nameParameter.Value = casuelty.Name ?? string.Empty;
+                                    surnameParameter.Value = casuelty.Surname ?? string.Empty;
+                                    lastnameParameter.Value = casuelty.LastName ?? string.Empty;
+                                    destinationParameter.Value = casuelty.Destination ?? string.Empty;
+                                    woundtypeParameter.Value = casuelty.WoundType ?? string.Empty;
+                                    woundclauseParameter.Value = casuelty.WoundClause ?? string.Empty;
+                                    wounddateParameter.Value = casuelty.WoundDate;
+                                    deathtimeParameter.Value = casuelty.TimeOfDeath;
+                                    helpprovidedParameter.Value = HelpProvided ?? string.Empty;
+                                    filenameParameter.Value = casuelty.FileName ?? string.Empty;
+                                    formidParameter.Value = casuelty.FormId;
+                                    complaintsParameter.Value = casuelty.Complaints ?? string.Empty;
+                                    anamnesisParameter.Value = casuelty.Anamnesis ?? string.Empty;
+                                    objectivelyParameter.Value = casuelty.Objectively ?? string.Empty;
+                                    pharmacotherapyParameter.Value = casuelty.Pharmacotherapy ?? string.Empty;
+                                    preliminarydiagnosisParameter.Value = casuelty.Preliminary_diagnosis ?? string.Empty;
+                                    recommendationsParameter.Value = casuelty.Recommendations ?? string.Empty;
+                                    servicetypeParameter.Value = casuelty.ServiceType ?? string.Empty;
+                                    specialistParameter.Value = casuelty.Specialist ?? string.Empty;
+                                    situatedatParameter.Value = casuelty.SituatedAt ?? string.Empty;
+                                    recorddateParameter.Value = casuelty.RecordDate;
+                                    dateofserviceParameter.Value = casuelty.DateOfService;
+                                    command.ExecuteNonQuery();
+                                }
+                                transaction.Commit();
                             }
                         }
                         connection.Close();
@@ -450,14 +664,17 @@ namespace TestAppPir.Methods
 
                                     var tokennumberParameter = command.CreateParameter();
                                     tokennumberParameter.ParameterName = "@tokennumber";
+                                    tokennumberParameter.DbType = System.Data.DbType.String;
                                     command.Parameters.Add(tokennumberParameter);
 
                                     var callsignParameter = command.CreateParameter();
                                     callsignParameter.ParameterName = "@callsign";
+                                    callsignParameter.DbType = System.Data.DbType.String;
                                     command.Parameters.Add(callsignParameter);
 
                                     var fioParameter = command.CreateParameter();
                                     fioParameter.ParameterName = "@fio";
+                                    fioParameter.DbType = System.Data.DbType.String;
                                     command.Parameters.Add(fioParameter);
 
                                     foreach (var item in itemsWithId)
@@ -482,14 +699,17 @@ namespace TestAppPir.Methods
 
                                     var tokennumberParameter = command.CreateParameter();
                                     tokennumberParameter.ParameterName = "@tokennumber";
+                                    tokennumberParameter.DbType = System.Data.DbType.String;
                                     command.Parameters.Add(tokennumberParameter);
 
                                     var callsignParameter = command.CreateParameter();
                                     callsignParameter.ParameterName = "@callsign";
+                                    callsignParameter.DbType = System.Data.DbType.String;
                                     command.Parameters.Add(callsignParameter);
 
                                     var fioParameter = command.CreateParameter();
                                     fioParameter.ParameterName = "@fio";
+                                    fioParameter.DbType = System.Data.DbType.String;
                                     command.Parameters.Add(fioParameter);
 
                                     foreach (var item in itemsWithoutId)
