@@ -9,6 +9,7 @@ public partial class Injury : ContentPage
     public Injury()
 	{
 		InitializeComponent();
+        this.FullName.IsVisible = false;
 	}
 
     public Injury(Casuelty dweeb)
@@ -20,6 +21,10 @@ public partial class Injury : ContentPage
         this.Name.Text = dweeb.Name;
         this.Surname.Text = dweeb.Surname;
         this.LastName.Text = dweeb.LastName;
+        this.FullName.Text = dweeb.FullName;
+        this.LastName.IsVisible = false;
+        this.LastName.IsVisible = false;
+        this.Name.IsVisible = false;
     }
 
 private void Save_Clicked(object sender, EventArgs e)

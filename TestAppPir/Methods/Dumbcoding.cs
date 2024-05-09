@@ -45,8 +45,9 @@ namespace TestAppPir.Methods
             var plainTextBytes = Convert.FromBase64String(elem64);
             var data = Encoding.UTF8.GetString(plainTextBytes);
             string[] tockenNumberParts = data.Split("-");
-
-            return tockenNumberParts[2].Replace(guidParts[2], "").ToUpper();
+            string ret= tockenNumberParts[2].Replace(guidParts[2], "").ToUpper();
+            ret += '-'+tockenNumberParts[3];
+            return ret;
         }
     }
 }

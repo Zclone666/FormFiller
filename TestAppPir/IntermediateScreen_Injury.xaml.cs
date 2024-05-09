@@ -211,11 +211,11 @@ public partial class IntermediateScreen_Injury : ContentPage
                 {
                     this.Search_nick.BackgroundColor = Color.Parse("Green");
                     dweeb = res;
-                    Navigation.PushAsync(new TestAppPir.Form300_0(dweeb));
+                    Navigation.PushAsync(new TestAppPir.Injury(dweeb));
                 }
                 else
                 {
-                    Navigation.PushAsync(new TestAppPir.Form300_2(new Casuelty() { NickName = this.Search_nick.Text, SolderId = this.Search_ID.Text }));
+                    Navigation.PushAsync(new TestAppPir.Injury(new Casuelty() { NickName = this.Search_nick.Text, SolderId = this.Search_ID.Text }));
                 }
             }
         }

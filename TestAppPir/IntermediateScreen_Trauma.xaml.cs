@@ -197,7 +197,7 @@ public partial class IntermediateScreen_Trauma : ContentPage
                 {
                     this.Search_ID.BackgroundColor = Color.Parse("Green");
                     dweeb = res;
-                    Navigation.PushAsync(new TestAppPir.Injury(dweeb));
+                    Navigation.PushAsync(new TestAppPir.Trauma(dweeb));
                 }
                 else
                 {
@@ -211,11 +211,11 @@ public partial class IntermediateScreen_Trauma : ContentPage
                 {
                     this.Search_nick.BackgroundColor = Color.Parse("Green");
                     dweeb = res;
-                    Navigation.PushAsync(new TestAppPir.Form300_0(dweeb));
+                    Navigation.PushAsync(new TestAppPir.Trauma(dweeb));
                 }
                 else
                 {
-                    Navigation.PushAsync(new TestAppPir.Form300_2(new Casuelty() { NickName = this.Search_nick.Text, SolderId = this.Search_ID.Text }));
+                    Navigation.PushAsync(new TestAppPir.Trauma(new Casuelty() { NickName = this.Search_nick.Text, SolderId = this.Search_ID.Text }));
                 }
             }
         }

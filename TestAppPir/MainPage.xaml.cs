@@ -9,6 +9,7 @@ namespace TestAppPir
         public static Thread BckgrnThread;
         public static Thread UIThread;
         static Grid BtnGrid = new Grid();
+        static bool Running=false;
 
         public static class MainApp
         {
@@ -44,17 +45,22 @@ namespace TestAppPir
                     if (!Consts.MainParams.Fudged.Exists((x) => x.SolderId == i.TokenNumber))
                         Consts.MainParams.Fudged.Add(new Models.Casuelty() { FullName = i.FIO, NickName = i.CallSign, SolderId = i.TokenNumber, FileName = i.Uid.ToString() });
                 }
-            } catch { }
+            } catch 
+            { }
         }
 
         public static void MainCicle(object sender, EventArgs e)
         {
-            MainParams.AspectRatioWidth = Math.Round((MainApp.MainView.Width / MainApp.MainView.Height) / 2, 1);
-            MainParams.AspectRatioHeight = Math.Round(MainApp.MainView.Height / MainApp.MainView.Width, 1);
-            MainParams.NmbOfSquares = (uint)Math.Round((MainApp.MainView.Height * MainApp.MainView.Width) / ((MainApp.MainView.Width /5) * (MainApp.MainView.Height /5)));
-            MainApp.MainP.Fudged();
-            UIInit();
-            CheckInit();
+            if (!Running)
+            {
+                Running = true;
+                MainParams.AspectRatioWidth = Math.Round((MainApp.MainView.Width / MainApp.MainView.Height) / 2, 1);
+                MainParams.AspectRatioHeight = Math.Round(MainApp.MainView.Height / MainApp.MainView.Width, 1);
+                MainParams.NmbOfSquares = (uint)Math.Round((MainApp.MainView.Height * MainApp.MainView.Width) / ((MainApp.MainView.Width / 5) * (MainApp.MainView.Height / 5)));
+                MainApp.MainP.Fudged();
+                UIInit();
+                CheckInit();
+            }
         }
 
         public static void CheckInit()

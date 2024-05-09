@@ -13,6 +13,9 @@
 
             <Label Text="Позывной" TextColor="#344c11" BackgroundColor="#ffffff"/>
             <Entry Placeholder="Введите позывной" x:Name="NickName" TextColor="#344c11" BackgroundColor="#ffffff"/>
+            
+            <Label Text="Фамилия Имя Отчество:" TextColor="#344c11" BackgroundColor="#ffffff"/>
+            <Entry Placeholder="Введите полное имя" x:Name="FullName" TextColor="#344c11" BackgroundColor="#ffffff" IsEnabled="False"/>
 
             <Label Text="Фамилия" TextColor="#344c11" BackgroundColor="#ffffff"/>
             <Entry Placeholder="Введите фамилию" x:Name="Surname" TextColor="#344c11" BackgroundColor="#ffffff"/>
