@@ -119,6 +119,7 @@ namespace TestAppPir.Methods
         /// <returns>Текст ошибки (null если её нет)</returns>
         public static string InsertFact(Casuelty casuelty)
         {
+            if (casuelty is null) { return null; }
             string ErrorMessage = null;
             string HelpProvided = string.Empty;
             if (casuelty.HelpProvided != null && casuelty.HelpProvided.Count > 0)
@@ -179,6 +180,8 @@ namespace TestAppPir.Methods
         /// <returns>Текст ошибки (null если её нет)</returns>
         public static string InsertFact(List<Casuelty> Casuelty, bool Isolate = false)
         {
+            if (Casuelty is null || Casuelty.Count == 0) { return null; }
+            if (Casuelty.Count == 1) { return InsertFact(Casuelty[0]); }
             if (Isolate) { return (InsertFactIsolate(Casuelty)); } else { return InsertFactMerging(Casuelty); }
         }
 
@@ -254,8 +257,6 @@ namespace TestAppPir.Methods
         /// <returns>Текст ошибки (null если её нет)</returns>
         private static string InsertFactMerging(List<Casuelty> Casuelty)
         {
-            if (Casuelty is null || Casuelty.Count == 0) { return null; }
-            if (Casuelty.Count == 1) { return InsertFact(Casuelty[0]); }
             string ErrorMessage = null;
             lock (locker)
             {
@@ -635,6 +636,7 @@ namespace TestAppPir.Methods
         public static string UpsertPersonnel(List<Models.Shared.ItemPersonnel> Items)
         {
             if (Items is null || Items.Count == 0) { return null; }
+            if (Items.Count == 1) { return UpsertPersonnel(Items[0]); }
             string ErrorMessage = null;
             List<Models.Shared.ItemPersonnel> itemsWithoutId = new List<Models.Shared.ItemPersonnel>();
             List<Models.Shared.ItemPersonnel> itemsWithId = new List<Models.Shared.ItemPersonnel>();
