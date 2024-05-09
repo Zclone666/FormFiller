@@ -229,8 +229,8 @@ namespace TestAppPir.Methods
                                     Destination = (string)rdr["destination"],
                                     WoundType = (string)rdr["woundtype"],
                                     WoundClause = (string)rdr["woundclause"],
-                                    WoundDate = Convert.ToInt32(rdr["wounddate"]),
-                                    TimeOfDeath = Convert.ToInt32(rdr["deathtime"]),
+                                    WoundDate = (int)rdr["wounddate"],
+                                    TimeOfDeath = (int)rdr["deathtime"],
                                     HelpProvided = HelpProvided,
                                     FileName = (string)rdr["filename"],
 
