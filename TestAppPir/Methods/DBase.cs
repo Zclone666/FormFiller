@@ -372,73 +372,80 @@ namespace TestAppPir.Methods
                     using (SqliteConnection connection = new SqliteConnection(connectionString))
                     {
                         connection.Open();
-                        using (var transaction = connection.BeginTransaction())
+                        if (itemsWithId.Count > 0)
                         {
-                            using (var command = connection.CreateCommand())
+                            using (var transaction = connection.BeginTransaction())
                             {
-                                command.CommandText = insertPersonelWithId;
-
-                                var idParameter = command.CreateParameter();
-                                idParameter.ParameterName = "@id";
-                                command.Parameters.Add(idParameter);
-
-                                var tokennumberParameter = command.CreateParameter();
-                                tokennumberParameter.ParameterName = "@tokennumber";
-                                command.Parameters.Add(tokennumberParameter);
-
-                                var callsignParameter = command.CreateParameter();
-                                callsignParameter.ParameterName = "@callsign";
-                                command.Parameters.Add(callsignParameter);
-
-                                var fioParameter = command.CreateParameter();
-                                fioParameter.ParameterName = "@fio";
-                                command.Parameters.Add(fioParameter);
-
-                                foreach (var item in Items)
+                                using (var command = connection.CreateCommand())
                                 {
-                                    idParameter.Value = item.Uid.ToString() ?? string.Empty;
-                                    callsignParameter.Value = item.CallSign.ToString() ?? string.Empty;
-                                    tokennumberParameter.Value = item.TokenNumber ?? string.Empty;
-                                    fioParameter.Value = item.FIO ?? string.Empty;
-                                    command.ExecuteNonQuery();
+                                    command.CommandText = insertPersonelWithId;
+
+                                    var idParameter = command.CreateParameter();
+                                    idParameter.ParameterName = "@id";
+                                    command.Parameters.Add(idParameter);
+
+                                    var tokennumberParameter = command.CreateParameter();
+                                    tokennumberParameter.ParameterName = "@tokennumber";
+                                    command.Parameters.Add(tokennumberParameter);
+
+                                    var callsignParameter = command.CreateParameter();
+                                    callsignParameter.ParameterName = "@callsign";
+                                    command.Parameters.Add(callsignParameter);
+
+                                    var fioParameter = command.CreateParameter();
+                                    fioParameter.ParameterName = "@fio";
+                                    command.Parameters.Add(fioParameter);
+
+                                    foreach (var item in itemsWithId)
+                                    {
+                                        idParameter.Value = item.Uid.ToString() ?? string.Empty;
+                                        callsignParameter.Value = item.CallSign.ToString() ?? string.Empty;
+                                        tokennumberParameter.Value = item.TokenNumber ?? string.Empty;
+                                        fioParameter.Value = item.FIO ?? string.Empty;
+                                        command.ExecuteNonQuery();
+                                    }
+                                    transaction.Commit();
                                 }
-                                transaction.Commit();
                             }
                         }
-                        using (var transaction = connection.BeginTransaction())
+                        if (itemsWithoutId.Count > 0)
                         {
-                            using (var command = connection.CreateCommand())
+                            using (var transaction = connection.BeginTransaction())
                             {
-                                command.CommandText = insertPersonelWithoutId;
-
-                                var tokennumberParameter = command.CreateParameter();
-                                tokennumberParameter.ParameterName = "@tokennumber";
-                                command.Parameters.Add(tokennumberParameter);
-
-                                var callsignParameter = command.CreateParameter();
-                                callsignParameter.ParameterName = "@callsign";
-                                command.Parameters.Add(callsignParameter);
-
-                                var fioParameter = command.CreateParameter();
-                                fioParameter.ParameterName = "@fio";
-                                command.Parameters.Add(fioParameter);
-
-                                foreach (var item in Items)
+                                using (var command = connection.CreateCommand())
                                 {
-                                    callsignParameter.Value = item.CallSign.ToString() ?? string.Empty;
-                                    tokennumberParameter.Value = item.TokenNumber ?? string.Empty;
-                                    fioParameter.Value = item.FIO ?? string.Empty;
-                                    command.ExecuteNonQuery();
+                                    command.CommandText = insertPersonelWithoutId;
+
+                                    var tokennumberParameter = command.CreateParameter();
+                                    tokennumberParameter.ParameterName = "@tokennumber";
+                                    command.Parameters.Add(tokennumberParameter);
+
+                                    var callsignParameter = command.CreateParameter();
+                                    callsignParameter.ParameterName = "@callsign";
+                                    command.Parameters.Add(callsignParameter);
+
+                                    var fioParameter = command.CreateParameter();
+                                    fioParameter.ParameterName = "@fio";
+                                    command.Parameters.Add(fioParameter);
+
+                                    foreach (var item in itemsWithoutId)
+                                    {
+                                        callsignParameter.Value = item.CallSign.ToString() ?? string.Empty;
+                                        tokennumberParameter.Value = item.TokenNumber ?? string.Empty;
+                                        fioParameter.Value = item.FIO ?? string.Empty;
+                                        command.ExecuteNonQuery();
+                                    }
+                                    transaction.Commit();
                                 }
-                                transaction.Commit();
                             }
                         }
-
                         connection.Close();
                     }
                 }
-                catch (Exception ex) { 
-                    ErrorMessage = ex.Message; }
+                catch (Exception ex)
+                {
+                    ErrorMessage = ex.Message;
+                }
             }
             return ErrorMessage;
         }
