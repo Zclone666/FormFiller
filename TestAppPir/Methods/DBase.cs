@@ -108,10 +108,10 @@ namespace TestAppPir.Methods
         #endregion
 
         #region Methods Facts
-        private const string insertfactstring = "INSERT INTO facts(solderid, nickname, fullname, name, surname, lastname, destination, woundtype, woundclause, wounddate, deathtime, helpprovided, filename,"
-                                                                        + "formid, complaints, anamnesis, objectively, pharmacotherapy, preliminarydiagnosis, recommendations, servicetype, specialist, situatedat, recorddate, dateofservice) VALUES (" +
-                                                                        "@solderid, @nickname, @fullname, @name, @surname, @lastname, @destination, @woundtype, @woundclause, @wounddate, @deathtime, @helpprovided, @filename);"
-                                                                        + "@formid, @complaints, @anamnesis, @objectively, @pharmacotherapy, @preliminarydiagnosis, @recommendations, @servicetype, @specialist, @situatedat, @recorddate, @dateofservice";
+        private const string insertfactstring = "INSERT INTO facts("
+                    + "solderid, nickname, fullname, name, surname, lastname, destination, woundtype, woundclause, wounddate, deathtime, helpprovided, filename, formid, complaints, anamnesis, objectively, pharmacotherapy, preliminarydiagnosis, recommendations, servicetype, specialist, situatedat, recorddate, dateofservice" +
+                    ") VALUES ("
+                    + "@solderid, @nickname, @fullname, @name, @surname, @lastname, @destination, @woundtype, @woundclause, @wounddate, @deathtime, @helpprovided, @filename, @formid, @complaints, @anamnesis, @objectively, @pharmacotherapy, @preliminarydiagnosis, @recommendations, @servicetype, @specialist, @situatedat, @recorddate, @dateofservice);";
         /// <summary>
         /// Добавить событие в журнал
         /// </summary>
