@@ -8,7 +8,7 @@ public partial class ExportScreen : ContentPage
     public ExportScreen()
 	{
 		InitializeComponent();
-		DbRecs = Methods.DBase.GetFacts();
+		DbRecs = Methods.DBase.SelectFacts();
 		if(DbRecs != null)
 		{
 			this.DBRecords.ItemsSource=DbRecs.results.Select(x=>x.SolderId);

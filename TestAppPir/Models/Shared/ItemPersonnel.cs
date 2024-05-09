@@ -10,12 +10,16 @@ namespace TestAppPir.Models.Shared
     public class ItemPersonnel : IPkGuid
     {
         /// <summary>
+        /// Первичный ключ
+        /// </summary>
+        public int Uid { get; set; }
+        /// <summary>
         /// Уникальный идентификационный номер записи
         /// </summary>
         public Guid Id { get; set; }
 
         /// <summary>
-        /// Личный номер
+        /// Номер жетона
         /// </summary>
         public string TokenNumber { get; set; } = string.Empty;
 
@@ -25,19 +29,9 @@ namespace TestAppPir.Models.Shared
         public string CallSign { get; set; } = string.Empty;
 
         /// <summary>
-        /// Фамилия
+        /// Фамилия Имя Отчество
         /// </summary>
-        public string Surname { get; set; } = string.Empty;
-
-        /// <summary>
-        /// Имя
-        /// </summary>
-        public string Name { get; set; } = string.Empty;
-
-        /// <summary>
-        /// Отчество
-        /// </summary>
-        public string Patronymic { get; set; } = string.Empty;
+        public string FIO { get; set; } = string.Empty;
 
 
         /// <summary>

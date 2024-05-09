@@ -1,5 +1,8 @@
 ﻿using Microsoft.Data.Sqlite;
+using Microsoft.Maui.Controls;
 using System.Collections;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Text;
 using TestAppPir.Models;
 
@@ -69,7 +72,7 @@ namespace TestAppPir.Methods
                     using (SqliteConnection connection = new SqliteConnection(connectionString))
                     {
                         connection.Open();
-                        using (SqliteCommand command = new SqliteCommand("CREATE TABLE  'personnel' ('uid ' INTEGER NOT NULL DEFAULT 1 UNIQUE,'id ' TEXT  COLLATE NOCASE, 'tokennumber ' TEXT  COLLATE NOCASE, 'callsign ' TEXT  COLLATE NOCASE, 'surname ' TEXT  COLLATE NOCASE, 'name ' TEXT  COLLATE NOCASE, 'patronymic' TEXT  COLLATE NOCASE, PRIMARY KEY( 'uid ' AUTOINCREMENT));", connection))
+                        using (SqliteCommand command = new SqliteCommand("CREATE TABLE 'personnel' ('id' INTEGER NOT NULL DEFAULT 1 UNIQUE, 'tokennumber' TEXT COLLATE NOCASE, 'callsign' TEXT COLLATE NOCASE, 'fio' TEXT COLLATE NOCASE, PRIMARY KEY('id' AUTOINCREMENT));", connection))
                         { command.ExecuteNonQuery(); }
                         using (SqliteCommand command = new SqliteCommand(@"CREATE TABLE 'facts' ('id' INTEGER NOT NULL DEFAULT 1 UNIQUE,'solderid' TEXT,'nickname' TEXT, 'fullname' TEXT,'name' TEXT,'surname' TEXT,'lastname' TEXT, 'destination' TEXT,
                                                                                                 'woundtype' TEXT, 'woundclause' TEXT, 'wounddate' INTEGER, 'deathtime' INTEGER, 'helpprovided' TEXT, 'filename' TEXT, 'formid' INTEGER, 'complaints' TEXT,
@@ -95,7 +98,7 @@ namespace TestAppPir.Methods
                                                                         + "formid, complaints, anamnesis, objectively, pharmacotherapy, preliminarydiagnosis, recommendations, servicetype, specialist, situatedat, recorddate, dateofservice) VALUES (" +
                                                                         "@solderid, @nickname, @fullname, @name, @surname, @lastname, @destination, @woundtype, @woundclause, @wounddate, @deathtime, @helpprovided, @filename);"
                                                                         + "@formid, @complaints, @anamnesis, @objectively, @pharmacotherapy, @preliminarydiagnosis, @recommendations, @servicetype, @specialist, @situatedat, @recorddate, @dateofservice";
-        public static string AddFact(Casuelty casuelty)
+        public static string InsertFact(Casuelty casuelty)
         {
             string ErrorMessage = null;
             string HelpProvided = string.Empty;
@@ -158,7 +161,7 @@ namespace TestAppPir.Methods
             public List<Casuelty> results;
         }
 
-        public static ArgsGetFacts GetFacts()
+        public static ArgsGetFacts SelectFacts()
         {
             string ErrorMessage = null;
             List<Casuelty> results = new List<Casuelty>();
@@ -256,6 +259,13 @@ namespace TestAppPir.Methods
         #endregion
 
         #region Methods Personnel
+        public class ArgsGetPersonnel
+        {
+            public string ErrorNessage;
+            public List<Models.Shared.ItemPersonnel> results;
+        }
+        private const string insertPersonelWithId = "INSERT INTO personnel (id, tokennumber, callsign, fio) VALUES(@id, @tokennumber, @callsign, @fio) ON CONFLICT(id) DO UPDATE SET tokennumber = @tokennumber, callsign = @callsign, fio = @fio;";
+        private const string insertPersonelWithoutId = "INSERT INTO personnel(tokennumber, callsign, fio VALUES (@tokennumber, @callsign, @fio);";
         public static string InsertPersonnel(Models.Shared.ItemPersonnel Item)
         {
             string ErrorMessage = null;
@@ -263,17 +273,17 @@ namespace TestAppPir.Methods
             {
                 try
                 {
+                    string querry = insertPersonelWithoutId;
+                    if (Item.Uid > 0) { querry = insertPersonelWithId; }
                     using (SqliteConnection connection = new SqliteConnection(connectionString))
                     {
                         connection.Open();
-                        using (SqliteCommand command = new SqliteCommand("INSERT INTO facts(id, tokennumber, callsign, surname, name, patronymic VALUES (@id, @tokennumber, @callsign, @surname, @name, @patronymic);", connection))
+                        using (SqliteCommand command = new SqliteCommand(querry, connection))
                         {
-                            command.Parameters.Add("@id", SqliteType.Text).Value = Item.Id.ToString() ?? string.Empty;
+                            if (Item.Uid > 0) { command.Parameters.Add("@id", SqliteType.Text).Value = Item.Id.ToString() ?? string.Empty; }
                             command.Parameters.Add("@tokennumber", SqliteType.Text).Value = Item.TokenNumber ?? string.Empty;
                             command.Parameters.Add("@callsign", SqliteType.Text).Value = Item.CallSign ?? string.Empty;
-                            command.Parameters.Add("@surname", SqliteType.Text).Value = Item.Surname ?? string.Empty;
-                            command.Parameters.Add("@name", SqliteType.Text).Value = Item.Name ?? string.Empty;
-                            command.Parameters.Add("@patronymic", SqliteType.Text).Value = Item.Patronymic ?? string.Empty;
+                            command.Parameters.Add("@fio", SqliteType.Text).Value = Item.FIO ?? string.Empty;
                             command.ExecuteNonQuery();
                         }
                         connection.Close();
@@ -290,12 +300,17 @@ namespace TestAppPir.Methods
         public static string InsertPersonnel(List<Models.Shared.ItemPersonnel> Items)
         {
             string ErrorMessage = null;
+            List<Models.Shared.ItemPersonnel> itemsWithoutId = new List<Models.Shared.ItemPersonnel>();
+            List<Models.Shared.ItemPersonnel> itemsWithId = new List<Models.Shared.ItemPersonnel>();
+            foreach (var item in Items)
+            {
+                if (item.Uid > 0) { itemsWithId.Add(item); } else { itemsWithoutId.Add(item); }
+            }
+
             lock (locker)
             {
                 try
                 {
-
-
                     using (SqliteConnection connection = new SqliteConnection(connectionString))
                     {
                         connection.Open();
@@ -303,7 +318,7 @@ namespace TestAppPir.Methods
                         {
                             using (var command = connection.CreateCommand())
                             {
-                                command.CommandText = "INSERT INTO contact(id, tokennumber, surname, name, patronymic) VALUES(@id, @tokennumber, @surname, @name, @patronymic);";
+                                command.CommandText = insertPersonelWithId;
 
                                 var idParameter = command.CreateParameter();
                                 idParameter.ParameterName = "@id";
@@ -313,31 +328,54 @@ namespace TestAppPir.Methods
                                 tokennumberParameter.ParameterName = "@tokennumber";
                                 command.Parameters.Add(tokennumberParameter);
 
-                                var surnameParameter = command.CreateParameter();
-                                surnameParameter.ParameterName = "@surname";
-                                command.Parameters.Add(surnameParameter);
+                                var callsignParameter = command.CreateParameter();
+                                callsignParameter.ParameterName = "@callsign";
+                                command.Parameters.Add(callsignParameter);
 
-                                var nameParameter = command.CreateParameter();
-                                nameParameter.ParameterName = "@name";
-                                command.Parameters.Add(nameParameter);
-
-                                var patronymicParameter = command.CreateParameter();
-                                patronymicParameter.ParameterName = "@patronymic";
-                                command.Parameters.Add(patronymicParameter);
+                                var fioParameter = command.CreateParameter();
+                                fioParameter.ParameterName = "@fio";
+                                command.Parameters.Add(fioParameter);
 
                                 foreach (var item in Items)
                                 {
-                                    idParameter.Value = item.Id.ToString() ?? string.Empty;
+                                    idParameter.Value = item.Uid.ToString() ?? string.Empty;
+                                    callsignParameter.Value = item.CallSign.ToString() ?? string.Empty;
                                     tokennumberParameter.Value = item.TokenNumber ?? string.Empty;
-                                    surnameParameter.Value = item.Surname ?? string.Empty;
-                                    nameParameter.Value = item.Name ?? string.Empty;
-                                    patronymicParameter.Value = item.Patronymic ?? string.Empty;
+                                    fioParameter.Value = item.FIO ?? string.Empty;
                                     command.ExecuteNonQuery();
                                 }
-
                                 transaction.Commit();
                             }
                         }
+                        using (var transaction = connection.BeginTransaction())
+                        {
+                            using (var command = connection.CreateCommand())
+                            {
+                                command.CommandText = insertPersonelWithoutId;
+
+                                var tokennumberParameter = command.CreateParameter();
+                                tokennumberParameter.ParameterName = "@tokennumber";
+                                command.Parameters.Add(tokennumberParameter);
+
+                                var callsignParameter = command.CreateParameter();
+                                callsignParameter.ParameterName = "@callsign";
+                                command.Parameters.Add(callsignParameter);
+
+                                var fioParameter = command.CreateParameter();
+                                fioParameter.ParameterName = "@fio";
+                                command.Parameters.Add(fioParameter);
+
+                                foreach (var item in Items)
+                                {
+                                    callsignParameter.Value = item.CallSign.ToString() ?? string.Empty;
+                                    tokennumberParameter.Value = item.TokenNumber ?? string.Empty;
+                                    fioParameter.Value = item.FIO ?? string.Empty;
+                                    command.ExecuteNonQuery();
+                                }
+                                transaction.Commit();
+                            }
+                        }
+
                         connection.Close();
                     }
                 }
@@ -347,6 +385,115 @@ namespace TestAppPir.Methods
         }
 
 
+        public static string DropPersonnel()
+        {
+            string ErrorMessage = null;
+            lock (locker)
+            {
+                try
+                {
+                    using (SqliteConnection connection = new SqliteConnection(connectionString))
+                    {
+                        connection.Open();
+                        using (SqliteCommand command = new SqliteCommand("Delete FROM 'personnel' ;", connection)) { command.ExecuteNonQuery(); }
+                        connection.Close();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ErrorMessage = ex.Message;
+                }
+            }
+            return ErrorMessage;
+        }
+
+
+        public static ArgsGetPersonnel SelectPersonnel()
+        {
+            string ErrorMessage = null;
+            List<Models.Shared.ItemPersonnel> results = new List<Models.Shared.ItemPersonnel>();
+            lock (locker)
+            {
+                try
+                {
+
+                    using (SqliteConnection connection = new SqliteConnection(connectionString))
+                    {
+                        connection.Open();
+                        using (SqliteCommand command = new SqliteCommand("SELECT * FROM personnel;", connection)) //SELECT * FROM facts WHERE blablabla
+                        {
+                            connection.Open();
+                            SqliteDataReader rdr = command.ExecuteReader();
+                            while (rdr.Read())
+                            {
+                                results.Add(new Models.Shared.ItemPersonnel()
+                                {
+                                    Uid = Convert.ToInt32(rdr["id"]),
+                                    CallSign = (string)rdr["callsign"],
+                                    FIO = (string)rdr["fio"],
+                                    TokenNumber = (string)rdr["tokennumber"]
+                                });
+                            }
+                            connection.Close();
+                        }
+                        connection.Close();
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    ErrorMessage = ex.Message;
+                }
+            }
+            return new ArgsGetPersonnel()
+            {
+                ErrorNessage = ErrorMessage,
+                results = results
+            };
+        }
+        public static ArgsGetPersonnel SelectPersonnel(int Id)
+        {
+            string ErrorMessage = null;
+            List<Models.Shared.ItemPersonnel> results = new List<Models.Shared.ItemPersonnel>();
+            lock (locker)
+            {
+                try
+                {
+
+                    using (SqliteConnection connection = new SqliteConnection(connectionString))
+                    {
+                        connection.Open();
+                        using (SqliteCommand command = new SqliteCommand($"SELECT * FROM personnel WHERE id = {Id};", connection))
+                        {
+                            connection.Open();
+                            SqliteDataReader rdr = command.ExecuteReader();
+                            while (rdr.Read())
+                            {
+                                results.Add(new Models.Shared.ItemPersonnel()
+                                {
+                                    Uid = Convert.ToInt32(rdr["id"]),
+                                    CallSign = (string)rdr["callsign"],
+                                    FIO = (string)rdr["fio"],
+                                    TokenNumber = (string)rdr["tokennumber"]
+                                });
+                            }
+                            connection.Close();
+                        }
+                        connection.Close();
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    ErrorMessage = ex.Message;
+                }
+            }
+            return new ArgsGetPersonnel()
+            {
+                ErrorNessage = ErrorMessage,
+                results = results
+            };
+        }
         #endregion
     }
 }
