@@ -172,6 +172,70 @@ namespace TestAppPir.Methods
             return ErrorMessage;
         }
 
+        /// <summary>
+        /// Добавить событие в журнал
+        /// </summary>
+        /// <param name="casuelty">Список событий</param>
+        /// <returns>Текст ошибки (null если её нет)</returns>
+        public static string InsertFact(List<Casuelty> Casuelty)
+        {
+            string ErrorMessage = null;
+
+            lock (locker)
+            {
+                try
+                {
+                    using (SqliteConnection connection = new SqliteConnection(connectionString))
+                    {
+                        connection.Open();
+                        foreach (var casuelty in Casuelty)
+                        {
+                            string HelpProvided = string.Empty;
+                            if (casuelty.HelpProvided != null && casuelty.HelpProvided.Count > 0)
+                            {
+                                HelpProvided = string.Join(delimitter, casuelty.HelpProvided);
+                            }
+                            using (SqliteCommand command = new SqliteCommand(insertfactstring, connection))
+                            {
+                                command.Parameters.Add("@solderid", SqliteType.Text).Value = casuelty.SolderId ?? string.Empty;
+                                command.Parameters.Add("@nickname", SqliteType.Text).Value = casuelty.NickName ?? string.Empty;
+                                command.Parameters.Add("@fullname", SqliteType.Text).Value = casuelty.FullName ?? string.Empty;
+                                command.Parameters.Add("@name", SqliteType.Text).Value = casuelty.Name ?? string.Empty;
+                                command.Parameters.Add("@surname", SqliteType.Text).Value = casuelty.Surname ?? string.Empty;
+                                command.Parameters.Add("@lastname", SqliteType.Text).Value = casuelty.LastName ?? string.Empty;
+                                command.Parameters.Add("@destination", SqliteType.Text).Value = casuelty.Destination ?? string.Empty;
+                                command.Parameters.Add("@woundtype", SqliteType.Text).Value = casuelty.WoundType ?? string.Empty;
+                                command.Parameters.Add("@woundclause", SqliteType.Text).Value = casuelty.WoundClause ?? string.Empty;
+                                command.Parameters.Add("@wounddate", SqliteType.Integer).Value = casuelty.WoundDate;
+                                command.Parameters.Add("@deathtime", SqliteType.Integer).Value = casuelty.TimeOfDeath;
+                                command.Parameters.Add("@helpprovided", SqliteType.Text).Value = HelpProvided ?? string.Empty;
+                                command.Parameters.Add("@filename", SqliteType.Text).Value = casuelty.FileName ?? string.Empty;
+                                command.Parameters.Add("@formid", SqliteType.Integer).Value = casuelty.FormId;
+                                command.Parameters.Add("@complaints", SqliteType.Text).Value = casuelty.Complaints ?? string.Empty;
+                                command.Parameters.Add("@anamnesis", SqliteType.Text).Value = casuelty.Anamnesis ?? string.Empty;
+                                command.Parameters.Add("@objectively", SqliteType.Text).Value = casuelty.Objectively ?? string.Empty;
+                                command.Parameters.Add("@pharmacotherapy", SqliteType.Text).Value = casuelty.Pharmacotherapy ?? string.Empty;
+                                command.Parameters.Add("@preliminarydiagnosis", SqliteType.Text).Value = casuelty.Preliminary_diagnosis ?? string.Empty;
+                                command.Parameters.Add("@recommendations", SqliteType.Text).Value = casuelty.Recommendations ?? string.Empty;
+                                command.Parameters.Add("@servicetype", SqliteType.Text).Value = casuelty.ServiceType ?? string.Empty;
+                                command.Parameters.Add("@specialist", SqliteType.Text).Value = casuelty.Specialist ?? string.Empty;
+                                command.Parameters.Add("@situatedat", SqliteType.Text).Value = casuelty.SituatedAt ?? string.Empty;
+                                command.Parameters.Add("@recorddate", SqliteType.Integer).Value = casuelty.RecordDate;
+                                command.Parameters.Add("@dateofservice", SqliteType.Integer).Value = casuelty.DateOfService;
+                                command.ExecuteNonQuery();
+                            }
+                        }
+                        connection.Close();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ErrorMessage = ex.Message;
+                }
+            }
+            return ErrorMessage;
+        }
+
 
         /// <summary>
         /// Результат получения данных из журнала событий
