@@ -25,6 +25,7 @@ namespace TestAppPir.Methods
                         Consts.MainParams.ConnStatus = Status;
                         Thread.Sleep(10000);
                         Consts.MainParams.BackendDBIn = Backend.RequestDownload().Result;
+                        UpdateFudged();
                     }
                     else
                     {
@@ -34,6 +35,23 @@ namespace TestAppPir.Methods
                     }
                 }
             }
+        }
+
+        static async Task UpdateFudged()
+        {
+            try
+            {
+                if (Consts.MainParams.BackendDBIn.Count > 0)
+                {
+                    Consts.MainParams.Fudged = new List<Models.Casuelty>();
+                    foreach (var i in Consts.MainParams.BackendDBIn) 
+                    {
+                        Consts.MainParams.Fudged.Add(new Models.Casuelty() { FullName = i.FIO, NickName = i.CallSign, SolderId = i.TokenNumber, FileName = i.Uid.ToString() });
+                    }
+                    DBase.UpsertPersonnel(Consts.MainParams.BackendDBIn);
+                }
+            }
+            catch { }
         }
 
         internal static bool Proxy()
