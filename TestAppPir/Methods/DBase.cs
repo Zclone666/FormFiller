@@ -11,19 +11,29 @@ namespace TestAppPir.Methods
     public static class DBase
     {
         #region Constants
-        static string connectionString;
-        private static string dbPath => Path.Combine(FileSystem.Current.AppDataDirectory, "data.db");
         private static readonly object locker = new object();
+        /// <summary>
+        /// Строка подключения к файлу БД, формируется при старте
+        /// </summary>
+        private static string connectionString;
+        /// <summary>
+        /// Путь к файлу БД
+        /// </summary>
+        private static string dbPath => Path.Combine(FileSystem.Current.AppDataDirectory, "data.db");
+
+        /// <summary>
+        /// Разделитель элементов в строке
+        /// </summary>
         private const string delimitter = "_&_";
         private static readonly int delimitterLength = delimitter.Length;
-
-        //private const string dbName = "data.db";
-        //static string path = $"{AppDomain.CurrentDomain.BaseDirectory}/data.dat";
-        //private static string cacheDir = FileSystem.Current.CacheDirectory;
-        //private static string appDataDirectory = FileSystem.Current.AppDataDirectory;
         #endregion
 
         #region Utils
+        /// <summary>
+        /// Генерация пароля для файла БД на основе пароля пользователя и системной информации
+        /// </summary>
+        /// <param name="password">Пароль(пинкод) пользователя</param>
+        /// <returns>Текст ошибки (null если её нет)</returns>
         private static string CreatePassword(string password)
         {
             string tmp = password;
@@ -43,10 +53,13 @@ namespace TestAppPir.Methods
         #endregion
 
         #region Initialization
+        /// <summary>
+        /// Инициализация класса для работы с БД
+        /// </summary>
+        /// <param name="password">Пароль(пинкод) пользователя</param>
+        /// <returns>Текст ошибки (null если её нет)</returns>
         public static string Initialize(string password)
         {
-            //"666BVcOAgUGD1QOBwYFBFQCV" "666BVcOAgUGD1QOB"
-            //var tmp = CreatePassword(password);
             connectionString = new SqliteConnectionStringBuilder()
             {
                 DataSource = dbPath,
@@ -56,19 +69,20 @@ namespace TestAppPir.Methods
                 ForeignKeys = true,
                 Pooling = false
             }.ConnectionString;
-            if (!File.Exists(dbPath)) { return createTable(); }
-            return null;
+            return createTable();
         }
-
+        /// <summary>
+        /// Создание таблиц если их нет (нужно при старте)
+        /// </summary>
+        /// <returns>Текст ошибки (null если её нет)</returns>
         private static string createTable()
         {
+            if (File.Exists(dbPath)) { return null; }
             string ErrorMessage = null;
             lock (locker)
             {
                 try
                 {
-
-                    //if (File.Exists(DbPath)) { File.Delete(DbPath); }
                     using (SqliteConnection connection = new SqliteConnection(connectionString))
                     {
                         connection.Open();
@@ -98,6 +112,11 @@ namespace TestAppPir.Methods
                                                                         + "formid, complaints, anamnesis, objectively, pharmacotherapy, preliminarydiagnosis, recommendations, servicetype, specialist, situatedat, recorddate, dateofservice) VALUES (" +
                                                                         "@solderid, @nickname, @fullname, @name, @surname, @lastname, @destination, @woundtype, @woundclause, @wounddate, @deathtime, @helpprovided, @filename);"
                                                                         + "@formid, @complaints, @anamnesis, @objectively, @pharmacotherapy, @preliminarydiagnosis, @recommendations, @servicetype, @specialist, @situatedat, @recorddate, @dateofservice";
+        /// <summary>
+        /// Добавить событие в журнал
+        /// </summary>
+        /// <param name="casuelty">Событие</param>
+        /// <returns>Текст ошибки (null если её нет)</returns>
         public static string InsertFact(Casuelty casuelty)
         {
             string ErrorMessage = null;
@@ -154,13 +173,25 @@ namespace TestAppPir.Methods
         }
 
 
-
+        /// <summary>
+        /// Результат получения данных из журнала событий
+        /// </summary>
         public class ArgsGetFacts
         {
+            /// <summary>
+            /// Текст ошибки (null если её нет)
+            /// </summary>
             public string ErrorNessage;
+            /// <summary>
+            /// Список событий
+            /// </summary>
             public List<Casuelty> results;
         }
 
+        /// <summary>
+        /// Получить все записи из журнала событий
+        /// </summary>
+        /// <returns>ArgsGetFacts</returns>
         public static ArgsGetFacts SelectFacts()
         {
             string ErrorMessage = null;
@@ -235,6 +266,10 @@ namespace TestAppPir.Methods
             };
         }
 
+        /// <summary>
+        /// Удалить журнал событий
+        /// </summary>
+        /// <returns>Текст ошибки (null если её нет)</returns>
         public static string DropFacts()
         {
             string ErrorMessage = null;
@@ -259,15 +294,32 @@ namespace TestAppPir.Methods
         #endregion
 
         #region Methods Personnel
+
+        /// <summary>
+        /// Результат получения пациентов
+        /// </summary>
         public class ArgsGetPersonnel
         {
+            /// <summary>
+            /// Текст ошибки (null если её нет)
+            /// </summary>
             public string ErrorNessage;
+            /// <summary>
+            /// Список пациентов
+            /// </summary>
             public List<Models.Shared.ItemPersonnel> results;
         }
         private const string insertPersonelWithId = "INSERT INTO personnel (id, tokennumber, callsign, fio) VALUES(@id, @tokennumber, @callsign, @fio) ON CONFLICT(id) DO UPDATE SET tokennumber = @tokennumber, callsign = @callsign, fio = @fio;";
         private const string insertPersonelWithoutId = "INSERT INTO personnel(tokennumber, callsign, fio VALUES (@tokennumber, @callsign, @fio);";
-        public static string InsertPersonnel(Models.Shared.ItemPersonnel Item)
+
+        /// <summary>
+        /// Добавить или обновить пациента. Добавление если id = 0.
+        /// </summary>
+        /// <param name="Item">Пациент</param>
+        /// <returns>Текст ошибки (null если её нет)</returns>
+        public static string UpsertPersonnel(Models.Shared.ItemPersonnel Item)
         {
+            if (Item is null) { return null; }
             string ErrorMessage = null;
             lock (locker)
             {
@@ -297,8 +349,14 @@ namespace TestAppPir.Methods
             return ErrorMessage;
         }
 
-        public static string InsertPersonnel(List<Models.Shared.ItemPersonnel> Items)
+        /// <summary>
+        /// Добавить или обновить пациентов списком. Добавление если id = 0.
+        /// </summary>
+        /// <param name="Items">Список пациентов</param>
+        /// <returns>Текст ошибки (null если её нет)</returns>
+        public static string UpsertPersonnel(List<Models.Shared.ItemPersonnel> Items)
         {
+            if (Items is null || Items.Count == 0) { return null; }
             string ErrorMessage = null;
             List<Models.Shared.ItemPersonnel> itemsWithoutId = new List<Models.Shared.ItemPersonnel>();
             List<Models.Shared.ItemPersonnel> itemsWithId = new List<Models.Shared.ItemPersonnel>();
@@ -384,7 +442,10 @@ namespace TestAppPir.Methods
             return ErrorMessage;
         }
 
-
+        /// <summary>
+        /// Удалить всех пациентов
+        /// </summary>
+        /// <returns>Текст ошибки (null если её нет)</returns>
         public static string DropPersonnel()
         {
             string ErrorMessage = null;
@@ -407,7 +468,10 @@ namespace TestAppPir.Methods
             return ErrorMessage;
         }
 
-
+        /// <summary>
+        /// Получить всех пациентов
+        /// </summary>
+        /// <returns>ArgsGetPersonnel</returns>
         public static ArgsGetPersonnel SelectPersonnel()
         {
             string ErrorMessage = null;
@@ -451,6 +515,12 @@ namespace TestAppPir.Methods
                 results = results
             };
         }
+
+        /// <summary>
+        /// Поучить пациента с указанным id
+        /// </summary>
+        /// <param name="Id">id пациента</param>
+        /// <returns>ArgsGetPersonnel</returns>
         public static ArgsGetPersonnel SelectPersonnel(int Id)
         {
             string ErrorMessage = null;
