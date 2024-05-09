@@ -660,6 +660,7 @@ namespace TestAppPir.Methods
 
                                     var idParameter = command.CreateParameter();
                                     idParameter.ParameterName = "@id";
+                                    idParameter.DbType = System.Data.DbType.Int32;
                                     command.Parameters.Add(idParameter);
 
                                     var tokennumberParameter = command.CreateParameter();
