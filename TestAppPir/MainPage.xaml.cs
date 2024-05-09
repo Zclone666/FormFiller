@@ -32,11 +32,16 @@ namespace TestAppPir
         internal void Fudged()
         {
             try {
-                Random rnd= new Random(20);
-                for (int i = 0;i < 10; i++)
+                //Random rnd= new Random(20);
+                //for (int i = 0;i < 10; i++)
+                //{
+                //    Casuelty Tmp = new Casuelty() { SolderId=rnd.Next().ToString(), NickName=rnd.Next().ToString()};
+                //    Consts.MainParams.Fudged.Add(Tmp);
+                //}
+                Consts.MainParams.BackendDBIn = Methods.DBase.SelectPersonnel().results;
+                foreach (var i in Consts.MainParams.BackendDBIn)
                 {
-                    Casuelty Tmp = new Casuelty() { SolderId=rnd.Next().ToString(), NickName=rnd.Next().ToString()};
-                    Consts.MainParams.Fudged.Add(Tmp);
+                    Consts.MainParams.Fudged.Add(new Models.Casuelty() { FullName = i.FIO, NickName = i.CallSign, SolderId = i.TokenNumber, FileName = i.Uid.ToString() });
                 }
             } catch { }
         }
@@ -65,7 +70,7 @@ namespace TestAppPir
             MainParams.AspectRatioWidth = Math.Round((MainApp.MainView.Width / MainApp.MainView.Height) / 2, 1);
             MainParams.AspectRatioHeight = Math.Round(MainApp.MainView.Height / MainApp.MainView.Width, 1);
             MainParams.NmbOfSquares = (uint)Math.Round((MainApp.MainView.Height * MainApp.MainView.Width) / ((MainApp.MainView.Width / 5) * (MainApp.MainView.Height / 5)));
-            MainApp.MainP.CreateGrid(3, new List<string>() { "Форма 200", "Форма 300", "Поделиться" }, new List<string>() { "IntermediateScreen_200", "IntermediateScreen_300", "ExportScreen" });
+            MainApp.MainP.CreateGrid(6, new List<string>() { "Форма 200", "Форма 300", "Травма", "Заболевания", "Поделиться", "Импортировать" }, new List<string>() { "IntermediateScreen_200", "IntermediateScreen_300", "Trauma", "Injury", "ExportScreen", "ImportScreen" });
         }
 
         public void CreateGrid(int NumbOfBtns=6, List<string> BtnTxt=null, List<string> MthdsName=null)
@@ -173,6 +178,29 @@ namespace TestAppPir
         {
             //     ((Button)sender).IsVisible = false;
             Navigation.PushAsync(new TestAppPir.ExportScreen());
+            //  App.Current.OpenWindow(new Window(new TestAppPir.ExportScreen()));
+            //    App.Current.MainPage = new NavigationPage(new TestAppPir.Form200_0());
+        }
+
+        public void ImportScreen_clicked(object sender, EventArgs e)
+        {
+            //     ((Button)sender).IsVisible = false;
+            Navigation.PushAsync(new TestAppPir.ImportScreen());
+            //  App.Current.OpenWindow(new Window(new TestAppPir.ExportScreen()));
+            //    App.Current.MainPage = new NavigationPage(new TestAppPir.Form200_0());
+        }
+
+        public void Injury_clicked(object sender, EventArgs e)
+        {
+            //     ((Button)sender).IsVisible = false;
+            Navigation.PushAsync(new TestAppPir.Injury());
+            //  App.Current.OpenWindow(new Window(new TestAppPir.ExportScreen()));
+            //    App.Current.MainPage = new NavigationPage(new TestAppPir.Form200_0());
+        }
+        public void Trauma_clicked(object sender, EventArgs e)
+        {
+            //     ((Button)sender).IsVisible = false;
+            Navigation.PushAsync(new TestAppPir.Trauma());
             //  App.Current.OpenWindow(new Window(new TestAppPir.ExportScreen()));
             //    App.Current.MainPage = new NavigationPage(new TestAppPir.Form200_0());
         }

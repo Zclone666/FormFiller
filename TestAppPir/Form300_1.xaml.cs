@@ -53,7 +53,8 @@ public partial class Form300_1 : ContentPage
             FullName = this.FullName.Text,
             WoundClause = this.WoundClause.Text,
             WoundType = this.WoundType.Text,
-            WoundDate = this.WoundDate.Date.ToUniversalTime().Second
+            WoundDate = this.WoundDate.Date.ToUniversalTime().Second,
+            RecordDate = DateTimeOffset.UtcNow.ToUniversalTime().Second,
         };
         foreach (var editor in editors)
         {

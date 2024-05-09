@@ -16,10 +16,10 @@
             <Label Text="Форма 200 номер жетона" FontAttributes="Bold" HorizontalOptions="Center" TextColor="#344c11" BackgroundColor="#ffffff"/>
 
             <Label Text="Номер жетона:" TextColor="#344c11" BackgroundColor="#ffffff"/>
-            <Entry Placeholder="XX-XX609" HorizontalOptions="FillAndExpand" x:Name="SolderId" TextColor="#344c11" BackgroundColor="#ffffff"/>
+            <Entry Placeholder="XX-XX609" HorizontalOptions="FillAndExpand" x:Name="SolderId" TextColor="#344c11" BackgroundColor="#ffffff" IsEnabled="False"/>
 
             <Label Text="Фамилия Имя Отчество:" TextColor="#344c11" BackgroundColor="#ffffff"/>
-            <Entry Placeholder="Введите полное имя" x:Name="FullName" TextColor="#344c11" BackgroundColor="#ffffff"/>
+            <Entry Placeholder="Введите полное имя" x:Name="FullName" TextColor="#344c11" BackgroundColor="#ffffff" IsEnabled="False"/>
 
             <Label Text="Характер ранения" TextColor="#344c11" BackgroundColor="#ffffff"/>
             <Entry Placeholder="Опишите характер ранения"  x:Name="WoundType" TextColor="#344c11" BackgroundColor="#ffffff"/>

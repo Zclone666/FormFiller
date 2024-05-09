@@ -21,7 +21,7 @@ public partial class IntermediateScreen_300 : ContentPage
         {
             output.Add(casuelty.SolderId);
         }
-        searchResults.ItemsSource = output;
+      //  searchResults.ItemsSource = output;
     }
 
     private void searchResults_ItemTapped(object sender, ItemTappedEventArgs e)
@@ -179,5 +179,41 @@ public partial class IntermediateScreen_300 : ContentPage
         //        App.Current.OpenWindow(new Window(new TestAppPir.Form300_2(dweeb)));
 
         //  App.Current.MainPage = new NavigationPage(new TestAppPir.Form300_2());
+    }
+
+    private void Next_Clicked(object sender, EventArgs e)
+    {
+        try
+        {
+            if (this.Search_nick.IsVisible == false)
+            {
+                var res = Consts.MainParams.Fudged.Find((x) => { return x.SolderId.Contains(((SearchBar)sender).Text); });
+                if (res != null)
+                {
+                    this.Search_ID.BackgroundColor = Color.Parse("Green");
+                    dweeb = res;
+                    Navigation.PushAsync(new TestAppPir.Form300_0(dweeb));
+                }
+                else
+                {
+                    this.Search_nick.IsVisible = true;
+                }
+            }
+            else
+            {
+                var res = Consts.MainParams.Fudged.Find((x) => { return x.NickName.Contains(((SearchBar)sender).Text); });
+                if (res != null)
+                {
+                    this.Search_nick.BackgroundColor = Color.Parse("Green");
+                    dweeb = res;
+                    Navigation.PushAsync(new TestAppPir.Form300_0(dweeb));
+                }
+                else
+                {
+                    Navigation.PushAsync(new TestAppPir.Form300_2());
+                }
+            }
+        }
+        catch { }
     }
 }

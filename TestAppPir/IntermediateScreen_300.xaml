@@ -12,8 +12,11 @@
                           Offset="1.0" />
             </LinearGradientBrush>
         </VerticalStackLayout.Background>
-        <SearchBar Placeholder="" x:Name="Search_ID" IsVisible="True" IsTextPredictionEnabled="True" IsEnabled="True" TextChanged="Search_ID_TextChanged" TextColor="#344c11" BackgroundColor="#ffffff">
+        <SearchBar Placeholder="Номер жетона" x:Name="Search_ID" IsVisible="True" IsTextPredictionEnabled="True" IsEnabled="True"  TextColor="#344c11" BackgroundColor="#ffffff">
         </SearchBar>
-        <ListView x:Name="searchResults" ItemTapped="searchResults_ItemTapped"/>
+        <SearchBar Placeholder="Позывной" x:Name="Search_nick" IsVisible="False" IsTextPredictionEnabled="True" IsEnabled="True"  TextColor="#344c11" BackgroundColor="#ffffff">
+        </SearchBar>
+        <Button Text="Далее" x:Name="Next" Clicked="Next_Clicked"></Button>
+        <!-- <ListView x:Name="searchResults" ItemTapped="searchResults_ItemTapped"/> -->
     </VerticalStackLayout>
 </ContentPage>
