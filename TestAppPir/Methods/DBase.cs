@@ -310,7 +310,7 @@ namespace TestAppPir.Methods
             public List<Models.Shared.ItemPersonnel> results;
         }
         private const string insertPersonelWithId = "INSERT INTO personnel (id, tokennumber, callsign, fio) VALUES(@id, @tokennumber, @callsign, @fio) ON CONFLICT(id) DO UPDATE SET tokennumber = @tokennumber, callsign = @callsign, fio = @fio;";
-        private const string insertPersonelWithoutId = "INSERT INTO personnel(tokennumber, callsign, fio VALUES (@tokennumber, @callsign, @fio);";
+        private const string insertPersonelWithoutId = "INSERT INTO personnel (tokennumber, callsign, fio) VALUES (@tokennumber, @callsign, @fio);";
 
         /// <summary>
         /// Добавить или обновить пациента. Добавление если id = 0.
