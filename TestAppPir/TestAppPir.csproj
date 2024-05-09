@@ -144,6 +144,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="IntermediateScreen_Trauma.xaml.cs">
+	    <DependentUpon>IntermediateScreen_Trauma.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="IntermediateScreen_Injury.xaml.cs">
+	    <DependentUpon>IntermediateScreen_Injury.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Properties\Resources.Designer.cs">
 	    <DesignTime>True</DesignTime>
 	    <AutoGen>True</AutoGen>
@@ -160,6 +166,12 @@
 
 	<ItemGroup>
 	  <MauiXaml Update="Injury.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="IntermediateScreen_Trauma.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="IntermediateScreen_Injury.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Trauma.xaml">

@@ -1,4 +1,5 @@
 using TestAppPir.Models;
+using static TestAppPir.Consts.HardCodeLists;
 
 namespace TestAppPir;
 
@@ -10,7 +11,18 @@ public partial class Injury : ContentPage
 		InitializeComponent();
 	}
 
-    private void Save_Clicked(object sender, EventArgs e)
+    public Injury(Casuelty dweeb)
+    {
+        InitializeComponent();
+        this.dweeb = dweeb;
+        this.SolderId.Text = dweeb.SolderId;
+        this.NickName.Text = dweeb.NickName;
+        this.Name.Text = dweeb.Name;
+        this.Surname.Text = dweeb.Surname;
+        this.LastName.Text = dweeb.LastName;
+    }
+
+private void Save_Clicked(object sender, EventArgs e)
     {
         dweeb = new Models.Casuelty()
         {
@@ -41,18 +53,58 @@ public partial class Injury : ContentPage
 
     private void EstabSearch_ItemTapped(object sender, ItemTappedEventArgs e)
     {
-
+        this.SituatedAt.Text = ((ListView)sender).SelectedItem as string;
+        ((ListView)sender).IsVisible = false;
     }
 
     private void SituatedAt_TextChanged(object sender, TextChangedEventArgs e)
     {
-        List<Casuelty> list = new List<Casuelty>();
+        this.EstabSearch.IsVisible = true;
+        List<JsonResources> list = new List<JsonResources>();
         List<string> output = new List<string>();
-        list = Consts.MainParams.Fudged.FindAll((x) => { return x.SolderId.Contains(((SearchBar)sender).Text); });
+        list = Consts.HardCodeLists.InstitutionsLocation.FindAll((x) => { return x.label.Contains(((Editor)sender).Text); });
         foreach (var casuelty in list)
         {
-            output.Add(casuelty.SolderId);
+            output.Add(casuelty.label);
         }
         EstabSearch.ItemsSource = output;
+    }
+
+    private void SpecialistSearch_ItemTapped(object sender, ItemTappedEventArgs e)
+    {
+        this.Specialist.Text = ((ListView)sender).SelectedItem as string;
+        ((ListView)sender).IsVisible = false;
+    }
+
+    private void Specialist_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        this.SpecialistSearch.IsVisible = true;
+        List<JsonResources> list = new List<JsonResources>();
+        List<string> output = new List<string>();
+        list = Consts.HardCodeLists.Specialists.FindAll((x) => { return x.label.Contains(((Editor)sender).Text); });
+        foreach (var casuelty in list)
+        {
+            output.Add(casuelty.label);
+        }
+        SpecialistSearch.ItemsSource = output;
+    }
+
+    private void ServiceSearch_ItemTapped(object sender, ItemTappedEventArgs e)
+    {
+        this.ServiceType.Text = ((ListView)sender).SelectedItem as string;
+        ((ListView)sender).IsVisible = false;
+    }
+
+    private void ServiceType_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        this.ServiceSearch.IsVisible = true;
+        List<JsonResources> list = new List<JsonResources>();
+        List<string> output = new List<string>();
+        list = Consts.HardCodeLists.TypeOfDirection.FindAll((x) => { return x.label.Contains(((Editor)sender).Text); });
+        foreach (var casuelty in list)
+        {
+            output.Add(casuelty.label);
+        }
+        ServiceSearch.ItemsSource = output;
     }
 }
