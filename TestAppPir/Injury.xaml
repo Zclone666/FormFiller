@@ -5,7 +5,7 @@
              Title="Injury">
     <ScrollView>
         <StackLayout Padding="30" Spacing="10">
-            <Label Text="Injury" FontSize="Large" HorizontalOptions="Center" FontAttributes="Bold"/>
+            <Label Text="Заболевание" FontSize="Large" HorizontalOptions="Center" FontAttributes="Bold"/>
 
             <!-- Token number -->
             <Label Text="Номер жетона:" TextColor="#344c11" BackgroundColor="#ffffff"/>
@@ -24,58 +24,47 @@
             <Entry Placeholder="Введите отчество" x:Name="LastName" TextColor="#344c11" BackgroundColor="#ffffff"/>
 
             <!-- Complaints -->
-            <Editor Placeholder="Complaints" AutoSize="TextChanges" x:Name="Complaints" TextColor="#344c11" BackgroundColor="#ffffff"/>
+            <Editor Placeholder="Жалобы" AutoSize="TextChanges" x:Name="Complaints" TextColor="#344c11" BackgroundColor="#ffffff"/>
 
             <!-- Anamnesis -->
-            <Editor Placeholder="Anamnesis" AutoSize="TextChanges" x:Name="Anamnesis" TextColor="#344c11" BackgroundColor="#ffffff"/>
+            <Editor Placeholder="Анамнез" AutoSize="TextChanges" x:Name="Anamnesis" TextColor="#344c11" BackgroundColor="#ffffff"/>
 
             <!-- Objectively -->
-            <Editor Placeholder="Objectively" AutoSize="TextChanges" x:Name="Objectively" TextColor="#344c11" BackgroundColor="#ffffff"/>
+            <Editor Placeholder="Объективно" AutoSize="TextChanges" x:Name="Objectively" TextColor="#344c11" BackgroundColor="#ffffff"/>
 
             <!-- Pharmacotherapy -->
-            <Editor Placeholder="Pharmacotherapy" AutoSize="TextChanges" x:Name="Pharmacotherapy" TextColor="#344c11" BackgroundColor="#ffffff"/>
+            <Editor Placeholder="Фармакотерапия" AutoSize="TextChanges" x:Name="Pharmacotherapy" TextColor="#344c11" BackgroundColor="#ffffff"/>
 
             <!-- Preliminary Diagnosis -->
-            <Editor Placeholder="Preliminary diagnosis" AutoSize="TextChanges" x:Name="Preliminary_diagnosis" TextColor="#344c11" BackgroundColor="#ffffff"/>
+            <Editor Placeholder="Прелиминарный диагноз" AutoSize="TextChanges" x:Name="Preliminary_diagnosis" TextColor="#344c11" BackgroundColor="#ffffff"/>
 
             <!-- Recommendations -->
-            <Editor Placeholder="Recommendations" AutoSize="TextChanges" x:Name="Recommendations" TextColor="#344c11" BackgroundColor="#ffffff"/>
+            <Editor Placeholder="Рекомендации" AutoSize="TextChanges" x:Name="Recommendations" TextColor="#344c11" BackgroundColor="#ffffff"/>
 
             <!-- Date of the Application -->
-            <DatePicker/>
+            <Label Text="Дата обращения" TextColor="#344c11" BackgroundColor="#ffffff"></Label>
+            <DatePicker x:Name="DateOfService"/>
 
-            <!-- Type of Direction -->
-            <Picker Title="Type of Service" x:Name="ServiceType">
-                <!-- Add items here -->
-                <Picker.Items>
-                    <x:String>Option 1</x:String>
-                    <x:String>Option 2</x:String>
-                </Picker.Items>
-            </Picker>
+
+            <Editor Placeholder="Вид направления" AutoSize="TextChanges" x:Name="ServiceType" TextColor="#344c11" BackgroundColor="#ffffff">
+
+            </Editor>
 
             <!-- Specialist -->
-            <Picker Title="Specialist" x:Name="Specialist">
-                <!-- Add items here -->
-                <Picker.Items>
-                    <x:String>Specialist 1</x:String>
-                    <x:String>Specialist 2</x:String>
-                </Picker.Items>
-            </Picker>
+            <Editor Placeholder="Специалист" x:Name="Specialist" AutoSize="TextChanges" TextColor="#344c11" BackgroundColor="#ffffff">
+
+            </Editor>
 
             <!-- Institution where it is located -->
-            <Picker Title="Situated at" x:Name="SituatedAt">
-                <!-- Add items here -->
-                <Picker.Items>
-                    <x:String>Institution 1</x:String>
-                    <x:String>Institution 2</x:String>
-                </Picker.Items>
-            </Picker>
+            <Editor Placeholder="Учреждение где находится" x:Name="SituatedAt" AutoSize="TextChanges" TextColor="#344c11" BackgroundColor="#ffffff" TextChanged="SituatedAt_TextChanged">
 
+            </Editor>
+            <ListView x:Name="EstabSearch" ItemTapped="EstabSearch_ItemTapped"/>
             <!-- Buttons for navigation -->
             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                <Button Text="BACK" BackgroundColor="Green" TextColor="White"/>
-                <Button Text="NEXT" BackgroundColor="Green" TextColor="White" 
-                        HorizontalOptions="EndAndExpand" Margin="20,0,0,0"/>
+                <Button Text="Назад" BackgroundColor="Green" TextColor="White" x:Name="Back" Clicked="Back_Clicked"/>
+                <Button Text="Сохранить" BackgroundColor="Green" TextColor="White" x:Name="Save"
+                        HorizontalOptions="EndAndExpand" Margin="20,0,0,0" Clicked="Save_Clicked"/>
             </StackLayout>
         </StackLayout>
     </ScrollView>
