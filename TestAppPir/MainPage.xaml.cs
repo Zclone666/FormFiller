@@ -194,14 +194,14 @@ namespace TestAppPir
         public void Injury_clicked(object sender, EventArgs e)
         {
             //     ((Button)sender).IsVisible = false;
-            Navigation.PushAsync(new TestAppPir.Injury());
+            Navigation.PushAsync(new TestAppPir.IntermediateScreen_Injury());
             //  App.Current.OpenWindow(new Window(new TestAppPir.ExportScreen()));
             //    App.Current.MainPage = new NavigationPage(new TestAppPir.Form200_0());
         }
         public void Trauma_clicked(object sender, EventArgs e)
         {
             //     ((Button)sender).IsVisible = false;
-            Navigation.PushAsync(new TestAppPir.Trauma());
+            Navigation.PushAsync(new TestAppPir.IntermediateScreen_Trauma());
             //  App.Current.OpenWindow(new Window(new TestAppPir.ExportScreen()));
             //    App.Current.MainPage = new NavigationPage(new TestAppPir.Form200_0());
         }

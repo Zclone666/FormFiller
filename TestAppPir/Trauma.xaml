@@ -48,19 +48,22 @@
             <DatePicker x:Name="DateOfService"/>
 
 
-            <Editor Placeholder="Вид направления" AutoSize="TextChanges" x:Name="ServiceType" TextColor="#344c11" BackgroundColor="#ffffff">
+            <Editor Placeholder="Вид направления" AutoSize="TextChanges" x:Name="ServiceType" TextColor="#344c11" BackgroundColor="#ffffff" TextChanged="ServiceType_TextChanged">
 
             </Editor>
+            <ListView x:Name="ServiceSearch" ItemTapped="ServiceSearch_ItemTapped"/>
 
             <!-- Specialist -->
-            <Editor Placeholder="Специалист" x:Name="Specialist" AutoSize="TextChanges" TextColor="#344c11" BackgroundColor="#ffffff">
+            <Editor Placeholder="Специалист" x:Name="Specialist" AutoSize="TextChanges" TextColor="#344c11" BackgroundColor="#ffffff" TextChanged="Specialist_TextChanged">
 
             </Editor>
+            <ListView x:Name="SpecialistSearch" ItemTapped="SpecialistSearch_ItemTapped"/>
 
             <!-- Institution where it is located -->
-            <Editor Placeholder="Учреждение где находится" x:Name="SituatedAt" AutoSize="TextChanges" TextColor="#344c11" BackgroundColor="#ffffff">
+            <Editor Placeholder="Учреждение где находится" x:Name="SituatedAt" AutoSize="TextChanges" TextColor="#344c11" BackgroundColor="#ffffff" TextChanged="SituatedAt_TextChanged">
 
             </Editor>
+            <ListView x:Name="EstabSearch" ItemTapped="EstabSearch_ItemTapped"/>
 
             <!-- Buttons for navigation -->
             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
