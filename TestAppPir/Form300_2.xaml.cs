@@ -11,6 +11,7 @@ public partial class Form300_2 : ContentPage
 		InitializeComponent();
         this.Share.IsEnabled = false;
         editors.Add(new Editor());
+        editors[0].TextColor = Color.FromHex("#000000");
         this.HelpProvided.Add(editors[0]);
         Button AddM = new Button() { Text = "+" };
         AddM.Clicked += AddMore;
@@ -31,6 +32,7 @@ public partial class Form300_2 : ContentPage
         this.WoundType.Text = dweeb.WoundType;
         this.WoundDate.Date.ToUniversalTime().AddSeconds(dweeb.WoundDate);
         editors.Add(new Editor());
+        editors[0].TextColor = Color.FromHex("#000000");
         this.HelpProvided.Add(editors[0]);
         Button AddM = new Button() { Text = "+" };
         AddM.Clicked += AddMore;
@@ -40,6 +42,7 @@ public partial class Form300_2 : ContentPage
     private void AddMore(object sender, EventArgs e)
     {
         editors.Add(new Editor());
+        editors.Last().TextColor = Color.FromHex("#000000");
         this.HelpProvided.Add(editors.Last());
         Button AddM = new Button() { Text = "+" };
         AddM.Clicked += AddMore;

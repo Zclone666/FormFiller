@@ -41,7 +41,8 @@ namespace TestAppPir
                 Consts.MainParams.BackendDBIn = Methods.DBase.SelectPersonnel().results;
                 foreach (var i in Consts.MainParams.BackendDBIn)
                 {
-                    Consts.MainParams.Fudged.Add(new Models.Casuelty() { FullName = i.FIO, NickName = i.CallSign, SolderId = i.TokenNumber, FileName = i.Uid.ToString() });
+                    if (!Consts.MainParams.Fudged.Exists((x) => x.SolderId == i.TokenNumber))
+                        Consts.MainParams.Fudged.Add(new Models.Casuelty() { FullName = i.FIO, NickName = i.CallSign, SolderId = i.TokenNumber, FileName = i.Uid.ToString() });
                 }
             } catch { }
         }

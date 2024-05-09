@@ -43,10 +43,11 @@ namespace TestAppPir.Methods
             {
                 if (Consts.MainParams.BackendDBIn.Count > 0)
                 {
-                    Consts.MainParams.Fudged = new List<Models.Casuelty>();
+                   // Consts.MainParams.Fudged = new List<Models.Casuelty>();
                     foreach (var i in Consts.MainParams.BackendDBIn) 
                     {
-                        Consts.MainParams.Fudged.Add(new Models.Casuelty() { FullName = i.FIO, NickName = i.CallSign, SolderId = i.TokenNumber, FileName = i.Uid.ToString() });
+                        if (!Consts.MainParams.Fudged.Exists((x)=>x.SolderId==i.TokenNumber))
+                            Consts.MainParams.Fudged.Add(new Models.Casuelty() { FullName = i.FIO, NickName = i.CallSign, SolderId = i.TokenNumber, FileName = i.Uid.ToString() });
                     }
                     DBase.UpsertPersonnel(Consts.MainParams.BackendDBIn);
                 }

@@ -8,11 +8,22 @@ public partial class ExportScreen : ContentPage
     public ExportScreen()
 	{
 		InitializeComponent();
-		DbRecs = Methods.DBase.SelectFacts();
-		if(DbRecs != null)
+		if (Consts.MainParams.Fudged.Count == 0)
 		{
-			this.DBRecords.ItemsSource=DbRecs.results.Select(x=>x.SolderId);
+			DbRecs = Methods.DBase.SelectFacts();
+			if (DbRecs != null)
+			{
+				this.DBRecords.ItemsSource = DbRecs.results.Select(x => x.SolderId);
+			}
 		}
+		else
+		{
+            DbRecs = new ArgsGetFacts() { results=Consts.MainParams.Fudged };
+            if (DbRecs != null)
+            {
+                this.DBRecords.ItemsSource = DbRecs.results.Select(x => x.SolderId);
+            }
+        }
 	}
 
     private void Share_Clicked(object sender, EventArgs e)
@@ -23,7 +34,7 @@ public partial class ExportScreen : ContentPage
 			{
 				if (Methods.Saving.SaveToFileFromDB(DbRecs.results))
 				{
-					Methods.Sharing.ShareFiles(DbRecs.results[0].FileName);
+					Methods.Sharing.ShareFiles(DbRecs.results[0].FileName).RunSynchronously();
 				}
 			}
 		}
