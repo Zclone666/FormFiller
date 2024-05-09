@@ -22,7 +22,7 @@ public partial class Form200_0 : ContentPage
             this.WoundClause.Text = dweeb.WoundClause;
             this.WoundType.Text = dweeb.WoundType;
             this.WoundDate.Date= DateTimeOffset.FromUnixTimeSeconds(dweeb.WoundDate).LocalDateTime;
-            this.TimeOfDeath = DateTimeOffset.FromUnixTimeSeconds(dweeb.TimeOfDeath).LocalDateTime;
+            this.TimeOfDeath.Date = DateTimeOffset.FromUnixTimeSeconds(dweeb.TimeOfDeath).LocalDateTime;
             this.Destination.Text = dweeb.Destination;
         }
         this.Share.IsEnabled = false;
