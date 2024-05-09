@@ -187,7 +187,7 @@ public partial class IntermediateScreen_300 : ContentPage
         {
             if (this.Search_nick.IsVisible == false)
             {
-                var res = Consts.MainParams.Fudged.Find((x) => { return x.SolderId.Contains(((SearchBar)sender).Text); });
+                var res = Consts.MainParams.Fudged.Find((x) => { return x.SolderId.Contains(this.Search_ID.Text); });
                 if (res != null)
                 {
                     this.Search_ID.BackgroundColor = Color.Parse("Green");
@@ -201,7 +201,7 @@ public partial class IntermediateScreen_300 : ContentPage
             }
             else
             {
-                var res = Consts.MainParams.Fudged.Find((x) => { return x.NickName.Contains(((SearchBar)sender).Text); });
+                var res = Consts.MainParams.Fudged.Find((x) => { return x.NickName.Contains(this.Search_nick.Text); });
                 if (res != null)
                 {
                     this.Search_nick.BackgroundColor = Color.Parse("Green");
@@ -210,7 +210,7 @@ public partial class IntermediateScreen_300 : ContentPage
                 }
                 else
                 {
-                    Navigation.PushAsync(new TestAppPir.Form300_2());
+                    Navigation.PushAsync(new TestAppPir.Form300_2(new Casuelty() { NickName = this.Search_nick.Text, SolderId = this.Search_ID.Text }));
                 }
             }
         }

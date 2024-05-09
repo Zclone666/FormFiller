@@ -27,7 +27,9 @@ namespace TestAppPir.Methods
                     ret[i].TokenNumber = Methods.Dumbcoding.TokenNumberDecrypt(ret[i].Id, ret[i].TokenNumber);
                 }
             }
-            catch { }
+            catch 
+            {
+            }
             return ret;
         }
     }

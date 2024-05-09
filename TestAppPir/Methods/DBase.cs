@@ -437,7 +437,8 @@ namespace TestAppPir.Methods
                         connection.Close();
                     }
                 }
-                catch (Exception ex) { ErrorMessage = ex.Message; }
+                catch (Exception ex) { 
+                    ErrorMessage = ex.Message; }
             }
             return ErrorMessage;
         }
