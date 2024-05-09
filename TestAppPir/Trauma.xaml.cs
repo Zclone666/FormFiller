@@ -51,6 +51,7 @@ public partial class Trauma : ContentPage
         };
 
         Methods.Saving.SaveToFile(dweeb);
+        Navigation.PopToRootAsync();
     }
     private void Back_Clicked(object sender, EventArgs e)
     {

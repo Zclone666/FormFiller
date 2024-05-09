@@ -51,6 +51,7 @@ private void Save_Clicked(object sender, EventArgs e)
         };
 
         Methods.Saving.SaveToFile(dweeb);
+        Navigation.PopToRootAsync();
     }
     private void Back_Clicked(object sender, EventArgs e)
     {

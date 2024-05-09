@@ -40,6 +40,7 @@ public partial class Form200_0 : ContentPage
             FormId=200
         };
         if(Methods.Saving.SaveToFile(dweeb))this.Share.IsEnabled=true;
+        Navigation.PopToRootAsync();
     }
 
     private void Share_Clicked(object sender, EventArgs e)

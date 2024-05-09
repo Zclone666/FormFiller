@@ -70,6 +70,7 @@ public partial class Form300_2 : ContentPage
             dweeb.HelpProvided.Add(editor.Text);
         }
         if (Methods.Saving.SaveToFile(dweeb)) this.Share.IsEnabled = true;
+        Navigation.PopToRootAsync();
     }
 
     private void Share_Clicked(object sender, EventArgs e)
