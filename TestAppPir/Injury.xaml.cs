@@ -39,14 +39,14 @@ private void Save_Clicked(object sender, EventArgs e)
             LastName = this.LastName.Text,
             Objectively = this.Objectively.Text,
             Complaints = this.Complaints.Text,
-            DateOfService = this.DateOfService.Date.ToUniversalTime().Second,
+            DateOfService = (int)this.DateOfService.Date.ToUniversalTime().Subtract(new DateTime(1970, 1, 1)).TotalSeconds,
             Pharmacotherapy=this.Pharmacotherapy.Text,
             Preliminary_diagnosis=this.Preliminary_diagnosis.Text,
             Specialist = this.Specialist.Text,
             ServiceType = this.ServiceType.Text,
             SituatedAt = this.SituatedAt.Text,
             Recommendations = this.Recommendations.Text,
-            RecordDate=DateTimeOffset.UtcNow.ToUniversalTime().Second,
+            RecordDate=DateTime.UtcNow.ToUniversalTime().Second,
             FormId = 500
         };
 

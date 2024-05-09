@@ -15,13 +15,16 @@ public partial class Form200_1 : ContentPage
     {
         InitializeComponent();
         this.dweeb = dweeb;
-        this.Destination.Text = dweeb.Destination;
         this.SolderId.Text = dweeb.SolderId;
         this.FullName.Text = dweeb.FullName;
-        this.WoundClause.Text = dweeb.WoundClause;
-        this.WoundType.Text = dweeb.WoundType;
-        this.WoundDate.Date.ToUniversalTime().AddSeconds(dweeb.WoundDate);
-        this.TimeOfDeath.Date.ToUniversalTime().AddSeconds(dweeb.TimeOfDeath);
+        if (dweeb.RecordDate != 0 && dweeb.RecordDate > (int)DateTimeOffset.UtcNow.ToUnixTimeSeconds() - 86400)
+        {
+            this.WoundClause.Text = dweeb.WoundClause;
+            this.WoundType.Text = dweeb.WoundType;
+            this.WoundDate.Date= DateTimeOffset.FromUnixTimeSeconds(dweeb.WoundDate).LocalDateTime;
+            this.TimeOfDeath = DateTimeOffset.FromUnixTimeSeconds(dweeb.TimeOfDeath).LocalDateTime;
+            this.Destination.Text = dweeb.Destination;
+        }
     }
 
     private void Save_Clicked(object sender, EventArgs e)
@@ -33,9 +36,9 @@ public partial class Form200_1 : ContentPage
             FullName = this.FullName.Text,
             WoundClause = this.WoundClause.Text,
             WoundType = this.WoundType.Text,
-            WoundDate = this.WoundDate.Date.ToUniversalTime().Second,
-            TimeOfDeath = this.TimeOfDeath.Date.ToUniversalTime().Second,
-            RecordDate = DateTimeOffset.UtcNow.ToUniversalTime().Second,
+            WoundDate=(int)this.WoundDate.Date.ToUniversalTime().Subtract(new DateTime(1970, 1, 1)).TotalSeconds,
+            TimeOfDeath = (int)this.TimeOfDeath.Date.ToUniversalTime().Subtract(new DateTime(1970, 1, 1)).TotalSeconds,
+            RecordDate = (int)DateTimeOffset.UtcNow.ToUnixTimeSeconds(),
             FormId = 200
         };
         if (Methods.Saving.SaveToFile(dweeb)) this.Share.IsEnabled = true;
