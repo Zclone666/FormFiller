@@ -363,3 +363,4 @@ MigrationBackup/
 FodyWeavers.xsd
 *.apk
 *.rar
+/com.companyname.testapppir-arm64-v8a.apk

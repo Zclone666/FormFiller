@@ -489,7 +489,7 @@ namespace TestAppPir.Methods
                             SqliteDataReader rdr = command.ExecuteReader();
                             while (rdr.Read())
                             {
-                                var actions = (string)rdr["actions"];
+                                var actions = (string)rdr["helpprovided"];
                                 List<string> HelpProvided = null;
                                 if (!string.IsNullOrEmpty(actions) && actions.Length > delimitterLength)
                                 {
@@ -508,20 +508,20 @@ namespace TestAppPir.Methods
                                     Destination = (string)rdr["destination"],
                                     WoundType = (string)rdr["woundtype"],
                                     WoundClause = (string)rdr["woundclause"],
-                                    WoundDate = (int)rdr["wounddate"],
-                                    TimeOfDeath = (int)rdr["deathtime"],
+                                    WoundDate = Convert.ToInt32(rdr["wounddate"]),
+                                    TimeOfDeath = Convert.ToInt32(rdr["deathtime"]),
                                     HelpProvided = HelpProvided,
                                     FileName = (string)rdr["filename"],
 
                                     Anamnesis = (string)rdr["anamnesis"],
                                     Complaints = (string)rdr["complaints"],
-                                    DateOfService = (int)rdr["dateofservice"],
+                                    DateOfService = Convert.ToInt32(rdr["dateofservice"]),
                                     Objectively = (string)rdr["objectively"],
-                                    FormId = (ushort)rdr["formid"],
+                                    FormId = Convert.ToUInt16(rdr["formid"]),
                                     Pharmacotherapy = (string)rdr["pharmacotherapy"],
                                     Preliminary_diagnosis = (string)rdr["preliminarydiagnosis"],
                                     Recommendations = (string)rdr["recommendations"],
-                                    RecordDate = (int)rdr["recorddate"],
+                                    RecordDate = Convert.ToInt32(rdr["recorddate"]),
                                     ServiceType = (string)rdr["servicetype"],
                                     SituatedAt = (string)rdr["situatedat"],
                                     Specialist = (string)rdr["specialist"]
