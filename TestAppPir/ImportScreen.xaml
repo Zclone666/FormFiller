@@ -12,5 +12,6 @@
                           Offset="1.0" />
             </LinearGradientBrush>
         </VerticalStackLayout.Background>
+        <Button Text="Загрузить все" HorizontalOptions="Center" x:Name="Import" Clicked="Import_Clicked" TextColor="#fffff0" BackgroundColor="#344c11"/>
     </VerticalStackLayout>
 </ContentPage>

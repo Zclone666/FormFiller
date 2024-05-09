@@ -14,4 +14,19 @@ public partial class ExportScreen : ContentPage
 			this.DBRecords.ItemsSource=DbRecs.results.Select(x=>x.SolderId);
 		}
 	}
+
+    private void Share_Clicked(object sender, EventArgs e)
+    {
+		try
+		{
+			if (DbRecs != null)
+			{
+				if (Methods.Saving.SaveToFileFromDB(DbRecs.results))
+				{
+					Methods.Sharing.ShareFiles(DbRecs.results[0].FileName);
+				}
+			}
+		}
+		catch { }
+    }
 }
