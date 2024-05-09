@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TestAppPir.Login"
+             Title="Login">
+    <VerticalStackLayout 
+        Spacing="25"
+        Padding="30"
+        VerticalOptions="Center"
+        HorizontalOptions="Center">
+
+        <!-- Logo and Title -->
+       <!-- <Image Source="logo.png" WidthRequest="100" HeightRequest="100" Aspect="AspectFit"/> -->
+        <Label Text="Пирогов+" 
+               FontSize="Large" 
+               FontAttributes="Bold" 
+               HorizontalOptions="Center" />
+        <Label Text="Система поддержки принятия решений" 
+               FontSize="Medium" 
+               HorizontalOptions="Center" />
+
+        <!-- Login Form -->
+        <Entry x:Name="usernameEntry" 
+               Placeholder="Логин" 
+               Text="admin"
+               HorizontalOptions="Fill" 
+               Margin="0,0,0,10"/>
+        <Entry x:Name="passwordEntry" 
+               Placeholder="Пароль" 
+               IsPassword="True"
+               HorizontalOptions="Fill" />
+
+        <!-- Login Button -->
+        <Button Text="ВХОД" 
+                BackgroundColor="#A4C639" 
+                TextColor="White"
+                HorizontalOptions="Fill" Clicked="Button_Clicked"/>
+
+        <!-- Version Label -->
+        <Label Text="1.0.0.5" 
+               FontSize="Small"
+               HorizontalOptions="Center" />
+    </VerticalStackLayout>
+</ContentPage>

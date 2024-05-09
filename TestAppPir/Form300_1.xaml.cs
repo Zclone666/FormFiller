@@ -58,12 +58,14 @@ public partial class Form300_1 : ContentPage
             WoundType = this.WoundType.Text,
             WoundDate = this.WoundDate.Date.ToUniversalTime().Second,
             RecordDate = DateTimeOffset.UtcNow.ToUniversalTime().Second,
+            FormId = 300
         };
         foreach (var editor in editors)
         {
             dweeb.HelpProvided.Add(editor.Text);
         }
         if (Methods.Saving.SaveToFile(dweeb)) this.Share.IsEnabled = true;
+        Navigation.PopToRootAsync();
     }
 
     private void Share_Clicked(object sender, EventArgs e)

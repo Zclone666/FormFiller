@@ -9,7 +9,8 @@ public partial class Trauma : ContentPage
     public Trauma()
 	{
 		InitializeComponent();
-	}
+        this.FullName.IsVisible = false;
+    }
 
     public Trauma(Casuelty dweeb)
     {
@@ -20,6 +21,10 @@ public partial class Trauma : ContentPage
         this.Name.Text = dweeb.Name;
         this.Surname.Text = dweeb.Surname;
         this.LastName.Text = dweeb.LastName;
+        this.FullName.Text = dweeb.FullName;
+        this.LastName.IsVisible = false;
+        this.LastName.IsVisible = false;
+        this.Name.IsVisible = false;
     }
 
     private void Save_Clicked(object sender, EventArgs e)
@@ -42,9 +47,11 @@ public partial class Trauma : ContentPage
             SituatedAt = this.SituatedAt.Text,
             Recommendations = this.Recommendations.Text,
             RecordDate = DateTimeOffset.UtcNow.ToUniversalTime().Second,
+            FormId = 400
         };
 
         Methods.Saving.SaveToFile(dweeb);
+        Navigation.PopToRootAsync();
     }
     private void Back_Clicked(object sender, EventArgs e)
     {

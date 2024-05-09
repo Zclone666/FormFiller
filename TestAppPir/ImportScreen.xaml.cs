@@ -25,7 +25,7 @@ public partial class ImportScreen : ContentPage
                     fs.Read(flbyte);
                     string fl=Encoding.UTF8.GetString(flbyte);
                     Consts.MainParams.Fudged = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Casuelty>>(fl);
-                    foreach (var i in Consts.MainParams.Fudged) Methods.DBase.InsertFact(i);
+                    Methods.DBase.InsertFact(Consts.MainParams.Fudged);
                 }
             }
 			catch { }

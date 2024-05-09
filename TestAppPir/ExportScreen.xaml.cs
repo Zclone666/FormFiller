@@ -11,6 +11,7 @@ public partial class ExportScreen : ContentPage
 		if (Consts.MainParams.Fudged.Count == 0)
 		{
 			DbRecs = Methods.DBase.SelectFacts();
+			DbRecs.results = DbRecs.results.Where(x => x.RecordDate != 0).ToList();
 			if (DbRecs != null)
 			{
 				this.DBRecords.ItemsSource = DbRecs.results.Select(x => x.SolderId);
@@ -18,7 +19,7 @@ public partial class ExportScreen : ContentPage
 		}
 		else
 		{
-            DbRecs = new ArgsGetFacts() { results=Consts.MainParams.Fudged };
+			DbRecs = new ArgsGetFacts() { results = Consts.MainParams.Fudged.Where(x => x.RecordDate != 0).ToList() };
             if (DbRecs != null)
             {
                 this.DBRecords.ItemsSource = DbRecs.results.Select(x => x.SolderId);

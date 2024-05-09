@@ -216,4 +216,8 @@ public partial class IntermediateScreen_200 : ContentPage
         }
         catch{ }
     }
+    private void Back_Clicked(object sender, EventArgs e)
+    {
+        Navigation.PopAsync();
+    }
 }
