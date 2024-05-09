@@ -6,6 +6,7 @@
         {
             InitializeComponent();
             Methods.DBase.Initialize("666");
+            var t = Consts.HardCodeLists.Specialists;
             MainPage = new AppShell();
         }
     }

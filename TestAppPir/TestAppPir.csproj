@@ -125,14 +125,37 @@
 		<Compile Remove="Methods\protoContacts.cs" />
 		<Compile Remove="Models\DBaseModels.cs" />
 	</ItemGroup>
+	<ItemGroup>
+	  <None Remove="Resources\institutionsLocation.json" />
+	  <None Remove="Resources\militaryRank.json" />
+	  <None Remove="Resources\militaryUnit.json" />
+	  <None Remove="Resources\specialist.json" />
+	  <None Remove="Resources\typeOfDirection.json" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Data.Sqlite.Core" Version="8.0.4" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 		<PackageReference Include="protobuf-net" Version="3.2.30" />
 		<PackageReference Include="SQLitePCLRaw.bundle_e_sqlcipher" Version="2.1.8" />
 		<PackageReference Include="SQLitePCLRaw.lib.e_sqlcipher.ios" Version="2.1.8" />
 		<PackageReference Include="UsefullStuff" Version="1.3.2" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Properties\Resources.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>Resources.resx</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Update="Properties\Resources.resx">
+	    <Generator>ResXFileCodeGenerator</Generator>
+	    <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
 	</ItemGroup>
 
 	<ItemGroup>
