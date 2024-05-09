@@ -23,7 +23,7 @@ namespace TestAppPir.Methods
                     {
                         Status = true;
                         Consts.MainParams.ConnStatus = Status;
-                        Thread.Sleep(10000);
+                        Thread.Sleep(10800000);
                         Consts.MainParams.BackendDBIn = Backend.RequestDownload().Result;
                         UpdateFudged();
                     }
@@ -31,7 +31,7 @@ namespace TestAppPir.Methods
                     {
                         Status = false;
                         Consts.MainParams.ConnStatus = Status;
-                        Thread.Sleep(10000);
+                        Thread.Sleep(60000);
                     }
                 }
             }
