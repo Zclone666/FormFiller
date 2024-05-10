@@ -13,7 +13,8 @@ public class MainActivity : MauiAppCompatActivity
 {
     protected override void OnCreate(Bundle savedInstanceState)
     {
-        base.OnCreate(savedInstanceState);
-        CrossFingerprint.SetCurrentActivityResolver(() => this);
+        //base.OnCreate(savedInstanceState);
+        //CrossFingerprint.SetCurrentActivityResolver(() => this);
+        //CrossFingerprint.Current.AuthenticateAsync(new Plugin.Fingerprint.Abstractions.AuthenticationRequestConfiguration("AUTHORIZATION NEEDED", "Putin Must Die!"));
     }
 }
