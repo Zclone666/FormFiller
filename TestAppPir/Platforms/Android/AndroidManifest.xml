@@ -9,5 +9,8 @@
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 	<uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 	<uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
-	<uses-sdk android:minSdkVersion="21" />
+	<uses-permission android:name="android.permission.USE_BIOMETRIC" />
+	<uses-permission android:name="android.permission.USE_CREDENTIALS" />
+	<uses-permission android:name="android.permission.USE_FINGERPRINT" />
+	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="34" />
 </manifest>

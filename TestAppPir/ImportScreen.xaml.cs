@@ -27,6 +27,7 @@ public partial class ImportScreen : ContentPage
                     Consts.MainParams.Fudged = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Casuelty>>(fl);
                     Methods.DBase.InsertFact(Consts.MainParams.Fudged);
                 }
+                Navigation.PopToRootAsync();
             }
 			catch { }
 		}

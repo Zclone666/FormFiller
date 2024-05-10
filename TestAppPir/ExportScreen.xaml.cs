@@ -35,10 +35,12 @@ public partial class ExportScreen : ContentPage
 			{
 				if (Methods.Saving.SaveToFileFromDB(DbRecs.results))
 				{
-					Methods.Sharing.ShareFiles(DbRecs.results[0].FileName).RunSynchronously();
+					Methods.Sharing.ShareFiles(DbRecs.results[0].FileName);
 				}
 			}
-		}
-		catch { }
+            Navigation.PopToRootAsync();
+        }
+		catch 
+		{ }
     }
 }

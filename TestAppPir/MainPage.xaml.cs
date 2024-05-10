@@ -1,6 +1,8 @@
-﻿using System.Net.NetworkInformation;
+﻿using Plugin.Fingerprint.Abstractions;
+using System.Net.NetworkInformation;
 using TestAppPir.Consts;
 using TestAppPir.Models;
+using Microsoft.Maui;
 
 namespace TestAppPir
 {
@@ -30,7 +32,8 @@ namespace TestAppPir
             UIThread = Thread.CurrentThread;
         }
 
-        internal void Fudged()
+
+    internal void Fudged()
         {
             try {
                 //Random rnd= new Random(20);

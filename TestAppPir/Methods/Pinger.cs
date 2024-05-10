@@ -49,6 +49,7 @@ namespace TestAppPir.Methods
                         if (!Consts.MainParams.Fudged.Exists((x)=>x.SolderId==i.TokenNumber))
                             Consts.MainParams.Fudged.Add(new Models.Casuelty() { FullName = i.FIO, NickName = i.CallSign, SolderId = i.TokenNumber, FileName = i.Uid.ToString() });
                     }
+                    DBase.DropPersonnel();
                     DBase.UpsertPersonnel(Consts.MainParams.BackendDBIn);
                 }
             }
