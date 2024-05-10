@@ -83,7 +83,7 @@ namespace TestAppPir
             MainParams.AspectRatioWidth = Math.Round((MainApp.MainView.Width / MainApp.MainView.Height) / 2, 1);
             MainParams.AspectRatioHeight = Math.Round(MainApp.MainView.Height / MainApp.MainView.Width, 1);
             MainParams.NmbOfSquares = (uint)Math.Round((MainApp.MainView.Height * MainApp.MainView.Width) / ((MainApp.MainView.Width / 5) * (MainApp.MainView.Height / 5)));
-            MainApp.MainP.CreateGrid(6, new List<string>() { "Форма 200", "Форма 300", "Травма", "Заболевания", "Поделиться", "Импортировать" }, new List<string>() { "IntermediateScreen_200", "IntermediateScreen_300", "Trauma", "Injury", "ExportScreen", "ImportScreen" });
+            MainApp.MainP.CreateGrid(6, new List<string>() { "Form 200", "Form 300", "Trauma", "Injury", "Share", "Import" }, new List<string>() { "IntermediateScreen_200", "IntermediateScreen_300", "Trauma", "Injury", "ExportScreen", "ImportScreen" });
         }
 
         public void CreateGrid(int NumbOfBtns=6, List<string> BtnTxt=null, List<string> MthdsName=null)

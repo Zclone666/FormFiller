@@ -5,73 +5,73 @@
              Title="Trauma">
     <ScrollView>
         <StackLayout Padding="30" Spacing="10">
-            <Label Text="Травма" FontSize="Large" HorizontalOptions="Center" FontAttributes="Bold"/>
+            <Label Text="Trauma" FontSize="Large" HorizontalOptions="Center" FontAttributes="Bold"/>
 
 
 
             <!-- Token number -->
-            <Label Text="Номер жетона:" TextColor="#344c11" BackgroundColor="#ffffff"/>
+            <Label Text="MedicalRecordID:" TextColor="#344c11" BackgroundColor="#ffffff"/>
             <Entry Placeholder="XX-XX609" x:Name="SolderId" TextColor="#344c11" BackgroundColor="#ffffff"/>
 
-            <Label Text="Позывной" TextColor="#344c11" BackgroundColor="#ffffff"/>
-            <Entry Placeholder="Введите позывной" x:Name="NickName" TextColor="#344c11" BackgroundColor="#ffffff"/>
+            <Label Text="PatientID" TextColor="#344c11" BackgroundColor="#ffffff"/>
+            <Entry Placeholder="" x:Name="NickName" TextColor="#344c11" BackgroundColor="#ffffff"/>
             
-            <Label Text="Фамилия Имя Отчество:" TextColor="#344c11" BackgroundColor="#ffffff"/>
-            <Entry Placeholder="Введите полное имя" x:Name="FullName" TextColor="#344c11" BackgroundColor="#ffffff" IsEnabled="False"/>
+            <Label Text="Full Name:" TextColor="#344c11" BackgroundColor="#ffffff"/>
+            <Entry Placeholder="" x:Name="FullName" TextColor="#344c11" BackgroundColor="#ffffff" IsEnabled="False"/>
             
-            <Label Text="Фамилия" TextColor="#344c11" BackgroundColor="#ffffff"/>
-            <Entry Placeholder="Введите фамилию" x:Name="Surname" TextColor="#344c11" BackgroundColor="#ffffff"/>
+            <Label Text="Surname" TextColor="#344c11" BackgroundColor="#ffffff"/>
+            <Entry Placeholder="" x:Name="Surname" TextColor="#344c11" BackgroundColor="#ffffff"/>
 
-            <Label Text="Имя" TextColor="#344c11" BackgroundColor="#ffffff"/>
-            <Entry Placeholder="Введите имя" x:Name="Name" TextColor="#344c11" BackgroundColor="#ffffff"/>
+            <Label Text="Name" TextColor="#344c11" BackgroundColor="#ffffff"/>
+            <Entry Placeholder="" x:Name="Name" TextColor="#344c11" BackgroundColor="#ffffff"/>
 
-            <Label Text="Отчество" TextColor="#344c11" BackgroundColor="#ffffff"/>
-            <Entry Placeholder="Введите отчество" x:Name="LastName" TextColor="#344c11" BackgroundColor="#ffffff"/>
+            <Label Text="Middle Name" TextColor="#344c11" BackgroundColor="#ffffff"/>
+            <Entry Placeholder="" x:Name="LastName" TextColor="#344c11" BackgroundColor="#ffffff"/>
 
             <!-- Complaints -->
-            <Editor Placeholder="Жалобы" AutoSize="TextChanges" x:Name="Complaints" TextColor="#344c11" BackgroundColor="#ffffff"/>
+            <Editor Placeholder="Complaints" AutoSize="TextChanges" x:Name="Complaints" TextColor="#344c11" BackgroundColor="#ffffff"/>
 
             <!-- Anamnesis -->
-            <Editor Placeholder="Анамнез" AutoSize="TextChanges" x:Name="Anamnesis" TextColor="#344c11" BackgroundColor="#ffffff"/>
+            <Editor Placeholder="Anamnesis" AutoSize="TextChanges" x:Name="Anamnesis" TextColor="#344c11" BackgroundColor="#ffffff"/>
 
             <!-- Objectively -->
-            <Editor Placeholder="Объективно" AutoSize="TextChanges" x:Name="Objectively" TextColor="#344c11" BackgroundColor="#ffffff"/>
+            <Editor Placeholder="Objectively" AutoSize="TextChanges" x:Name="Objectively" TextColor="#344c11" BackgroundColor="#ffffff"/>
 
             <!-- Pharmacotherapy -->
-            <Editor Placeholder="Фармакотерапия" AutoSize="TextChanges" x:Name="Pharmacotherapy" TextColor="#344c11" BackgroundColor="#ffffff"/>
+            <Editor Placeholder="Pharmacotherapy" AutoSize="TextChanges" x:Name="Pharmacotherapy" TextColor="#344c11" BackgroundColor="#ffffff"/>
 
             <!-- Preliminary Diagnosis -->
-            <Editor Placeholder="Прелиминарный диагноз" AutoSize="TextChanges" x:Name="Preliminary_diagnosis" TextColor="#344c11" BackgroundColor="#ffffff"/>
+            <Editor Placeholder="Preliminary diagnosis" AutoSize="TextChanges" x:Name="Preliminary_diagnosis" TextColor="#344c11" BackgroundColor="#ffffff"/>
 
             <!-- Recommendations -->
-            <Editor Placeholder="Рекомендации" AutoSize="TextChanges" x:Name="Recommendations" TextColor="#344c11" BackgroundColor="#ffffff"/>
+            <Editor Placeholder="Recommendations" AutoSize="TextChanges" x:Name="Recommendations" TextColor="#344c11" BackgroundColor="#ffffff"/>
 
             <!-- Date of the Application -->
-            <Label Text="Дата обращения" TextColor="#344c11" BackgroundColor="#ffffff"></Label>
+            <Label Text="Date Of Service" TextColor="#344c11" BackgroundColor="#ffffff"></Label>
             <DatePicker x:Name="DateOfService"/>
 
 
-            <Editor Placeholder="Вид направления" AutoSize="TextChanges" x:Name="ServiceType" TextColor="#344c11" BackgroundColor="#ffffff" TextChanged="ServiceType_TextChanged">
+            <Editor Placeholder="Service Type" AutoSize="TextChanges" x:Name="ServiceType" TextColor="#344c11" BackgroundColor="#ffffff" TextChanged="ServiceType_TextChanged">
 
             </Editor>
             <ListView x:Name="ServiceSearch" ItemTapped="ServiceSearch_ItemTapped"/>
 
             <!-- Specialist -->
-            <Editor Placeholder="Специалист" x:Name="Specialist" AutoSize="TextChanges" TextColor="#344c11" BackgroundColor="#ffffff" TextChanged="Specialist_TextChanged">
+            <Editor Placeholder="Specialist" x:Name="Specialist" AutoSize="TextChanges" TextColor="#344c11" BackgroundColor="#ffffff" TextChanged="Specialist_TextChanged">
 
             </Editor>
             <ListView x:Name="SpecialistSearch" ItemTapped="SpecialistSearch_ItemTapped"/>
 
             <!-- Institution where it is located -->
-            <Editor Placeholder="Учреждение где находится" x:Name="SituatedAt" AutoSize="TextChanges" TextColor="#344c11" BackgroundColor="#ffffff" TextChanged="SituatedAt_TextChanged">
+            <Editor Placeholder="Situated At" x:Name="SituatedAt" AutoSize="TextChanges" TextColor="#344c11" BackgroundColor="#ffffff" TextChanged="SituatedAt_TextChanged">
 
             </Editor>
             <ListView x:Name="EstabSearch" ItemTapped="EstabSearch_ItemTapped"/>
 
             <!-- Buttons for navigation -->
             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                <Button Text="Назад" BackgroundColor="Green" TextColor="White" Clicked="Back_Clicked" x:Name="Back"/>
-                <Button Text="Сохранить" BackgroundColor="Green" TextColor="White" Clicked="Save_Clicked"
+                <Button Text="Back" BackgroundColor="Green" TextColor="White" Clicked="Back_Clicked" x:Name="Back"/>
+                <Button Text="Save" BackgroundColor="Green" TextColor="White" Clicked="Save_Clicked"
                         HorizontalOptions="EndAndExpand" Margin="20,0,0,0"/>
             </StackLayout>
         </StackLayout>

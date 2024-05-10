@@ -12,7 +12,7 @@
                           Offset="1.0" />
             </LinearGradientBrush>
         </VerticalStackLayout.Background>
-        <Button Text="Отправить все" HorizontalOptions="Center" x:Name="Share" Clicked="Share_Clicked" TextColor="#fffff0" BackgroundColor="#344c11"/>
+        <Button Text="Share" HorizontalOptions="Center" x:Name="Share" Clicked="Share_Clicked" TextColor="#fffff0" BackgroundColor="#344c11"/>
         <CollectionView x:Name="DBRecords">
             <CollectionView.ItemsLayout>
                 <GridItemsLayout Span="1" Orientation="Vertical" />

@@ -13,39 +13,39 @@
                           Offset="1.0" />
                 </LinearGradientBrush>
             </StackLayout.Background>
-            <Label Text="Форма 200 ФИО" FontAttributes="Bold" HorizontalOptions="Center" TextColor="#344c11" BackgroundColor="#ffffff"/>
+            <Label Text="Form 200" FontAttributes="Bold" HorizontalOptions="Center" TextColor="#344c11" BackgroundColor="#ffffff"/>
 
-            <Label Text="Номер жетона:" TextColor="#344c11" BackgroundColor="#ffffff"/>
+            <Label Text="Medical Record ID:"/>
             <Entry Placeholder="XX-XX609" x:Name="SolderId" TextColor="#344c11" BackgroundColor="#ffffff"/>
 
-            <Label Text="Позывной" TextColor="#344c11" BackgroundColor="#ffffff"/>
-            <Entry Placeholder="Введите позывной" x:Name="NickName" TextColor="#344c11" BackgroundColor="#ffffff"/>
+            <Label Text="Patient ID"/>
+            <Entry Placeholder="" x:Name="NickName" TextColor="#344c11" BackgroundColor="#ffffff"/>
 
-            <Label Text="Фамилия" TextColor="#344c11" BackgroundColor="#ffffff"/>
-            <Entry Placeholder="Введите фамилию" x:Name="Surname" TextColor="#344c11" BackgroundColor="#ffffff"/>
+            <Label Text="Surname"/>
+            <Entry Placeholder="" x:Name="Surname" TextColor="#344c11" BackgroundColor="#ffffff"/>
 
-            <Label Text="Имя" TextColor="#344c11" BackgroundColor="#ffffff"/>
-            <Entry Placeholder="Введите имя" x:Name="Name" TextColor="#344c11" BackgroundColor="#ffffff"/>
+            <Label Text="Name"/>
+            <Entry Placeholder="" x:Name="Name" TextColor="#344c11" BackgroundColor="#ffffff"/>
 
-            <Label Text="Отчество" TextColor="#344c11" BackgroundColor="#ffffff"/>
-            <Entry Placeholder="Введите отчество" x:Name="LastName" TextColor="#344c11" BackgroundColor="#ffffff"/>
+            <Label Text="Middle Name"/>
+            <Entry Placeholder="" x:Name="LastName" TextColor="#344c11" BackgroundColor="#ffffff"/>
 
-            <Label Text="Характер ранения" TextColor="#344c11" BackgroundColor="#ffffff"/>
-            <Entry Placeholder="Опишите характер ранения"  x:Name="WoundType" TextColor="#344c11" BackgroundColor="#ffffff"/>
+            <Label Text="Wound Type"/>
+            <Entry Placeholder="" x:Name="WoundType" TextColor="#344c11" BackgroundColor="#ffffff"/>
 
-            <Label Text="Обстоятельства ранения" TextColor="#344c11" BackgroundColor="#ffffff"/>
-            <Editor HeightRequest="100" Placeholder="Опишите обстоятельства ранения"  x:Name="WoundClause" TextColor="#344c11" BackgroundColor="#ffffff"/>
+            <Label Text="Wound Clause"/>
+            <Editor HeightRequest="100" Placeholder=""  x:Name="WoundClause" TextColor="#344c11" BackgroundColor="#ffffff"/>
 
-            <Label Text="Дата ранения" TextColor="#344c11" BackgroundColor="#ffffff"/>
+            <Label Text="Wound Date" TextColor="#344c11" BackgroundColor="#ffffff"/>
             <DatePicker  x:Name="WoundDate" TextColor="#344c11" BackgroundColor="#ffffff"/>
 
-            <Label Text="Дата смерти" TextColor="#344c11" BackgroundColor="#ffffff"/>
+            <Label Text="Time Of Death" TextColor="#344c11" BackgroundColor="#ffffff"/>
             <DatePicker x:Name="TimeOfDeath" TextColor="#344c11" BackgroundColor="#ffffff"/>
 
-            <Label Text="Куда направлен" TextColor="#344c11" BackgroundColor="#ffffff"/>
-            <Entry Placeholder="Укажите место направления"  x:Name="Destination" TextColor="#344c11" BackgroundColor="#ffffff"/>
+            <Label Text="Destination" TextColor="#344c11" BackgroundColor="#ffffff"/>
+            <Entry Placeholder=""  x:Name="Destination" TextColor="#344c11" BackgroundColor="#ffffff"/>
 
-            <Button Text="Сохранить" HorizontalOptions="Center"  x:Name="Save" Clicked="Save_Clicked" TextColor="#fffff0" BackgroundColor="#344c11"/>
+            <Button Text="Save" HorizontalOptions="Center"  x:Name="Save" Clicked="Save_Clicked" TextColor="#fffff0" BackgroundColor="#344c11"/>
             <Button Text="Share" HorizontalOptions="Center" x:Name="Share" Clicked="Share_Clicked" TextColor="#fffff0" BackgroundColor="#344c11"/>
             <Button Text="Back" HorizontalOptions="Center"  x:Name="Back" Clicked="Back_Clicked" TextColor="#fffff0" BackgroundColor="#344c11"/>
         </StackLayout>

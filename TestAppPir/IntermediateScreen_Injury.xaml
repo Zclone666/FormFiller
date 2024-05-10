@@ -12,12 +12,12 @@
                           Offset="1.0" />
             </LinearGradientBrush>
         </VerticalStackLayout.Background>
-        <SearchBar Placeholder="Номер жетона" x:Name="Search_ID" IsVisible="True" IsTextPredictionEnabled="True" IsEnabled="True"  TextColor="#344c11" BackgroundColor="#ffffff">
+        <SearchBar Placeholder="Medical Record ID" x:Name="Search_ID" IsVisible="True" IsTextPredictionEnabled="True" IsEnabled="True"  TextColor="#344c11" BackgroundColor="#ffffff">
         </SearchBar>
-        <SearchBar Placeholder="Позывной" x:Name="Search_nick" IsVisible="False" IsTextPredictionEnabled="True" IsEnabled="True"  TextColor="#344c11" BackgroundColor="#ffffff">
+        <SearchBar Placeholder="Patient ID" x:Name="Search_nick" IsVisible="False" IsTextPredictionEnabled="True" IsEnabled="True"  TextColor="#344c11" BackgroundColor="#ffffff">
         </SearchBar>
-        <Button Text="Назад" BackgroundColor="Green" TextColor="White" Clicked="Back_Clicked" x:Name="Back"/>
-        <Button Text="Далее" x:Name="Next" Clicked="Next_Clicked"></Button>
+        <Button Text="Back" BackgroundColor="Green" TextColor="White" Clicked="Back_Clicked" x:Name="Back"/>
+        <Button Text="Next" x:Name="Next" Clicked="Next_Clicked"></Button>
         <!-- <ListView x:Name="searchResults" ItemTapped="searchResults_ItemTapped"/> -->
     </VerticalStackLayout>
 </ContentPage>
