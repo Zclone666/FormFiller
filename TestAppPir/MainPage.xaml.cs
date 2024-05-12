@@ -66,6 +66,7 @@ namespace TestAppPir
                 MainApp.MainP.Fudged();
                 UIInit();
                 CheckInit();
+                MainApp.MainP.Navigation.PushAsync(new TestAppPir.Login());
             }
         }
 
